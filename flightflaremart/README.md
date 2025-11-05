@@ -57,5 +57,5 @@ This repository includes all the backend and frontend integration necessary for 
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/devneeraj77/flightflaremart.com.git
+   git clone https://github.com/devneeraj77/laravel-app.git
    cd flightflaremart.com
