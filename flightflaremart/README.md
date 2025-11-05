@@ -57,5 +57,5 @@ This repository includes all the backend and frontend integration necessary for 
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/flightflaremart.com.git
+   git clone https://github.com/devneeraj77/flightflaremart.com.git
    cd flightflaremart.com
