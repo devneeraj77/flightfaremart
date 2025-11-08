@@ -45,28 +45,23 @@ checkbox.addEventListener("change", () => {
 });
 
 // Navbar mobile toggle
+
 document.addEventListener('DOMContentLoaded', () => {
   const menuBtn = document.getElementById('menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileNav = document.getElementById('mobile-nav');
   const menuIcon = document.getElementById('menu-icon');
   const closeIcon = document.getElementById('close-icon');
 
+  if (!menuBtn) return;
+
   menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    menuIcon.classList.toggle('hidden');
-    closeIcon.classList.toggle('hidden');
-  });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileNav = document.getElementById('mobile-nav');
-
-  menuBtn?.addEventListener('click', () => {
     const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
     menuBtn.setAttribute('aria-expanded', !expanded);
-    mobileNav.classList.toggle('hidden');
+
+    mobileMenu?.classList.toggle('hidden');
+    mobileNav?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
   });
 });
-
-

@@ -1,4 +1,4 @@
-<header class="w-full  bg-primary  text-sm top-0  left-0 z-50">
+<header class="w-full  bg-primary text-secondary  text-sm top-0  left-0 z-50">
 
 
   <!-- <div class="bg-primary  p-2 md:flex justify-between hidden  dark:bg-[#0b1e1f]">
@@ -18,7 +18,7 @@
     </a>
 
     <!-- Desktop Nav -->
-    <nav id="desktop-nav" class="hidden md:flex items-center gap-6">
+    <nav id="desktop-nav" class="hidden md:flex text-secondary items-center gap-6">
 
       <!-- Theme Toggle -->
       <div class="flex items-center gap-3">
@@ -39,7 +39,7 @@
           Toggle
         </button> -->
       </div>
-      <ul class="flex gap-5 text-base">
+      <ul class="flex gap-5 text-secondary text-base">
         <li><a href="/" class="hover:text-accent transition">Home</a></li>
         <li><a href="/about" class="hover:text-accent transition">About</a></li>
         <li><a href="/blog" class="hover:text-accent transition">Blog</a></li>

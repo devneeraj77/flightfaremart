@@ -14,8 +14,7 @@
         "faisal50x/blade-ionicons": "^1.1",
         "hasnayeen/blade-eva-icons": "^2.1",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1",
-        "owenvoke/blade-entypo": "^2.3"
+        "laravel/tinker": "^2.10.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

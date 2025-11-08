@@ -20,7 +20,8 @@
   
    
    
-    @include('layouts.header')
+    @include('layouts.navmanu')
+
 
     <div class="min-h-screen  w-full flex items-center justify-center ">
         hellofdsa
