@@ -1,7 +1,7 @@
 <footer class="w-full text-accent">
   <hr class="text-secondary">
   <!-- Bottom light section -->
-  <div class="bg-secondary dark:bg-primary z-10 text-accent dark:text-light py-10">
+  <div class="bg-secondary dark:bg-trans z-10 text-accent dark:text-light py-10">
     <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-8 px-6">
 
       <!-- Logo + Social -->
@@ -41,11 +41,11 @@
 
   </div>
   <!-- Top dark section -->
-  <div class="bg-primary dark:bg-dark text-dark dark:text-secondary py-10">
+  <div class="bg-primary dark:bg-black text-dark dark:text-secondary py-10">
     <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 px-6">
 
       <div class=" flex-1 space-x-4 ">
-        <h4 class="font-semibold text-black dark:text-primary">Social Links</h4>
+        <h4 class="font-semibold text-black  dark:text-primary">Social Links</h4>
         <ul class="flex mt-3 space-x-4">
           <li>
             <a href="#" class=" hover:text-secondary transition">

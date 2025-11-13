@@ -4,15 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\SerpApiController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/serpapi', [SerpApiController::class, 'index']);
 
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy');
 Route::view('/terms', 'terms')->name('terms');
+Route::view('/flights', 'flights')->name('flights');
 
 // Redirect /admin to appropriate location
 Route::get('/admin', function () {
@@ -21,6 +20,7 @@ Route::get('/admin', function () {
     }
     return redirect()->route('admin.login');
 });
+
 
 // User Auth Routes
 Route::get('/login', [UserAuthController::class, 'showLoginForm'])->name('login');
@@ -32,7 +32,7 @@ Route::post('/register', [UserAuthController::class, 'register'])->name('registe
 Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
 // Home redirect for /admin
-Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.home');
+Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.welcome');
 
 // Admin login
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');

@@ -13,6 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'serpapi' => [
+        'key' => env('SERPAPI_KEY'),
+        'base' => 'http://127.0.0.1:8000/',
+    ],
+
 
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),

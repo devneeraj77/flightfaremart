@@ -26,6 +26,7 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-4 text-sm px-3 text-accent  font-medium">
           <a href="#" aria-current="page"  class="px-1 py-2 text-sm  font-medium text-accent bg-trans hover:bg-white/5 hover:text-secondary dark:text-primary ">Home</a>
+          <a href="#" class="px-1 py-2 text-sm font-medium text-accent hover:bg-white/5 hover:text-secondary dark:text-secondary">About</a>
           <a href="#" class="px-1 py-2 text-sm font-medium text-accent hover:bg-white/5 hover:text-secondary dark:text-secondary">Services</a>
           <a href="#" class="px-1 py-2 text-sm font-medium text-accent hover:bg-white/5 hover:text-secondary dark:text-secondary">blog</a>
           <a href="#" class="px-1 py-2 text-sm font-medium text-accent hover:bg-white/5 hover:text-secondary dark:text-secondary">Contact</a>
