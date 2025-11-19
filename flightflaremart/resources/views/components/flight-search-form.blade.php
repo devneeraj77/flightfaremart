@@ -1,15 +1,15 @@
-<div x-data="flightSearchForm()" class="mt-14 min-h-60 md:h-72 lg:h-96 flex justify-center ">
-  <div class="w-full max-w-4xl">
+<div x-data="flightSearchForm()" class=" m-2">
+  <div class="w-full">
     <form @submit.prevent="handleSubmit" 
-          class="bg-secondary dark:bg-trans dark:text-black rounded-lg shadow-xl p-2 sm:p-6 lg:p-8 space-y-6 w-full">
-
+          class="bg-base-200 rounded-lg shadow-xl p-4 sm:p-6 lg:p-8 space-y-6 w-full">
+      
       <!-- Trip Details -->
       <fieldset class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <legend class="sr-only">Trip Details</legend>
 
         <div class="form-control">
           <label class="label"><span class="label-text">Trip Type</span></label>
-          <select x-model="form.tripType" class="select select-bordered  w-full">
+          <select x-model="form.tripType" class="select select-bordered w-full">
             <option value="round-trip">Round trip</option>
             <option value="one-way">One way</option>
             <option value="multi-city">Multi-city</option>
@@ -39,7 +39,7 @@
       </fieldset>
 
       <!-- Origin / Destination + Dates -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 items-end">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
         <div class="form-control sm:col-span-2">
           <label class="label"><span class="label-text">Origin / Destination</span></label>
           <div class="flex gap-2">
@@ -53,7 +53,7 @@
               <option value="LHR">London (LHR)</option>
             </select>
             <button type="button" @click="swapLocations" 
-                    class="btn btn-circle btn-primary text-black shrink-0 self-center">
+                    class="btn btn-circle btn-primary shrink-0 self-center">
               ⇄
             </button>
             <select x-model="form.to" class="select select-bordered w-full">
@@ -81,12 +81,14 @@
 
       <!-- Submit -->
       <div class="text-right">
-        <button class="bg-accent hover:bg-accent/50 text-primary active:scale-95 rounded-md px-7 h-11">
-            Get started
-          </button>
+        <button class="btn btn-primary px-7 h-11">
+          Get started
+        </button>
       </div>
     </form>
   </div>
+</div>
+
 
   <script>
     function flightSearchForm() {
@@ -100,9 +102,6 @@
           to: '',
           departureDate: '',
           returnDate: '',
-          stops: 'any',
-          duration: 'any',
-          more: 'any',
         },
         results: [],
         loading: false,

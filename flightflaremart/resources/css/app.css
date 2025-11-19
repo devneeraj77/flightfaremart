@@ -51,7 +51,7 @@
 
     /* Additional tokens */
     --color-dark: oklab(20.366% -0.02323 0.03059);
-    --color-trans: oklab(98.177% -0.02579 0.03704);
+    --color-trans: oklab(84.88% -0.03826 0.07836 / 0.39);
 
     /* Typography */
     --font-display: "Playfair Display", serif;
@@ -87,14 +87,24 @@
 }
 [data-theme="dark"] {
     --acme-canvas-color: oklch(0.21 0.034 264.665);
+    --acme-canvas-color: oklab(84.88% -0.03826 0.07836 / 0.39);
 }
 @theme inline {
     --color-canvas: var(--acme-canvas-color);
 }
-
-/* *{
-    border: green solid 
-} */
+@utility components {
+    .read-dot {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* max-width: 17rem; */
+    /* min-height: 20rem; */
+ }
+  
+}
+ 
 
 body {
     /* background: #24301036; */

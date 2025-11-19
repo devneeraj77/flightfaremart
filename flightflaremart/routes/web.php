@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FlightController;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,6 +14,17 @@ Route::get('/', function () {
 // Route to show the form
 Route::get('/flights', function () {
     return view('flights.index');
+});
+Route::get('/', [\App\Http\Controllers\TestimonialController::class, 'index']);
+
+
+Route::get('scripts.db-check', function () {
+    try {
+        DB::connection()->getPdo();
+        return response()->json(['status' => 'ok', 'message' => 'Database connected']);
+    } catch (Exception $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+    }
 });
 
 // Route to handle the search (POST request)

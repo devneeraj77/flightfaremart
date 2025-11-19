@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class TestimonialController extends Controller
+{
+   public function index()
+{
+    $testimonials = \App\Models\Testimonial::latest()->get();
+    return view('welcome', compact('testimonials'));
+}
+
+}

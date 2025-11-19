@@ -16,52 +16,56 @@
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 
-<body class=" antialiased bg-primary font-display dark:bg-black dark:text-secondary  px-2 ">
+<body class=" antialiased bg-primary   overflow-x-hidden font-display dark:bg-black dark:text-secondary  px-2 ">
   @include('layouts.navmanu')
   <main>
-    <section class="flex mx-auto max-w-6xl min-h-96 flex-col max-md:gap-20 md:flex-row pb-20 items-center justify-between md:mt-5 ">
-      <div class="flex  flex-col items-center md:items-start">
-        <div class="flex flex-wrap items-center justify-center p-1.5 rounded-full border border-slate-600 text-black text-xs">
-          <div class="flex items-center">
-            <img class="size-7 rounded-full border-3 border-white"
-              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=50" alt="userImage1">
-            <img class="size-7 rounded-full border-3 border-white -translate-x-2"
-              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50" alt="userImage2">
-            <img class="size-7 rounded-full border-3 border-white -translate-x-4"
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=50&h=50&auto=format&fit=crop"
-              alt="userImage3">
+    <section class="overflow-hidden ">
+      <div class="relative py-8">
+        <img src="img/aircraft_usu4.svg" class=" absolute -right-15 top-2 sm:left-20 sm:-top-10 md:left-50 md:-top-30 lg:left-50 lg:-top-25 z-30 -rotate-25 md:-rotate-15 lg:-rotate-3 " width="950" height="200" alt="" srcset="">
+      </div>
+      <div class="flex flex-col relative  max-md:gap-20 md:flex-row pb-20 items-center justify-between mt-20 px-4 md:px-16 lg:px-24 xl:px-32">
+        <div class=" flex flex-col z-40  p-3 items-center md:items-start">
+          <div class="flex flex-wrap backdrop-blur-sm items-center justify-center p-1.5 rounded-full border border-secondary text-white text-xs">
+            <div class="flex items-center ">
+              <img class="size-7 rounded-full border-3 border-white"
+                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=50" alt="userImage1">
+              <img class="size-7 rounded-full border-3 border-white -translate-x-2"
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50" alt="userImage2">
+              <img class="size-7 rounded-full border-3 border-white -translate-x-4"
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=50&h=50&auto=format&fit=crop"
+                alt="userImage3">
+            </div>
+            <p class="-translate-x-2 text-slate-500 ">Grab of 100k+ countries deals </p>
           </div>
-          <p class="-translate-x-2">Join community of 1m+ founders </p>
-        </div>
-        <h1 class="text-center text-accent dark:text-secondary md:text-left text-5xl leading-[68px] md:text-6xl md:leading-[84px] font-medium max-w-xl ">
-          Find Your Perfect Flight, Guaranteed Lowest Fare.
-        </h1>
-        <p class="text-center md:text-left dark:text-slate-50 text-sm  max-w-lg mt-2">
-          Unlock smarter workflows with AI tools designed to boost productivity, simplify tasks and help you do more with less effort.
-        </p>
-        <div class="flex items-center gap-4 mt-8 text-sm">
-          <button class="bg-accent hover:bg-accent/20 text-primary active:scale-95 rounded-md px-7 h-11">
-            Get started
+          <h1 class="text-center mt-4 md:text-left text-4xl leading-[48px] md:text-5xl md:leading-[74px] font-medium max-w-xl text-accent">
+            Find Your Perfect Flight, Guaranteed Lowest Fare.
+          </h1>
+          <p class="text-center md:text-left text-sm text-slate-600 max-w-lg mt-2">
+            Quickly discover the best deals from hundreds of <strong>1,200+ airlines and travel providers.</strong> Your exciting journey begins right here!
+          </p>
+          <!-- <div class="flex items-center gap-4 mt-8 text-sm">
+          <button class="bg-accent hover:bg-base-200 text-primary active:scale-95 hover:text-accent duration-300 ease-in rounded-md px-7 h-11">
+            Book Now
           </button>
-          <button class="flex items-center gap-2 border border-slate-600 active:scale-95 hover:bg-white/10 transition text-black rounded-md px-6 h-11">
+          <button class="flex items-center gap-2 border border-slate-600 active:scale-95 hover:bg-white/10 transition text-accent rounded-md px-6 h-11">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video-icon lucide-video">
               <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
               <rect x="2" y="6" width="14" height="12" rx="2" />
             </svg>
             <span>Watch demo</span>
-          </button>
+          </button>-->
+        </div>
+        <!-- <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/hero-section-showcase-3.png" alt="hero" class="max-w-xs sm:max-w-sm lg:max-w-md transition-all duration-300"> -->
+        <div class=" z-40">
+          <x-flight-search-form class="relative" />
         </div>
       </div>
-      <!-- <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/hero-section-showcase-3.png" alt="hero" class="max-w-xs sm:max-w-sm lg:max-w-md transition-all duration-300"> -->
-      <div class="w-full sm:max-w-sm lg:max-w-md transition-all duration-300 px-4">
-        <x-flight-search-form />
 
-      </div>
     </section>
     <!-- section 2 -->
-    <section class="py-5  mx-auto max-w-7xl">
-      <p class="mx-auto px-5 md:px-4 max-w-6xl text-xl ">Trip on</p>
-      <h2 class="text-4xl  md:text-6xl mx-auto max-w-6xl px-5 md:px-3">Popular Flight Deals Right Now</h2>
+    <section class="py-24 mx-auto max-w-7xl">
+      <p class="mx-auto px-5 md:px-4 max-w-6xl md:text-xl text-base text-center ">Trip on</p>
+      <h2 class="text-4xl  md:text-6xl mx-auto max-w-6xl px-5 md:px-3 text-center">Popular Flight Deals Right Now</h2>
       <div class="flex-1 md:flex my-6 bg-trans items-center">
         <div class="basis-4/3">
           <div class="container mx-auto px-4 md:py-8">
@@ -173,21 +177,170 @@
         </div>
       </div>
     </section>
-    <section class="min-h-screen">
-      <p class="mx-auto px-5 md:px-3 max-w-6xl">Trust & Social Proof Section</p>
-      <h2 class="text-2xl md:text-6xl mx-auto max-w-6xl px-5 md:px-3">Join Thousands of Happy Travelers</h2>
-
+    <section class="h-fit bg-secondary text-accent py-24">
+      <p class="mx-auto px-5 md:px-4 max-w-6xl text-base md:text-xl text-center">Trust & Social Proof Section</p>
+      <h2 class="text-4xl md:text-6xl text-center  mx-auto max-w-6xl px-5 md:px-3">Join Thousands of Happy Travelers</h2>
+      <div class="mx-auto max-w-6xl">
+        <x-testimonials :testimonials="$testimonials" />
+      </div>
     </section>
-    <section class="min-h-screen">
-      <h2 class="text-2xl md:text-6xl mx-auto max-w-6xl px-5 md:px-3">Where Will You Explore Next?</h2>
 
+    <section class="bg-white  py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl md:text-6xl  mx-auto max-w-6xl px-5 md:px-3 ">Where Will You Explore Next?</h2>
+      <p class="mx-auto px-5 md:px-4 max-w-6xl text-base md:text-base my-2 ">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
+      <div class="max-w-6xl mx-auto">
+        <div class=" flex  py-8 mb-12 md:mb-16">
+          <p class="mt-4 text-xl  text-gray-500 dark:text-secondary max-w-3xl mx-auto">
+            Discover destinations that inspire adventure, relaxation, and unforgettable memories. Whether you're planning a spontaneous weekend getaway or mapping out your next big international journey, <strong class="text-accent font-normal">FlightFareMart</strong> brings you the best flight deals and travel offers in real time.
+          </p>
+          <p class="mt-2 text-base bg-base-300 text-gray-500 max-w-4xl mx-auto">
+            From sun-soaked beaches to buzzing city skylines, our curated destinations help you find the perfect trip at the perfect price.
+          </p>
+        </div>
+        <div class="mb-12 md:mb-16">
+          <h3 class="text-3xl font-bold text-accent dark:text-secondary mb-6 border-b-2 border-secondary pb-2">
+            Top Trending Destinations
+          </h3>
+          @php
+          $destinations = [
+          [
+          'city' => 'Miami',
+          'caption' => 'Fly to the Magic City with fares starting as low as $150.',
+          'image' => 'https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?q=80&w=780&auto=format&fit=crop',
+          ],
+          [
+          'city' => 'London',
+          'caption' => 'Fly to the Magic City with fares starting as low as $150.',
+          'image' => 'https://plus.unsplash.com/premium_photo-1671734045770-4b9e1a5e53a0?q=80&w=774&auto=format&fit=crop',
+          ],
+          [
+          'city' => 'Paris',
+          'caption' => 'Fly to the Magic City with fares starting as low as $150.',
+          'image' => 'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=387&auto=format&fit=crop',
+          ],
+          [
+          'city' => 'Singapore',
+          'caption' => 'Fly to the Magic City with fares starting as low as $150.',
+          'image' => 'https://images.unsplash.com/photo-1720941001711-2d1a1d46cc83?q=80&w=387&auto=format&fit=crop',
+          ],
+          [
+          'city' => 'Dubai',
+          'caption' => 'Fly to the Magic City with fares starting as low as $150.',
+          'image' => 'https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=387&auto=format&fit=crop',
+          ],
+          ];
+          @endphp
+
+          <div class="flex flex-wrap items-center justify-center mt-10 mx-auto gap-4 mb-3 md:mb-8 lg:mb-14">
+
+            @foreach ($destinations as $d)
+            <div class="relative">
+              <img
+                class="max-w-56 h-80 object-cover rounded-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                src="{{ $d['image'] }}"
+                alt="{{ $d['city'] }}">
+
+              <p class="absolute  bottom-2 left-2 text-white bg-black/30 backdrop-blur px-3 py-1 rounded text-sm font-medium">
+                {{ $d['city'] }}
+              </p>
+
+            </div>
+            @endforeach
+
+          </div>
+          <p class="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto text-center mb-10">
+            Explore some of the world’s most iconic destinations with unbeatable fares and exclusive seasonal offers.
+            Whether you're dreaming of Miami’s sun-soaked beaches, London’s historic charm, Dubai’s modern wonders,
+            or Singapore’s vibrant city life, FlightFareMart brings you closer to your next adventure with curated deals
+            <em>designed for every type of traveler.</em>
+          </p>
+
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12">
+
+          <div class="bg-base-200 p-5 rounded-3xl">
+            <h3 class="text-3xl font-bold text-accent  mb-6 border-b-2 border-secondary pb-2">
+              Travel Your Way
+            </h3>
+            <p class="text-lg text-accent dark:text-secondary mb-6">Not sure where to go? Let us inspire your next journey. Choose from travel styles designed for every type of explorer:</p>
+
+            <div class="space-y-4">
+              <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
+                <p class="text-xl font-semibold ">#WeekendTrips</p>
+                <p class="text-accent dark:text-secondary">Quick getaways at wallet-friendly prices.</p>
+              </div>
+              <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
+                <p class="text-xl font-semibold text-muted">#FamilyVacation</p>
+                <p class="text-accent dark:text-secondary">Comfort-filled journeys for the whole family.</p>
+              </div>
+              <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
+                <p class="text-xl font-semibold text-muted">#AdventureTravel</p>
+                <p class="text-accent dark:text-secondary">Explore mountains, beaches, and hidden gems worldwide.</p>
+              </div>
+              <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
+                <p class="text-xl font-semibold text-muted">#DirectFlights</p>
+                <p class="text-accent dark:text-secondary">Nonstop options for smooth, simple travel.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-base-200 p-5 rounded-3xl">
+            <h3 class="text-3xl font-bold text-accent  mb-6 border-b-2 border-red-300 pb-2">
+              Limited-Time Deals
+            </h3>
+            <p class="text-lg text-accent dark:text-secondary mb-6">Looking for the best time to book? It’s right now.</p>
+
+            <div class="space-y-4">
+              <div class="p-4 bg-muted-50 rounded-lg border border-red-200 hover:bg-muted transition duration-300">
+                <p class="text-xl font-semibold text-muted">Flash Sale</p>
+                <p class="text-accent dark:text-secondary">Save up to <strong class="text-red-800">40%</strong> on select international routes this week.</p>
+              </div>
+              <div class="p-4 bg-muted-50 rounded-lg border border-red-200 hover:bg-muted transition duration-300">
+                <p class="text-xl font-semibold text-muted">Last-Minute Deals</p>
+                <p class="text-accent dark:text-secondary">Perfect for spontaneous travelers on a budget.</p>
+              </div>
+              <div class="p-4 bg-muted-50 rounded-lg border border-red-200 hover:bg-muted transition duration-300">
+                <p class="text-xl font-semibold text-muted">Seasonal Offers</p>
+                <p class="text-accent dark:text-secondary">Summer, winter, and festival-season discounts updated daily.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-16 pt-8 border-t border-gray-200">
+          <h3 class="text-3xl font-bold text-accent dark:text-secondary mb-4">
+            Your Next Adventure Is Just a Click Away
+          </h3>
+          <p class="text-xl text-accent dark:text-secondary max-w-4xl mx-auto mb-8">
+            With powerful search tools, transparent pricing, and real-time access to 1,200+ airlines and travel providers, <span class="badge text-accent">FlightFareMart</span> makes discovering your next destination easier than ever.
+          </p>
+          <p class="text-2xl font-bold text-accent dark:text-secondary mb-6">
+            Where will you go next?
+          </p>
+          <a href="#" class="inline-block px-12 py-4 text-xl font-bold text-white bg-accent rounded-lg shadow-xl secondary transition duration-300 transform hover:scale-105">
+            Start exploring today.
+          </a>
+        </div>
+      </div>
     </section>
-    <section class="min-h-screen">
-      <p class="mx-auto px-5 md:px-3 max-w-6xl">Trust & Social Proof Section</p>
+    <section class=" min-h-screen py-5 py-24 ">
       <h2 class="text-2xl md:text-6xl mx-auto max-w-6xl px-5 md:px-3">The FlightFareMart Difference</h2>
-
+      <p class="mx-auto px-5 md:px-4 max-w-6xl text-base md:text-base my-2 ">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
+      <div class="flex">
+        <div class="basis-1/2 relative overflow-hidden border ">
+          <img class=" relative" src="https://images.unsplash.com/photo-1538688423619-a81d3f23454b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <div class="absolute">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non, architecto?</p>
+          </div>
+        </div>
+        <div class="basis-1/2">
+          hello
+        </div>
+      </div>
+      <
     </section>
-    <section class="min-h-screen">
+    <section class="min-h-screen py-24">
       <h2 class="text-2xl md:text-6xl mx-auto max-w-6xl px-5 md:px-3">Never Miss a Takeoff</h2>
 
     </section>
