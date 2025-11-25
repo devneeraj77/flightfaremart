@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserAuthController;
@@ -36,6 +37,7 @@ Route::view('/terms', 'terms')->name('terms');
 Route::view('/about', 'about')->name('about');
 Route::view('/faqs', 'faqs')->name('faqs');
 Route::view('/blog', 'blog')->name('blog');
+Route::view('/blog', 'blog')->name('blog');
 
 
 
@@ -66,6 +68,9 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 
 // Admin dashboard (protected)
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/blog/allposts', [BlogController::class, 'allposts'])->name('blog.allposts');
+Route::view('/admin/layouts/sidebar', 'sidebar')->name('admin.layouts.sidebar');
+Route::view('/amdin/layouts/sidebar', 'sidebar')->name('sidebar');
 
 // Admin logout
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
