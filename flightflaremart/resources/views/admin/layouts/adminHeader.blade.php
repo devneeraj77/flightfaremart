@@ -1,54 +1,4 @@
-<!DOCTYPE html>
-{{-- Assumed Includes --}}
-@include('layouts.htmlcore')
-
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Dashboard - FlightFlareMart</title>
-  @include('layouts.head')
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <style>
-    /* CSS to hide Alpine.js elements until they are initialized */
-    [x-cloak] {
-      display: none !important;
-    }
-  </style>
-</head>
-
-<body class="md:w-full text-left text-sm hover:bg-base-300">
-
-  <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden">
-
-    <aside class="w-64 bg-[#11180f] text-white flex-shrink-0 min-h-screen p-6">
-      <div class="text-2xl font-semibold mb-8">
-        FlightFlareMart
-        Admin Panel
-      </div>
-      <nav class="space-y-2">
-
-        {{-- Dashboard Link --}}
-        <a href="{{ route('admin.dashboard') }}" class="block py-1 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.dashboard')) bg-slate-700 @endif">Dashboard</a>
-
-        <a href="#" class="block py-1 px-3 rounded hover:bg-slate-700">Flights</a>
-        <a href="#" class="block py-1 px-3 rounded hover:bg-slate-700">Bookings</a>
-        <a href="#" class="block py-1 px-3 rounded hover:bg-slate-700">Users</a>
-
-        <div class="mt-6">
-          <p class="uppercase text-xs text-slate-400 mb-2">Blog Management</p>
-
-          {{-- All Posts Link --}}
-          <a href="{{ route('blog.allposts') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.blog.allposts')) bg-slate-700 @endif">All Posts</a>
-
-
-          <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Categories</a>
-        </div>
-      </nav>
-    </aside>
-
-    <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-20 bg-black/50 sm:hidden" @click="sidebarOpen = false"></div>
-
-    <div class="flex flex-1 flex-col overflow-hidden">
-      <header class="w-full border-b border-slate-200 bg-white">
+<header class="w-full border-b border-slate-200 bg-white">
         <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
           <div class="flex items-center gap-3">
@@ -100,19 +50,3 @@
 
         </div>
       </header>
-
-      <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-
-        {{-- MAIN CONTENT YIELD --}}
-        @yield('content')
-
-        <footer class="mt-8 text-center text-xs text-slate-400">
-          © {{ date('Y') }} FlightFareMart — Admin Dashboard
-        </footer>
-
-      </main>
-    </div>
-  </div>
-</body>
-
-</html>

@@ -1,0 +1,25 @@
+<aside class="w-64 bg-[#11180f] text-white flex-shrink-0 min-h-screen p-6">
+    <div class="text-2xl font-semibold mb-8">
+        FlightFlareMart
+        Admin Panel
+    </div>
+    <nav class="space-y-2">
+
+        {{-- Dashboard Link --}}
+        <a href="{{ route('admin.dashboard') }}" class="block py-1 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.dashboard')) bg-slate-700 @endif">Dashboard</a>
+
+        <a href="#" class="block py-1 px-3 rounded hover:bg-slate-700">Flights</a>
+        <a href="#" class="block py-1 px-3 rounded hover:bg-slate-700">Bookings</a>
+        <a href="#" class="block py-1 px-3 rounded hover:bg-slate-700">Users</a>
+
+        <div class="mt-6">
+            <p class="uppercase text-xs text-slate-400 mb-2">Blog Management</p>
+
+            {{-- All Posts Link --}}
+            <a href="{{ route('blog.allposts') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.blog.allposts')) bg-slate-700 @endif">All Posts</a>
+
+
+            <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Categories</a>
+        </div>
+    </nav>
+</aside>
