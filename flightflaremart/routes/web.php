@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FlightController;
@@ -37,17 +38,13 @@ Route::view('/terms', 'terms')->name('terms');
 Route::view('/about', 'about')->name('about');
 Route::view('/faqs', 'faqs')->name('faqs');
 Route::view('/blog', 'blog')->name('blog');
-Route::view('/blog', 'blog')->name('blog');
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+
+// Route to handle the form submission and save data
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 
-// Redirect /admin to appropriate location
-Route::get('/admin', function () {
-    if (Session::has('admin_id')) {
-        return redirect()->route('admin.dashboard');
-    }
-    return redirect()->route('admin.login');
-});
 
 
 // User Auth Routes
@@ -59,6 +56,7 @@ Route::post('/register', [UserAuthController::class, 'register'])->name('registe
 
 Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
+
 // Home redirect for /admin
 Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.welcome');
 
@@ -69,8 +67,17 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 // Admin dashboard (protected)
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/blog/allposts', [BlogController::class, 'allposts'])->name('blog.allposts');
+Route::get('/admin/infoOpt/contacts', [ContactController::class, 'contacts'])->name('blog.contacts');
 Route::view('/admin/layouts/sidebar', 'sidebar')->name('admin.layouts.sidebar');
 Route::view('/amdin/layouts/sidebar', 'sidebar')->name('sidebar');
 
 // Admin logout
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+// Redirect /admin to appropriate location
+Route::get('/admin', function () {
+    if (Session::has('admin_id')) {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('admin.login');
+});
