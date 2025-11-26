@@ -38,6 +38,7 @@ Route::view('/terms', 'terms')->name('terms');
 Route::view('/about', 'about')->name('about');
 Route::view('/faqs', 'faqs')->name('faqs');
 Route::view('/blog', 'blog')->name('blog');
+Route::view('/blog', 'blog')->name('blog');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 
 // Route to handle the form submission and save data
@@ -66,10 +67,6 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 
 // Admin dashboard (protected)
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/admin/blog/allposts', [BlogController::class, 'allposts'])->name('blog.allposts');
-Route::get('/admin/infoOpt/contacts', [ContactController::class, 'contacts'])->name('blog.contacts');
-Route::view('/admin/layouts/sidebar', 'sidebar')->name('admin.layouts.sidebar');
-Route::view('/amdin/layouts/sidebar', 'sidebar')->name('sidebar');
 
 // Admin logout
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');

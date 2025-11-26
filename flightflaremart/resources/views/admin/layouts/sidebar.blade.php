@@ -17,6 +17,7 @@
 
             {{-- All Posts Link --}}
             <a href="{{ route('blog.allposts') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.blog.allposts')) bg-slate-700 @endif">All Posts</a>
+<<<<<<< HEAD
             
             
             <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Categories</a>
@@ -26,6 +27,11 @@
                         class="block py-2 px-3 rounded text-white hover:bg-[#34495e] transition duration-150 @if(request()->routeIs('admin.messages.index')) bg-indigo-600 font-semibold @endif">
                         Contact Messages
                     </a>    
+=======
+
+
+            <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Categories</a>
+>>>>>>> b13c830a9d8d64a54ab9e5b52d125eeba53d2599
         </div>
     </nav>
 </aside>

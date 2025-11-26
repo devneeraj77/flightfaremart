@@ -1,15 +1,26 @@
 {{-- Extend your Admin Layout --}}
 @extends('admin.layouts.app') 
 
+<<<<<<< HEAD
 @section('title', 'All Blog Posts')
+=======
+<!-- @section('title', 'All Blog Posts') -->
+>>>>>>> b13c830a9d8d64a54ab9e5b52d125eeba53d2599
 
 @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+<<<<<<< HEAD
         <h1 class="h3 mb-0 text-gray-800">All Blog Posts</h1>
         {{-- Button to create a new post --}}
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Add New Post
+=======
+        <!-- <h1 class="h3 mb-0 text-gray-800">All Blog Posts</h1> -->
+        {{-- Button to create a new post --}}
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <!-- <i class="fas fa-plus fa-sm text-white-50"></i> Add New Post -->
+>>>>>>> b13c830a9d8d64a54ab9e5b52d125eeba53d2599
         </a>
     </div>
 
