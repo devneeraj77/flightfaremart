@@ -13,17 +13,21 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            // User ID of the author
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
-            
-            $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('title', 191);
+            $table->string('slug', 191)->unique();
             $table->text('content');
-            $table->string('image')->nullable(); // Featured image path
-            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->text('excerpt')->nullable();
+
+            // Foreign keys
+            // Assuming 'users' and 'categories' tables exist
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
+
+            $table->string('image_url')->nullable();
             $table->timestamp('published_at')->nullable();
-            
-            $table->timestamps(); // creates created_at and updated_at
+            $table->boolean('is_published')->default(false);
+
+            $table->timestamps();
         });
     }
 

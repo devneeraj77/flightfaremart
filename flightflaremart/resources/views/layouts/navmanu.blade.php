@@ -30,8 +30,9 @@
         <div class="hidden md:flex space-x-4 text-sm px-3 text-accent ">
           <a href="/" aria-current="page" class="px-1 py-2 text-sm  text-accent bg-trans hover:bg-white/5  dark:text-primary ">Home</a>
           <a href="about" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">About</a>
-        
+          
           <a href="blog" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">Blog</a>
+          <a href="faqs" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">FAQs</a>
           <a href="contact" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">Contact</a>
         </div>
         <!-- Auth / Menu Links -->
@@ -63,9 +64,9 @@
   <div id="mobile-menu" class="absolute top-26 w-full hidden md:hidden bg-primary dark:bg-dark-primary border-t border-secondary dark:border-dark-secondary">
     <div class="flex flex-col items-center space-y-4 py-4 text-light dark:text-dark-light">
       <a href="/" class="hover:text-accent transition">Home</a>
-      
       <a href="about" class="hover:text-accent transition">About</a>
       <a href="blog" class="hover:text-accent transition">blog</a>
+      <a href="faqs" class="hover:text-accent transition">FAQs</a>
       <a href="contact" class="hover:text-accent transition">Contact</a>
     </div>
   </div>

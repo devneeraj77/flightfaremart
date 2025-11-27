@@ -346,7 +346,7 @@
           </div>
           <h3 class="text-[24px]/7.5  text-accent dark:text-base-300 font-medium mt-6">Better design with highest revenue and profits </h3>
           <p class="text-accent/70 dark:text-base-200  mt-2">empowers you to build beautifully and scale effortlessly.</p>
-          <a href="https://prebuiltui.com" class="group  flex items-center gap-2 mt-4 text-accent hover:text-accent/20 transition">
+          <a href="/" class="group  flex items-center gap-2 mt-4 text-accent hover:text-accent/20 transition">
             Learn more about the product
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right size-5 group-hover:translate-x-0.5 transition duration-300" aria-hidden="true">
               <path d="M7 7h10v10"></path>

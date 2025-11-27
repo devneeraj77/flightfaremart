@@ -17,21 +17,16 @@
 
             {{-- All Posts Link --}}
             <a href="{{ route('blog.allposts') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.blog.allposts')) bg-slate-700 @endif">All Posts</a>
-<<<<<<< HEAD
-            
-            
+            <a href="{{ route('posts.index') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('posts.index')) bg-slate-700 @endif">Posts</a>
+            <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Drafts</a>
             <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Categories</a>
-        <div class="mt-6">
-            <p class="uppercase text-xs text-slate-400 mb-2">Info Opt.</p>
-        <a href="{{ route('admin.messages.index') }}" 
-                        class="block py-2 px-3 rounded text-white hover:bg-[#34495e] transition duration-150 @if(request()->routeIs('admin.messages.index')) bg-indigo-600 font-semibold @endif">
-                        Contact Messages
-                    </a>    
-=======
-
-
-            <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Categories</a>
->>>>>>> b13c830a9d8d64a54ab9e5b52d125eeba53d2599
-        </div>
+           
+            <div class="mt-6">
+                <p class="uppercase text-xs text-slate-400 mb-2">Info Opt.</p>
+                <a href="{{ route('admin.messages.index') }}"
+                    class="block py-2 px-3 rounded text-white hover:bg-[#34495e] transition duration-150 @if(request()->routeIs('admin.messages.index')) bg-indigo-600 font-semibold @endif">
+                    Contact Messages
+                </a>
+            </div>
     </nav>
 </aside>

@@ -1,0 +1,176 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Manage Blog Posts')
+
+@section('content')
+<!-- 
+    This is a reusable form for both creating and editing posts.
+    It expects $post, $categories, and $authors variables to be passed. 
+-->
+
+<div class="space-y-6">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">Post Details</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Title -->
+            <div>
+                <label for="title" class="block text-sm font-medium text-gray-700">Title <span class="text-red-500">*</span></label>
+                <input type="text" name="title" id="title"  
+                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500"
+                       value="{{ old('title', $post->title) }}"
+                       onkeyup="document.getElementById('slug').value = slugify(this.value)">
+                @error('title') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <!-- Slug -->
+            <div>
+                <label for="slug" class="block text-sm font-medium text-gray-700">Slug (Optional, will be generated)</label>
+                <input type="text" name="slug" id="slug"
+                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500"
+                       value="{{ old('slug', $post->slug) }}">
+                @error('slug') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <!-- Category -->
+            <div>
+                <label for="category_id" class="block text-sm font-medium text-gray-700">Category <span class="text-red-500">*</span></label>
+                <select name="category_id" id="category_id"  
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="">Select Category</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"
+                                {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <!-- Author (User) -->
+            <div>
+                <label for="user_id" class="block text-sm font-medium text-gray-700">Author <span class="text-red-500">*</span></label>
+                <select name="user_id" id="user_id"  
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="">Select Author</option>
+                    @foreach ($authors as $author)
+                        <option value="{{ $author->id }}"
+                                {{ old('user_id', $post->user_id) == $author->id ? 'selected' : '' }}>
+                            {{ $author->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('user_id') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+        </div>
+    </div>
+
+    <!-- Content (TinyMCE) -->
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Content <span class="text-red-500">*</span></label>
+        <textarea name="content" id="content" class="w-full h-96">{{ old('content', $post->content) }}</textarea>
+        @error('content') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+    </div>
+
+    <!-- Excerpt and Image URL -->
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+             <!-- Excerpt -->
+            <div>
+                <label for="excerpt" class="block text-sm font-medium text-gray-700">Excerpt (Max 500 characters)</label>
+                <textarea name="excerpt" id="excerpt" rows="3"
+                          class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">{{ old('excerpt', $post->excerpt) }}</textarea>
+                @error('excerpt') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+            
+            <!-- Image URL -->
+            <div>
+                <label for="image_url" class="block text-sm font-medium text-gray-700">Featured Image URL</label>
+                <input type="url" name="image_url" id="image_url"
+                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500"
+                       value="{{ old('image_url', $post->image_url) }}">
+                @error('image_url') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+                @if($post->image_url)
+                    <img src="{{ $post->image_url }}" alt="Current featured image" class="mt-2 h-20 w-auto object-cover rounded-lg shadow-sm">
+                @endif
+            </div>
+        </div>
+    </div>
+
+    <!-- Publication Settings -->
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">Publication Settings</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Published At Date -->
+            <div>
+                <label for="published_at" class="block text-sm font-medium text-gray-700">Publish Date (Optional)</label>
+                <input type="datetime-local" name="published_at" id="published_at"
+                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500"
+                       value="{{ old('published_at', $post->published_at ? $post->published_at->format('Y-m-d\TH:i') : '') }}">
+                @error('published_at') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <!-- Is Published Checkbox -->
+            <div class="flex items-center pt-6">
+                <input id="is_published" name="is_published" type="checkbox"
+                       class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                       value="1" {{ old('is_published', $post->is_published) ? 'checked' : '' }}>
+                <label for="is_published" class="ml-2 block text-base font-medium text-gray-700">
+                    Publish Post Now
+                </label>
+                @error('is_published') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-right pt-4">
+        <button type="submit"
+                class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition duration-300 transform hover:scale-105">
+            {{ $post->exists ? 'Update Post' : 'Create Post' }}
+        </button>
+    </div>
+</div>
+
+{{-- 
+    IMPORTANT: You must replace 'YOUR_TINYMCE_API_KEY_HERE' 
+    with your actual TinyMCE API key to make the editor load. 
+    We load the script directly here to ensure the editor is defined before initialization.
+--}}
+<script src="https://cdn.tiny.cloud/1/k80y7ux7q9d6ub876oxi72wqjazksl012x9kpej3ytuyuhp3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    // Simple JavaScript function to convert a string to a URL-friendly slug
+    function slugify(text) {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
+    }
+
+    // TinyMCE setup 
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof tinymce !== 'undefined') {
+            // FIX: Changed initialization check from using tinymce.editors.length to 
+            // the safer tinymce.get('content') === null check to avoid a TypeError
+            // if tinymce.editors is not yet defined/initialized when accessing .length.
+            if (tinymce.get('content') === null) {
+                tinymce.init({
+                    selector: '#content',
+                    plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak table code wordcount media autoresize',
+                    toolbar_mode: 'floating',
+                    toolbar: 'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code',
+                    // Optional: Adjust height for better experience
+                    min_height: 400,
+                });
+            }
+        } else {
+            console.error('TinyMCE not loaded. Check script tag and API key.');
+        }
+    });
+</script>
+@endsection

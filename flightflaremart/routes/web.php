@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\Blog\CategoryController;
+use App\Http\Controllers\Admin\Blog\PostController as BlogPostController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\blog\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
@@ -38,7 +41,6 @@ Route::view('/terms', 'terms')->name('terms');
 Route::view('/about', 'about')->name('about');
 Route::view('/faqs', 'faqs')->name('faqs');
 Route::view('/blog', 'blog')->name('blog');
-Route::view('/blog', 'blog')->name('blog');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 
 // Route to handle the form submission and save data
@@ -67,6 +69,19 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 
 // Admin dashboard (protected)
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/blog/allposts', [BlogController::class, 'allposts'])->name('blog.allposts');
+Route::get('/admin/blog/posts/index', [BlogPostController::class, 'index'])
+    ->name('admin.blog.posts.index');
+Route::post('/admin/blog/posts/create', [BlogPostController::class, 'create'])
+    ->name('posts.create');
+Route::get('/admin/blog/posts/store', [BlogPostController::class, 'store'])
+    ->name('posts.store');
+Route::post('/admin/blog/AddNewPost', [BlogPostController::class, 'AddNewPost'])->name('blog.AddNewPost');
+Route::get('/admin/messages', [ContactController::class, 'index'])->name('admin.messages.index');
+
+// routes/web.php
+// Route::view('/admin/layouts/sidebar', 'sidebar')->name('admin.layouts.sidebar');
+Route::view('/amdin/layouts/sidebar', 'sidebar')->name('sidebar');
 
 // Admin logout
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
@@ -78,3 +93,14 @@ Route::get('/admin', function () {
     }
     return redirect()->route('admin.login');
 });
+
+
+
+    // Blog Posts CRUD
+    Route::resource('/admin/blog/posts', PostController::class)->except(['show']);
+    
+    // Categories CRUD <-- New Resource Definition
+    // Defines routes for admin/blog/categories/...
+    Route::resource('/admin/blog/categories', CategoryController::class)->except(['show']);
+
+    

@@ -1,0 +1,3 @@
+<div>
+    privacy-policy
+</div>

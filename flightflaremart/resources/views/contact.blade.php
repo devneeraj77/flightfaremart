@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>Contact - flightfaremart</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    
     @include('layouts.head')
 
     <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
@@ -48,8 +45,8 @@
                             <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
                             <input type="text" name="name" id="name" required
                                 value="{{ old('name') }}"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border @error('name') border-red-500 @enderror"
-                                placeholder="John Doe">
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring-secondary p-3 border @error('name') border-red-500 @enderror"
+                                placeholder="Type your name">
                             @error('name')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -59,7 +56,7 @@
                             <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
                             <input type="email" name="email" id="email" required
                                 value="{{ old('email') }}"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border @error('email') border-red-500 @enderror"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring-secondary p-3 border @error('email') border-red-500 @enderror"
                                 placeholder="you@example.com">
                             @error('email')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -70,8 +67,8 @@
                             <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
                             <input type="text" name="subject" id="subject" required
                                 value="{{ old('subject') }}"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border @error('subject') border-red-500 @enderror"
-                                placeholder="Inquiry about services">
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring-secondary p-3 border @error('subject') border-red-500 @enderror"
+                                placeholder="Inquiry about booking">
                             @error('subject')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -80,7 +77,7 @@
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                             <textarea name="message" id="message" rows="4" required
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border @error('message') border-red-500 @enderror"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring-secondary p-3 border @error('message') border-red-500 @enderror"
                                 placeholder="How can we help you?">{{ old('message') }}</textarea>
                             @error('message')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -115,7 +112,7 @@
                         <h3 class="text-xl font-bold text-gray-800">Our Office</h3>
 
                         <div class="flex items-start space-x-3">
-                            <svg class="h-6 w-6 text-indigo-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-6 w-6 text-secondary flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
@@ -123,14 +120,14 @@
                         </div>
 
                         <div class="flex items-start space-x-3">
-                            <svg class="h-6 w-6 text-indigo-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-6 w-6 text-secondary flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.842 5.234a4 4 0 004.316 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             <p class="text-gray-600">support@flightflaremart.com</p>
                         </div>
 
                         <div class="flex items-start space-x-3">
-                            <svg class="h-6 w-6 text-indigo-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-6 w-6 text-secondary flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                             <p class="text-gray-600">(555) 123-4567</p>
