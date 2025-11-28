@@ -3,63 +3,96 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Http\Requests\Admin\Blog\CategoryRequest;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the categories.
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        //
+        // Fetch categories with their post count (needed for deletion check)
+        $categories = Category::withCount('posts')->latest()->paginate(10);
+        return view('admin.blog.categories.index', compact('categories'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new category.
+     * @return \Illuminate\View\View
      */
     public function create()
     {
-        //
+        $category = new Category();
+        return view('admin.blog.categories.create', compact('category'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in storage.
+     * @param CategoryRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $data = $request->validated();
+        
+        // Handle slug generation if not provided, ensuring uniqueness
+        $data['slug'] = Str::slug($data['slug'] ?? $data['name']);
+        
+        Category::create($data);
+
+        return redirect()->route('admin.blog.categories.index')->with('success', 'Category created successfully!');
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified category.
+     * @param Category $category
+     * @return \Illuminate\View\View
      */
-    public function show(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.blog.categories.edit', compact('category'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified category in storage.
+     * @param CategoryRequest $request
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function edit(string $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $data = $request->validated();
+        
+        // Handle slug generation if not provided
+        $data['slug'] = Str::slug($data['slug'] ?? $data['name']);
+        
+        $category->update($data);
+
+        return redirect()->route('admin.blog.categories.index')->with('success', 'Category updated successfully!');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Remove the specified category from storage.
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, string $id)
+    public function destroy(Category $category)
     {
-        //
-    }
+        // Re-load the post count before deletion check
+        $category->loadCount('posts');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Prevent deletion if the category has associated posts
+        if ($category->posts_count > 0) {
+            return redirect()->route('admin.blog.categories.index')
+                             ->with('error', 'Cannot delete category. It has ' . $category->posts_count . ' associated posts.');
+        }
+
+        $category->delete();
+
+        return redirect()->route('admin.blog.categories.index')->with('success', 'Category deleted successfully!');
     }
 }
