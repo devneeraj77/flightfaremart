@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\Blog\CategoryController;
 use App\Http\Controllers\Admin\Blog\PostController as BlogPostController;
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\blog\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
@@ -33,7 +32,7 @@ Route::get('scripts.db-check', function () {
 });
 
 // Route to handle the search (POST request)
-Route::post('/flights/search', [FlightController::class, 'search'])->name('flights.search');
+// Route::post('/flights/search', [FlightController::class, 'search'])->name('flights.search');
 
 
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy');
@@ -55,49 +54,31 @@ Route::post('/register', [UserAuthController::class, 'register'])->name('registe
 
 Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
-// Home redirect for /admin
-Route::get('/admin', [AdminController::class, 'adminHome'])->name('admin.welcome');
 
-// Admin login
-Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.post');
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Admin login
+    Route::get('/login', [AdminController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AdminController::class, 'login'])->name('login.post');
 
-// Admin dashboard (protected)
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/admin/blog/allposts', [BlogController::class, 'allposts'])->name('blog.allposts');
-Route::get('/admin/blog/posts/index', [BlogPostController::class, 'index'])
-    ->name('admin.blog.posts.index');
-Route::get('/admin/blog/posts/create', [BlogPostController::class, 'create'])
-    ->name('admin.blog.posts.create');
-Route::post('/admin/blog/posts', [BlogPostController::class, 'store'])
-    ->name('admin.blog.posts.store');
-Route::get('/admin/blog/posts/{post}/edit', [BlogPostController::class, 'edit'])
-    ->name('admin.blog.posts.edit');
-Route::get('/admin/blog/posts/{post}', [BlogPostController::class, 'destroy'])
-    ->name('admin.blog.posts.destroy');
-Route::post('/admin/blog/AddNewPost', [BlogPostController::class, 'AddNewPost'])->name('blog.AddNewPost');
-Route::get('/admin/messages', [ContactController::class, 'index'])->name('admin.messages.index');
+    Route::middleware('admin.auth')->group(function () {
+        // Home redirect for /admin
+        Route::get('/', [AdminController::class, 'adminHome'])->name('welcome');
 
-// routes/web.php
-// Route::view('/admin/layouts/sidebar', 'sidebar')->name('admin.layouts.sidebar');
-Route::view('/amdin/layouts/sidebar', 'sidebar')->name('sidebar');
+        // Admin dashboard
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-// Admin logout
-Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+        // Admin logout
+        Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+        
+        // Messages
+        Route::get('/messages', [ContactController::class, 'index'])->name('messages.index');
 
-// Redirect /admin to appropriate location
-Route::get('/admin', function () {
-    if (Session::has('admin_id')) {
-        return redirect()->route('admin.dashboard');
-    }
-    return redirect()->route('admin.login');
+        // Blog Posts and Categories
+        Route::prefix('blog')->name('blog.')->group(function () {
+            Route::resource('posts', BlogPostController::class)->except(['show']);
+            Route::resource('categories', CategoryController::class)->except(['show']);
+            Route::post('/AddNewPost', [BlogPostController::class, 'AddNewPost'])->name('AddNewPost');
+            Route::get('/allposts', [BlogController::class, 'allposts'])->name('allposts');
+        });
+    });
 });
-
-
-
-// Blog Posts CRUD
-Route::resource('/admin/blog/posts', PostController::class)->except(['show']);
-
-// Categories CRUD <-- New Resource Definition
-// Defines routes for admin/blog/categories/...
-Route::resource('/admin/blog/categories', CategoryController::class)->except(['show']);

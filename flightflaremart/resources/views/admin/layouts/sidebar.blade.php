@@ -16,12 +16,9 @@
             <p class="uppercase text-xs text-slate-400 mb-2">Blog Management</p>
 
             {{-- All Posts Link --}}
-            <a href="{{ route('blog.allposts') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.blog.allposts')) bg-slate-700 @endif">All Posts</a>
-            <a href="{{ route('posts.index') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('posts.index')) bg-slate-700 @endif">Posts</a>
+            <a href="{{ route('admin.blog.posts.index') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.blog.posts.index')) bg-slate-700 @endif">Posts</a>
             <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Drafts</a>
-            <a href="#" class="block py-2 px-3 rounded hover:bg-slate-700">Categories</a>
-           
-            <div class="mt-6">
+            <a href="{{ route('admin.blog.categories.index') }}" class="block py-2 px-3 rounded hover:bg-slate-700 @if(request()->routeIs('admin.blog.categories.index')) bg-slate-700 @endif">Categories</a>
                 <p class="uppercase text-xs text-slate-400 mb-2">Info Opt.</p>
                 <a href="{{ route('admin.messages.index') }}"
                     class="block py-2 px-3 rounded text-white hover:bg-[#34495e] transition duration-150 @if(request()->routeIs('admin.messages.index')) bg-indigo-600 font-semibold @endif">

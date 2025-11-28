@@ -3,47 +3,64 @@
 namespace App\Http\Requests\Admin\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class PostRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    public function authorize(): bool
     {
-        // Change this to your actual authorization logic (e.g., Auth::user()->can('manage-posts'))
         return true; 
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
+     * Prepare the data for validation. This handles cleaning and defaulting values.
      */
-    public function rules()
+    protected function prepareForValidation(): void
     {
-        // Determine the Post ID if it's an update request
-        $postId = $this->route('post')->id ?? null;
+        $title = $this->input('title');
+        // Handle slug generation/cleaning
+        $slug = $this->input('slug') ? Str::slug($this->input('slug')) : Str::slug($title);
+        
+        // Handle 'is_published': checkbox is missing if unchecked, so we check for presence.
+        $isPublished = $this->has('is_published');
+        
+        // Handle 'published_at' logic based on the status
+        $publishedAtInput = $this->input('published_at');
+        
+        if ($isPublished && empty($publishedAtInput)) {
+            // If published but no date set, set it to now
+            $publishedAt = now();
+        } elseif (!$isPublished) {
+            // If unpublished, ensure the date is null
+            $publishedAt = null; 
+        } else {
+            // Otherwise, use the user's input date (or null if the input was blank)
+            $publishedAt = $publishedAtInput ?: null;
+        }
+
+        $this->merge([
+            'slug' => $slug,
+            'is_published' => $isPublished,
+            'published_at' => $publishedAt,
+        ]);
+    }
+
+    public function rules(): array
+    {
+        // Determine the Post ID for unique slug rule exclusion
+        $postId = $this->route('post') ? $this->route('post')->id : null;
 
         return [
+            // Assuming 'admins' table is used for authors based on your previous controller code
+            'user_id' => ['required', 'exists:admins,id'], 
+            'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:255'],
-            // Slug must be unique, ignoring the current post's ID during update
-            'slug' => [
-                'nullable', 
-                'string', 
-                'max:255', 
-                Rule::unique('posts')->ignore($postId),
-            ],
+            'slug' => ['required', 'string', 'max:255', 'unique:posts,slug,' . $postId],
             'content' => ['required', 'string'],
             'excerpt' => ['nullable', 'string', 'max:500'],
-            'user_id' => ['required', 'exists:users,id'], // Must exist in users table
-            'category_id' => ['required', 'exists:categories,id'], // Must exist in categories table
             'image_url' => ['nullable', 'url', 'max:255'],
             'published_at' => ['nullable', 'date'],
-            'is_published' => ['nullable', 'boolean'],
+            'is_published' => ['boolean'],
         ];
     }
 }

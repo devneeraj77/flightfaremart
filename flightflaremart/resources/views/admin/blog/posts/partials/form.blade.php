@@ -1,13 +1,6 @@
-@extends('admin.layouts.app')
-
-@section('title', 'Manage Blog Posts')
-
-@section('content')
 <!-- 
-    This is a reusable form for both creating and editing posts.
-    It expects $post, $categories, and $authors variables to be passed. 
+    NOTE: The <form> tags and @csrf are in the parent view (create.blade.php or edit.blade.php).
 -->
-
 <div class="space-y-6">
     <div class="bg-white shadow-lg rounded-lg p-6">
         <h2 class="text-xl font-semibold mb-4 text-gray-700">Post Details</h2>
@@ -125,7 +118,7 @@
         </div>
     </div>
 
-    <!-- Submit Button -->
+    <!-- Submit Button (Part of the form) -->
     <div class="text-right pt-4">
         <button type="submit"
                 class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition duration-300 transform hover:scale-105">
@@ -135,9 +128,7 @@
 </div>
 
 {{-- 
-    IMPORTANT: You must replace 'YOUR_TINYMCE_API_KEY_HERE' 
-    with your actual TinyMCE API key to make the editor load. 
-    We load the script directly here to ensure the editor is defined before initialization.
+    SCRIPT BLOCK for TinyMCE and Slugify
 --}}
 <script src="https://cdn.tiny.cloud/1/k80y7ux7q9d6ub876oxi72wqjazksl012x9kpej3ytuyuhp3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
@@ -145,26 +136,22 @@
     // Simple JavaScript function to convert a string to a URL-friendly slug
     function slugify(text) {
         return text.toString().toLowerCase()
-            .replace(/\s+/g, '-')           // Replace spaces with -
-            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-            .replace(/^-+/, '')             // Trim - from start of text
-            .replace(/-+$/, '');            // Trim - from end of text
+            .replace(/\s+/g, '-')           
+            .replace(/[^\w\-]+/g, '')       
+            .replace(/\-\-+/g, '-')         
+            .replace(/^-+/, '')             
+            .replace(/-+$/, '');            
     }
 
     // TinyMCE setup 
     document.addEventListener('DOMContentLoaded', function() {
         if (typeof tinymce !== 'undefined') {
-            // FIX: Changed initialization check from using tinymce.editors.length to 
-            // the safer tinymce.get('content') === null check to avoid a TypeError
-            // if tinymce.editors is not yet defined/initialized when accessing .length.
             if (tinymce.get('content') === null) {
                 tinymce.init({
                     selector: '#content',
                     plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak table code wordcount media autoresize',
                     toolbar_mode: 'floating',
                     toolbar: 'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code',
-                    // Optional: Adjust height for better experience
                     min_height: 400,
                 });
             }
@@ -173,4 +160,3 @@
         }
     });
 </script>
-@endsection

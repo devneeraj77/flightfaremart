@@ -6,7 +6,7 @@
 <div class="container mx-auto px-4 py-6">
     <h1 class="text-3xl font-bold text-gray-800 mb-8">Create New Post</h1>
 
-    <form action="{{ route('admin.blog.posts.index') }}" method="POST">
+    <form action="{{ route('admin.blog.posts.store') }}" method="POST">
         @csrf
 
         <!-- The form partial handles all fields and TinyMCE initialization -->

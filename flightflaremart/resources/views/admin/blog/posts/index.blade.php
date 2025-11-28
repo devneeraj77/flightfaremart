@@ -6,7 +6,7 @@
 <div class="container mx-auto px-4 py-6">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-800">Blog Posts</h1>
-        <a href="{{ route('posts.create') }}" 
+        <a href="{{ route('admin.blog.posts.create') }}" 
            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
             + New Post
         </a>
@@ -47,9 +47,9 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <div class="flex justify-end space-x-2">
-                                <a href="{{ route('posts.edit', $post) }}" 
+                                <a href="{{ route('admin.blog.posts.edit', $post) }}" 
                                    class="text-indigo-600 hover:text-indigo-900 transition duration-150">Edit</a>
-                                <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="inline">
+                                <form action="{{ route('admin.blog.posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-900 transition duration-150">Delete</button>
