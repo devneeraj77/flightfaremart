@@ -47,9 +47,14 @@
                 <select name="user_id" id="user_id"  
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="">Select Author</option>
+                    @php
+                        $loggedInAdminId = Session::get('admin_id'); // Correct way to get admin ID
+                        $currentAuthorId = old('user_id', $post->user_id ?? $loggedInAdminId); // Default to logged-in admin for new posts
+                    @endphp
                     @foreach ($authors as $author)
                         <option value="{{ $author->id }}"
-                                {{ old('user_id', $post->user_id) == $author->id ? 'selected' : '' }}>
+                                {{ $author->id == $currentAuthorId ? 'selected' : '' }}
+                                {{ $author->id != $loggedInAdminId ? 'disabled' : '' }}>
                             {{ $author->name }}
                         </option>
                     @endforeach
@@ -112,7 +117,7 @@
                     <div class="flex items-center">
                         <input id="status_draft" name="is_published" type="radio" value="0"
                                class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                               {{ old('is_published', $post->exists ? $post->is_published : false) == false ? 'checked' : '' }}>
+                               {{ old('is_published', $post->is_published ?? false) == false ? 'checked' : '' }}>
                         <label for="status_draft" class="ml-2 block text-base font-medium text-gray-700">
                             Draft
                         </label>
@@ -120,7 +125,7 @@
                     <div class="flex items-center">
                         <input id="status_publish" name="is_published" type="radio" value="1"
                                class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                               {{ old('is_published', $post->exists ? $post->is_published : true) == true ? 'checked' : '' }}>
+                               {{ old('is_published', $post->is_published ?? false) == true ? 'checked' : '' }}>
                         <label for="status_publish" class="ml-2 block text-base font-medium text-gray-700">
                             Publish
                         </label>

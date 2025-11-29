@@ -21,7 +21,7 @@
                 class="block py-2 px-3 rounded hover:bg-accent @if(request()->routeIs('admin.blog.posts.create')) bg-accent @endif">
                 Add New Post
             </a>
-            <a href="#" class="block py-2 px-3 rounded hover:bg-accent">Drafts</a>
+            <a href="{{ route('admin.blog.posts.drafts') }}" class="block py-2 px-3 rounded hover:bg-accent @if(request()->routeIs('admin.blog.posts.drafts')) bg-accent @endif">Drafts</a>
             <a href="{{ route('admin.blog.categories.index') }}" class="block py-2 px-3 rounded hover:bg-accent @if(request()->routeIs('admin.blog.categories.index')) bg-accent @endif">Categories</a>
         </div>
         <div class="mt-6">
