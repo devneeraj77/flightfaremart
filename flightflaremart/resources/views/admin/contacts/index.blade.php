@@ -38,6 +38,9 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Date
                             </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -55,11 +58,24 @@
                                     <div class="text-sm font-medium text-gray-900">{{ $message->name }}</div>
                                     <div class="text-sm text-gray-500">{{ $message->email }}</div>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs  truncate" title="{{ $message->message }}">
                                     {{ Str::limit($message->message, 80) }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-500">
                                     {{ $message->created_at->diffForHumans() }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    @if(!$message->is_read)
+                                        <form action="{{ route('admin.contacts.mark-read', $message->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit" class="text-indigo-600 hover:text-indigo-900 mr-3">Read</button>
+                                        </form>
+                                    @endif
+                                    <form action="{{ route('admin.contacts.destroy', $message->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this message? This action cannot be undone.');">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

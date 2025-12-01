@@ -14,47 +14,19 @@
             display: none !important;
         }
     </style>
-    <style>
-        /* Minimal CSS for structure until you link a framework */
-        body {
-            margin: 0;
-            background-color: #f4f7f6;
-        }
 
-        #wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        #sidebar-wrapper {
-            width: 250px;
-            background-color: #2c3e50;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        #page-content-wrapper {
-            flex-grow: 1;
-        }
-
-        #topbar {
-            background-color: white;
-            border-bottom: 1px solid #e7e7e7;
-
-            box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
-        }
-    </style>
 </head>
 
 <body class="md:w-full text-left text-sm hover:bg-base-300">
 
-  <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden">
+  <div x-data="{ sidebarOpen: false, sidebarMinimized: false }" class="flex h-screen overflow-hidden">
 
     @include('admin.layouts.sidebar')
     
     <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-20 bg-black/50 sm:hidden" @click="sidebarOpen = false"></div>
     
-    <div class="flex flex-1 flex-col overflow-hidden">
+    <div class="flex flex-1 flex-col overflow-hidden"
+        :class="{'md:ml-0': !sidebarMinimized, 'md:ml-16': sidebarMinimized}">
       @include('admin.layouts.adminHeader')
       
 

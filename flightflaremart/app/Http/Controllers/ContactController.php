@@ -59,4 +59,31 @@ class ContactController extends Controller
             return redirect()->route('contact.create')->with('error', 'An error occurred while saving your message. Please try again.');
         }
     }
+
+    /**
+     * Mark a specific contact message as read.
+     *
+     * @param  \App\Models\ContactMessage  $contactMessage
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function markAsRead(ContactMessage $contactMessage)
+    {
+        $contactMessage->is_read = true;
+        $contactMessage->save();
+
+        return back()->with('success', 'Message marked as read.');
+    }
+
+    /**
+     * Remove the specified contact message from storage.
+     *
+     * @param  \App\Models\ContactMessage  $contactMessage
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(ContactMessage $contactMessage)
+    {
+        $contactMessage->delete();
+
+        return back()->with('success', 'Message deleted successfully.');
+    }
 }

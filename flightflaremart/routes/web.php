@@ -72,6 +72,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // Messages
         Route::get('/messages', [ContactController::class, 'index'])->name('messages.index');
+        Route::post('/contacts/{contactMessage}/mark-read', [ContactController::class, 'markAsRead'])->name('contacts.mark-read');
+        Route::delete('/contacts/{contactMessage}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 
         // Blog Posts and Categories
         Route::prefix('blog')->name('blog.')->group(function () {
