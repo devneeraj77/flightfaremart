@@ -13,7 +13,7 @@ class Post extends Model
         'slug',
         'content',
         'excerpt',
-        'user_id',
+        'admin_id',
         'category_id',
         'image_url',
         'published_at',
@@ -28,12 +28,12 @@ class Post extends Model
     // --- Relationships ---
 
     /**
-     * Get the author (User) of the Post.
+     * Get the author (Admin) of the Post.
      */
     public function author()
     {
-        // Assuming your users table handles the 'author' role
-        return $this->belongsTo(User::class, 'user_id');
+        // Assuming your admins table handles the 'author' role
+        return $this->belongsTo(Admin::class, 'admin_id');
     }
 
     /**

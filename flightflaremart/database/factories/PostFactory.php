@@ -40,7 +40,7 @@ class PostFactory extends Factory
 
         return [
             // Ensure foreign keys exist by picking a random ID from the related tables
-            'user_id' => Admin::inRandomOrder()->first()->id ?? Admin::factory(), 
+            'admin_id' => Admin::inRandomOrder()->first()->id ?? Admin::factory(), 
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
             
             'title' => $title,

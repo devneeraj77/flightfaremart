@@ -52,7 +52,7 @@ class PostRequest extends FormRequest
 
         return [
             // Assuming 'admins' table is used for authors based on your previous controller code
-            'user_id' => ['required', 'exists:admins,id'], 
+            'admin_id' => ['required', 'exists:admins,id'], 
             'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:posts,slug,' . $postId],

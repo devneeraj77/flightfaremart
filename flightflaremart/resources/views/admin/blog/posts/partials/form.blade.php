@@ -41,15 +41,15 @@
                 @error('category_id') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <!-- Author (User) -->
+            <!-- Author (Admin) -->
             <div>
-                <label for="user_id" class="block text-sm font-medium text-gray-700">Author <span class="text-red-500">*</span></label>
-                <select name="user_id" id="user_id"  
+                <label for="admin_id" class="block text-sm font-medium text-gray-700">Author <span class="text-red-500">*</span></label>
+                <select name="admin_id" id="admin_id"  
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="">Select Author</option>
                     @php
                         $loggedInAdminId = Session::get('admin_id'); // Correct way to get admin ID
-                        $currentAuthorId = old('user_id', $post->user_id ?? $loggedInAdminId); // Default to logged-in admin for new posts
+                        $currentAuthorId = old('admin_id', $post->admin_id ?? $loggedInAdminId); // Default to logged-in admin for new posts
                     @endphp
                     @foreach ($authors as $author)
                         <option value="{{ $author->id }}"
@@ -59,7 +59,7 @@
                         </option>
                     @endforeach
                 </select>
-                @error('user_id') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+                @error('admin_id') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
         </div>
     </div>

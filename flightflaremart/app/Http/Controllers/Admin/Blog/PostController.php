@@ -61,10 +61,7 @@ class PostController extends Controller
         // Handle slug generation if not provided, ensuring uniqueness
         $data['slug'] = Str::slug($data['slug'] ?? $data['title']);
 
-        // Set 'is_published' boolean based on the radio button value
-        $data['is_published'] = (bool) ($request->input('is_published') === '1');
 
-        // Set 'published_at' if it's published and not already set
         if ($data['is_published'] && empty($data['published_at'])) {
             $data['published_at'] = now();
         } elseif (!$data['is_published']) {
@@ -102,10 +99,7 @@ class PostController extends Controller
         // Handle slug generation if not provided, ensuring uniqueness
         $data['slug'] = Str::slug($data['slug'] ?? $data['title']);
 
-        // Set 'is_published' boolean based on the radio button value
-        $data['is_published'] = (bool) ($request->input('is_published') === '1');
 
-        // Set 'published_at' logic for update
         if ($data['is_published'] && is_null($post->published_at)) {
             $data['published_at'] = now();
         } elseif (!$data['is_published']) {
