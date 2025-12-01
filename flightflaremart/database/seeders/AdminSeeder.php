@@ -15,8 +15,8 @@ class AdminSeeder extends Seeder
     {
         // Create default admin
         Admin::factory()->create([
-            'name' => 'Super Admin',
-            'email' => 'admin@flightfaremart.com',
+            'name' => 'Neeraj Rekwar',
+            'email' => 'dev.neerajrekwar@gmail.com',
             'password' => bcrypt('nnn'),
         ]);
 
