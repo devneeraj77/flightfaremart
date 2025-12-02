@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post; // Assuming you have a Post model
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class BlogController extends Controller
 {
@@ -23,18 +26,67 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        // 1. Validation will go here
         $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required', // This is the rich text field
-            // Add other fields like 'slug', 'image', etc.
+            'title' => 'required|string|max:255',
+            'excerpt' => 'nullable|string|max:1000',
+            'content' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'image_url' => 'nullable|url',
+            'image_upload' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'is_published' => 'nullable|boolean',
+            'published_at' => 'nullable|date',
         ]);
 
-        // 2. Logic to save the post to the database will go here
-        // e.g., Post::create($request->all());
+        $post = Post::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'excerpt' => $request->excerpt,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'admin_id' => auth('admin')->id(),
+            'is_published' => $request->has('is_published'),
+            'published_at' => $request->published_at,
+        ]);
 
-        // 3. Redirect back with a success message
-        return redirect()->route('admin.blog.index')->with('success', 'Blog post created successfully!');
+        if ($request->has('image_url')) {
+            $imageAsset = new \App\Models\ImageAsset([
+                'url' => $request->image_url,
+                'is_url' => true,
+                'post_id' => $post->id,
+                'paths' => null, // No local paths for URL images
+            ]);
+            $imageAsset->save();
+        } elseif ($request->hasFile('image_upload')) {
+            $image = $request->file('image_upload');
+            $imageName = time() . '.' . $image->extension();
+            $imagePath = 'images/posts/' . $imageName;
+
+            try {
+                $manager = new ImageManager(new Driver());
+                $imageIntervention = $manager->read($image->getRealPath());
+
+                $webpImageName = time() . '.webp';
+                $webpImagePath = 'images/posts/' . $webpImageName;
+                $imageIntervention->toWebp(75)->save(public_path($webpImagePath));
+
+                $imageAsset = new \App\Models\ImageAsset([
+                    'paths' => ['webp' => $webpImagePath],
+                    'is_url' => false,
+                    'post_id' => $post->id,
+                ]);
+                $imageAsset->save();
+            } catch (\Exception $e) {
+                $image->move(public_path('images/posts'), $imageName);
+                $imageAsset = new \App\Models\ImageAsset([
+                    'paths' => ['original' => $imagePath],
+                    'is_url' => false,
+                    'post_id' => $post->id,
+                ]);
+                $imageAsset->save();
+            }
+        }
+
+        return redirect()->route('admin.posts.index')->with('success', 'Blog post created successfully!');
     }
 
     public function allPosts()

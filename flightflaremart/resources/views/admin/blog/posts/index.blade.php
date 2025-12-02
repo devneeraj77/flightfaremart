@@ -28,7 +28,7 @@
                 @foreach ($posts as $post)
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {{ Str::limit($post->title, 50) }}
+                            {{ Str::limit($post->title, 35) }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $post->category->name ?? 'N/A' }}

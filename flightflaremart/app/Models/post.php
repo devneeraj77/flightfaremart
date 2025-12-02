@@ -15,7 +15,6 @@ class Post extends Model
         'excerpt',
         'admin_id',
         'category_id',
-        'image_url',
         'published_at',
         'is_published',
     ];
@@ -24,6 +23,11 @@ class Post extends Model
         'published_at' => 'datetime',
         'is_published' => 'boolean',
     ];
+
+    public function imageAsset()
+    {
+        return $this->hasOne(ImageAsset::class);
+    }
 
     // --- Relationships ---
 

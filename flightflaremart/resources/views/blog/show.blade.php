@@ -1,7 +1,19 @@
-@extends('layouts.app') {{-- Uses the public facing layout --}}
+@extends('layouts.blog')
 
-@section('content')
-    
+@section('title', $post->title)
+
+@section('sidebar')
+    <aside class=" rounded-t-2xl p-10  w-60">
+        <h1 class="text-lg">Categories</h1>
+        <ul class="px-2 dark:text-base-200/40 text-accent/70">
+            @foreach($categories as $category)
+                <li class="{{ $category->slug == $post->category->slug ? 'font-bold' : '' }}"><a href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a></li>
+            @endforeach
+        </ul>
+    </aside>
+@endsection
+
+@section('main-content')
     <div class="max-w-4xl mx-auto py-10">
         
         {{-- Breadcrumbs (Optional, but good for navigation) --}}
@@ -15,7 +27,11 @@
         
         {{-- Featured Image --}}
         <figure class="rounded-box overflow-hidden mb-8 shadow-xl">
-            <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-96 object-cover">
+            @if($post->imageAsset)
+                <img src="{{ $post->imageAsset->is_url ? $post->imageAsset->url : asset($post->imageAsset->path) }}" alt="{{ $post->title }}" class="w-full h-96 object-cover">
+            @else
+                <img src="https://placehold.co/800x400/cad593/FFFFFF?text=Demo Post" alt="Placeholder Image" class="w-full h-96 object-cover">
+            @endif
         </figure>
         
         <article class="prose lg:prose-xl max-w-none">
@@ -34,7 +50,7 @@
                 <div class="flex items-center">
                     <div class="avatar mr-4">
                         <div class="w-12 rounded-full">
-                            <img src="{{ $post->author->avatar_url ?? 'default-avatar.png' }}" alt="Author Avatar" />
+                            <img src="{{ $post->author->avatar_url ?? 'https://placehold.co/50x50/cad593/cad593?text=profile' }}" alt="Author Avatar" />
                         </div>
                     </div>
                     <div>
@@ -58,5 +74,4 @@
         <a href="{{ route('blog.index') }}" class="btn btn-outline btn-sm mt-8">← Back to Blog Posts</a>
 
     </div>
-
 @endsection

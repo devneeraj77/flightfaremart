@@ -8,6 +8,8 @@ use App\Models\User; // Assuming User model is needed for author assignment
 use App\Models\Category; // Assuming Category model is needed for relationships
 use App\Http\Requests\Admin\Blog\PostRequest;
 use App\Models\Admin;
+use App\Models\ImageAsset;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -35,7 +37,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new post.
+     * Show the for for creating a new post.
      * @return \Illuminate\View\View
      */
     public function create()
@@ -57,7 +59,26 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $data = $request->validated();
-        Post::create($data);
+        
+        // Create the post first
+        $post = Post::create($data);
+
+        // Handle the image asset
+        if ($request->input('image_source') === 'url' && $request->filled('image_url')) {
+            $post->imageAsset()->create([
+                'url' => $request->input('image_url'),
+                'is_url' => true,
+            ]);
+        } elseif ($request->input('image_source') === 'upload' && $request->hasFile('image_upload')) {
+            $file = $request->file('image_upload');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/images/posts', $filename);
+            
+            $post->imageAsset()->create([
+                'path' => 'storage/images/posts/' . $filename,
+                'is_url' => false,
+            ]);
+        }
 
         return redirect()->route('admin.blog.posts.index')->with('success', 'Post created successfully!');
     }
@@ -84,7 +105,37 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $data = $request->validated();
+        
+        // Update the post
         $post->update($data);
+
+        // Handle the image asset
+        if ($request->input('image_source') === 'url' && $request->filled('image_url')) {
+            // If there's an existing asset, update it. Otherwise, create a new one.
+            $post->imageAsset()->updateOrCreate(['id' => $post->id], [
+                'url' => $request->input('image_url'),
+                'path' => null,
+                'is_url' => true,
+            ]);
+        } elseif ($request->input('image_source') === 'upload' && $request->hasFile('image_upload')) {
+            // Delete old image if it exists and is a file upload
+            if ($post->imageAsset && !$post->imageAsset->is_url) {
+                // The path in DB is 'storage/images/posts/...'
+                // We need to convert it to a path that File::delete can use, which is inside storage/app/public
+                $oldPath = str_replace('storage/', 'public/', $post->imageAsset->path);
+                Storage::delete($oldPath);
+            }
+
+            $file = $request->file('image_upload');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/images/posts', $filename);
+            
+            $post->imageAsset()->updateOrCreate(['id' => $post->id], [
+                'path' => 'storage/images/posts/' . $filename,
+                'url' => null,
+                'is_url' => false,
+            ]);
+        }
 
         return redirect()->route('admin.blog.posts.index')->with('success', 'Post updated successfully!');
     }
@@ -96,6 +147,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->imageAsset && !$post->imageAsset->is_url) {
+            $oldPath = str_replace('storage/', 'public/', $post->imageAsset->path);
+            Storage::delete($oldPath);
+        }
         $post->delete();
 
         return redirect()->route('admin.blog.posts.index')->with('success', 'Post deleted successfully!');

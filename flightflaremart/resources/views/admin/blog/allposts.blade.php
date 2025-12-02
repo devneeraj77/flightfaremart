@@ -8,7 +8,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">All Blog Posts</h1>
         {{-- Button to create a new post --}}
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="{{ route('admin.posts.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Add New Post
         </a>
     </div>
@@ -24,6 +24,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Image</th>
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Created On</th>
@@ -35,6 +36,13 @@
                         @foreach ($posts as $post)
                         <tr>
                             <td>{{ $post->id }}</td>
+                            <td>
+                                @if($post->imageAsset)
+                                    <img src="{{ $post->imageAsset->url }}" alt="{{ $post->title }}" style="width: 50px; height: 50px; object-fit: cover;">
+                                @else
+                                    <span class="text-muted">No Image</span>
+                                @endif
+                            </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->created_at->format('M d, Y') }}</td>
@@ -46,14 +54,14 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.blog.posts.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                <form action="{{ route('admin.blog.posts.toggle-publish', $post->id) }}" method="POST" style="display:inline-block;">
+                                <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                <form action="{{ route('admin.posts.toggle-publish', $post->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     <button type="submit" class="btn btn-sm {{ $post->is_published ? 'btn-success' : 'btn-warning' }}" onclick="return confirm('Are you sure you want to {{ $post->is_published ? 'draft' : 'publish' }} this post?')">
                                         {{ $post->is_published ? 'Published' : 'Draft' }}
                                     </button>
                                 </form>
-                                <form action="#" method="POST" style="display:inline-block;">
+                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>

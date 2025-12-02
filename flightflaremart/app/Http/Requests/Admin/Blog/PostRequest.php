@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostRequest extends FormRequest
 {
@@ -78,9 +79,11 @@ class PostRequest extends FormRequest
             'slug' => ['required', 'string', 'max:255', 'unique:posts,slug,' . $postId],
             'content' => ['required', 'string'],
             'excerpt' => ['nullable', 'string', 'max:500'],
-            'image_url' => ['nullable', 'url', 'max:255'],
             'published_at' => ['nullable', 'date'],
             'is_published' => ['boolean'],
+            'image_source' => ['nullable', 'in:url,upload'],
+            'image_url' => ['nullable', 'required_if:image_source,url', 'url', 'max:2048'],
+            'image_upload' => ['nullable', 'required_if:image_source,upload', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ];
     }
 }

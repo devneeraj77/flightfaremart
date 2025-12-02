@@ -21,7 +21,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.posts.store') }}">
+    <form method="POST" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="space-y-8">
@@ -79,17 +79,31 @@
                     @enderror
                 </div>
 
-                <!-- Featured Image URL -->
-                <div class="flex flex-col md:col-span-2">
-                    <label for="image_url" class="text-sm font-semibold text-gray-700 mb-1">Featured Image URL (External)</label>
-                    <input type="url" name="image_url" id="image_url"
-                           class="rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-150"
-                           value="{{ old('image_url') }}" placeholder="https://example.com/image.jpg">
-                    @error('image_url')
-                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
-            </div>
+<div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-inner">
+    <h3 class="text-lg font-bold text-gray-700 mb-4">Featured Image</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Image URL -->
+        <div class="flex flex-col">
+            <label for="image_url" class="text-sm font-semibold text-gray-700 mb-1">Image URL (External)</label>
+            <input type="url" name="image_url" id="image_url"
+                    class="rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-150"
+                    value="{{ old('image_url') }}" placeholder="https://example.com/image.jpg">
+            @error('image_url')
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <!-- Image Upload -->
+        <div class="flex flex-col">
+            <label for="image_upload" class="text-sm font-semibold text-gray-700 mb-1">Or Upload Image</label>
+            <input type="file" name="image_upload" id="image_upload"
+                    class="rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-150">
+            @error('image_upload')
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+            @enderror
+        </div>
+    </div>
+</div>
 
             <!-- Publishing & Scheduling -->
             <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-inner">

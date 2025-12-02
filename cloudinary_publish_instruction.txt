@@ -1,0 +1,4 @@
+
+Please run the following command in your terminal to publish the Cloudinary configuration file:
+
+php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider"

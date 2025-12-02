@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\PublicBlogController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,9 @@ Route::view('/privacy-policy', 'privacy-policy')->name('privacy');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/about', 'about')->name('about');
 Route::view('/faqs', 'faqs')->name('faqs');
-Route::view('/blog', 'blog')->name('blog');
+Route::get('/blog', [PublicBlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{category}', [PublicBlogController::class, 'showCategory'])->name('blog.category');
+Route::get('/blog/{category}/{slug}', [PublicBlogController::class, 'show'])->name('blog.show');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 
 // Route to handle the form submission and save data

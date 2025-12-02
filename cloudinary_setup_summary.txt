@@ -1,0 +1,39 @@
+I have completed the following changes to integrate Cloudinary for image management:
+
+1.  **Modified `composer.json`**: Added `"cloudinary-labs/cloudinary-laravel": "^2.0"` to the `require` section.
+2.  **Modified `app/Http/Controllers/Admin/ImageAssetController.php`**:
+    *   Added `use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;`.
+    *   Updated the `store` method to upload images to Cloudinary and save their `url` and `cloudinary_id`.
+    *   Added `update` and `destroy` methods to handle updating and deleting images from Cloudinary, respectively.
+3.  **Modified `app/Models/ImageAsset.php`**:
+    *   Added `cloudinary_id` to the `$fillable` array.
+    *   Implemented a `boot` method with a `deleting` event listener to ensure images are removed from Cloudinary when an `ImageAsset` record is deleted.
+    *   Removed the `path` attribute and its cast, assuming all images will now be Cloudinary-managed.
+4.  **Created a new migration file**: `database/migrations/2025_12_02_130000_add_cloudinary_id_to_image_assets_table.php` to add the `cloudinary_id` column to the `image_assets` table.
+
+To finalize the setup, please perform the following steps in your terminal:
+
+1.  **Install the Cloudinary Laravel package dependencies**:
+    ```bash
+    composer install
+    ```
+2.  **Add Cloudinary credentials to your `.env` file**:
+    You should have received an `env_instructions.txt` file in your project root with the details. Please replace the placeholders with your actual Cloudinary API Key, API Secret, and Cloud Name.
+    ```
+    CLOUDINARY_URL="cloudinary://YOUR_API_KEY:YOUR_API_SECRET@YOUR_CLOUD_NAME"
+    CLOUDINARY_CLOUD_NAME="YOUR_CLOUD_NAME"
+    CLOUDINARY_API_KEY="YOUR_API_KEY"
+    CLOUDINARY_API_SECRET="YOUR_API_SECRET"
+    CLOUDINARY_SECURE="true"
+    ```
+3.  **Publish the Cloudinary configuration file**:
+    You should have received a `cloudinary_publish_instruction.txt` file in your project root with the details.
+    ```bash
+    php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider"
+    ```
+4.  **Run the database migrations**:
+    ```bash
+    php artisan migrate
+    ```
+
+After completing these steps, your Laravel application should be fully set up to use Cloudinary for image uploads, updates, and deletions via the `ImageAssetController`.
