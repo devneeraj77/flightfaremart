@@ -16,7 +16,9 @@
 </head>
 
 @section('content')
-<div>dasfgda</div>
+<section>
+  <!-- set here my dashboard showcase activity my total blog posts, categories and recently my create posts and(add as your preference in need any activity status) -->
+</section>
 @endsection
 
 </html>

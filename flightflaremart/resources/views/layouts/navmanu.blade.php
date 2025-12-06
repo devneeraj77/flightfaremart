@@ -29,11 +29,11 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-4 text-sm px-3 text-accent ">
           <a href="/" aria-current="page" class="px-1 py-2 text-sm  text-accent bg-trans hover:bg-white/5  dark:text-primary ">Home</a>
-          <a href="about" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">About</a>
+          <a href="{{ route('about') }}" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">About</a>
           
-          <a href="blog" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">Blog</a>
-          <a href="faqs" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">FAQs</a>
-          <a href="contact" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">Contact</a>
+          <a href="{{ route('blog.index') }}" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">Blog</a>
+          <a href="{{ route('faqs') }}" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">FAQs</a>
+          <a href="{{ route('contact.create') }}" class="px-1 py-2 text-sm  text-accent hover:bg-white/5 hover:text-accent/80 dark:text-secondary">Contact</a>
         </div>
         <!-- Auth / Menu Links -->
         @auth

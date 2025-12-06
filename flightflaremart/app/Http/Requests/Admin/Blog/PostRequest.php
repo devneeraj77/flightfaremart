@@ -83,7 +83,7 @@ class PostRequest extends FormRequest
             'is_published' => ['boolean'],
             'image_source' => ['nullable', 'in:url,upload'],
             'image_url' => ['nullable', 'required_if:image_source,url', 'url', 'max:2048'],
-            'image_upload' => ['nullable', 'required_if:image_source,upload', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'image_upload' => ['nullable', 'required_if:image_source,upload', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:10240'],
         ];
     }
 }

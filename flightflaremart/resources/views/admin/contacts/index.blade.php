@@ -58,8 +58,8 @@
                                     <div class="text-sm font-medium text-gray-900">{{ $message->name }}</div>
                                     <div class="text-sm text-gray-500">{{ $message->email }}</div>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs  truncate" title="{{ $message->message }}">
-                                    {{ Str::limit($message->message, 80) }}
+                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs  " title="{{ $message->message }}">
+                                    {{ Str::limit($message->message, 200) }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-500">
                                     {{ $message->created_at->diffForHumans() }}

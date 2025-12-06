@@ -11,6 +11,8 @@ use App\Models\ImageAsset;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log; // Added for logging
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class PostController extends Controller
 {
@@ -66,19 +68,39 @@ class PostController extends Controller
         if ($request->hasFile('image_upload')) {
             Log::info('Image upload detected for new post.');
             $file = $request->file('image_upload');
-            Log::info('Original Filename: ' . $file->getClientOriginalName() . ', Mime Type: ' . $file->getMimeType());
+            Log::info('Original Filename: ' . $file->getClientOriginalName() . ', Mime Type: ' . $file->getMimeType() . ', Size: ' . $file->getSize());
+
+            if (!extension_loaded('gd')) {
+                Log::error('GD library is not installed or enabled.');
+                return back()->withInput()->with('error', 'Image processing requires the GD library, which is not enabled on the server.');
+            }
 
             try {
-                $imagePath = $file->store('blog/post/images', 'public');
-                Log::info('Image stored at: ' . $imagePath);
+                Log::info('Starting image processing with Intervention Image.');
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file);
+                
+                $webpPath = 'blog/post/images/' . Str::random(40) . '.webp';
+                Log::info('Generated new WebP path: ' . $webpPath);
+                
+                $encoded = $image->toWebp(25);
+                Log::info('Image encoded to WebP format.');
+
+                // Ensure the directory exists
+                Storage::disk('public')->makeDirectory(dirname($webpPath));
+
+                Storage::disk('public')->put($webpPath, (string) $encoded);
+
+                Log::info('Image saved successfully to disk.');
 
                 $post->imageAsset()->create([
-                    'path' => $imagePath,
+                    'path' => $webpPath,
                 ]);
                 Log::info('ImageAsset record created for uploaded file.');
-            } catch (\Exception $e) {
+
+            } catch (\Throwable $e) {
                 Log::error('Image Upload Error in store method: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
-                return back()->withInput()->with('error', 'Failed to upload image. Please try again.');
+                return back()->withInput()->with('error', 'Failed to upload image. Please try again. Check logs for details.');
             }
         } elseif ($request->filled('image_url')) {
             Log::info('Image URL detected for new post: ' . $request->input('image_url'));
@@ -123,7 +145,12 @@ class PostController extends Controller
         if ($request->hasFile('image_upload')) {
             Log::info('Image upload detected for post update (Post ID: ' . $post->id . ').');
             $file = $request->file('image_upload');
-            Log::info('Original Filename: ' . $file->getClientOriginalName() . ', Mime Type: ' . $file->getMimeType());
+            Log::info('Original Filename: ' . $file->getClientOriginalName() . ', Mime Type: ' . $file->getMimeType() . ', Size: ' . $file->getSize());
+
+            if (!extension_loaded('gd')) {
+                Log::error('GD library is not installed or enabled.');
+                return back()->withInput()->with('error', 'Image processing requires the GD library, which is not enabled on the server.');
+            }
 
             try {
                 // Delete old image from local storage if it exists
@@ -133,16 +160,30 @@ class PostController extends Controller
                     Log::info('Old ImageAsset record deleted.');
                 }
 
-                $imagePath = $file->store('blog/post/images', 'public');
-                Log::info('New image stored at: ' . $imagePath);
+                Log::info('Starting image processing with Intervention Image for post update.');
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file);
+
+                $webpPath = 'blog/post/images/' . Str::random(40) . '.webp';
+                Log::info('Generated new WebP path for post update: ' . $webpPath);
+                
+                $encoded = $image->toWebp(25);
+                Log::info('Image encoded to WebP format for post update.');
+
+                // Ensure the directory exists
+                Storage::disk('public')->makeDirectory(dirname($webpPath));
+
+                Storage::disk('public')->put($webpPath, (string) $encoded);
+
+                Log::info('Updated image saved successfully to disk.');
 
                 $post->imageAsset()->create([
-                    'path' => $imagePath,
+                    'path' => $webpPath,
                 ]);
-                Log::info('New ImageAsset record created for uploaded file.');
-            } catch (\Exception $e) {
+                Log::info('New ImageAsset record created for updated file.');
+            } catch (\Throwable $e) {
                 Log::error('Image Upload Error in update method: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
-                return back()->withInput()->with('error', 'Failed to upload image during update. Please try again.');
+                return back()->withInput()->with('error', 'Failed to upload image during update. Please try again. Check logs for details.');
             }
         } elseif ($request->filled('image_url')) {
             Log::info('Image URL detected for post update (Post ID: ' . $post->id . '): ' . $request->input('image_url'));

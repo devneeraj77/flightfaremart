@@ -84,25 +84,9 @@
 
             <!-- Image Asset Chooser -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
-
-                <!-- Radio Buttons -->
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="flex items-center">
-                        <input x-model="imageSource" id="source_url" name="image_source" type="radio" value="url" class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" >
-                        <label for="source_url" class="ml-2 block text-base font-medium text-gray-700">From URL</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input x-model="imageSource" id="source_upload" name="image_source" type="radio" value="upload" class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                        <label for="source_upload" class="ml-2 block text-base font-medium text-gray-700">Upload New</label>
-                    </div>
-                </div>
-
-
-
                 <!-- Image Upload Input -->
-                <div x-show="imageSource === 'upload'">
-                    <label for="image_upload" class="block text-sm font-medium text-gray-700">Upload Image File</label>
+                <div class="  rounded-md p-4">
+                    <label for="image_upload" class="block py-2 text-sm font-medium text-gray-700">Featured Image File</label>
                     <input type="file" name="image_upload" id="image_upload"
                         class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                     @error('image_upload') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
@@ -115,7 +99,7 @@
                     <p class="text-sm font-medium text-gray-700">Current Image:</p>
                     <img src="{{ $post->imageAsset->image_url }}" alt="Current featured image" class="mt-2 h-20 w-auto object-cover rounded-lg shadow-sm">
                     <div class="flex items-center mt-2">
-                        <input id="clear_image" name="clear_image" type="checkbox" value="1" class="h-4 w-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                        <input id="clear_image" name="clear_image" type="checkbox" value="1" class="h-4 w-4 text-red-600 border-gray-300 rounded focus:ring-red-500" checked>
                         <label for="clear_image" class="ml-2 block text-sm text-red-700">Clear Current Image</label>
                     </div>
                 </div>

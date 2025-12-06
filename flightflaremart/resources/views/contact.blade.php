@@ -75,8 +75,8 @@
                         </div>
 
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                            <textarea name="message" id="message" rows="4" required
+                            <label for="message"  class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea name="message" maxlength="260" id="message" rows="4" required
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring-secondary p-3 border @error('message') border-red-500 @enderror"
                                 placeholder="How can we help you?">{{ old('message') }}</textarea>
                             @error('message')
