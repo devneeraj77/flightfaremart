@@ -33,4 +33,26 @@ class PublicBlogController extends Controller
 
         return view('blog.showCategory', compact('posts', 'category', 'categories'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if (empty($query)) {
+            return view('blog._posts', ['posts' => []]);
+        }
+
+        $posts = Post::with(['category', 'author', 'imageAsset'])
+            ->where(function ($q) use ($query) {
+                $q->where('title', 'LIKE', "%{$query}%")
+                    ->orWhere('content', 'LIKE', "%{$query}%")
+                    ->orWhereHas('author', function ($subq) use ($query) {
+                        $subq->where('name', 'LIKE', "%{$query}%");
+                    });
+            })
+            ->published()
+            ->get();
+
+        return view('blog._posts', compact('posts'));
+    }
 }

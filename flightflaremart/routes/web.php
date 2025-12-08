@@ -44,6 +44,7 @@ Route::view('/about', 'about')->name('about');
 Route::view('/faqs', 'faqs')->name('faqs');
 Route::view('/contact', 'contact')->name('contact');
 Route::get('/blog', [PublicBlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/search', [PublicBlogController::class, 'search'])->name('blog.search');
 Route::get('/blog/{category}', [PublicBlogController::class, 'showCategory'])->name('blog.category');
 Route::get('/blog/{category}/{slug}', [PublicBlogController::class, 'show'])->name('blog.show');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
