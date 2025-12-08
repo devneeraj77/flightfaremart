@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\ContactMessage;
 use App\Models\Post;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
@@ -63,6 +64,12 @@ class AdminController extends Controller
             'unreadMessages',
             'recentPosts'
         ));
+    }
+
+    public function subscriptions()
+    {
+        $subscriptions = Subscription::latest()->get();
+        return view('admin.subscriptions', compact('subscriptions'));
     }
 
     public function logout()

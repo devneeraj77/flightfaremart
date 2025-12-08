@@ -16,7 +16,7 @@
 @section('main-content')
     <section class="py-4 ">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-8 border-b pb-4">Posts in: {{ $category->name }}</h1>
+            <h1 class="text-4xl  text-gray-900 mb-8 border-b pb-4">Posts in: {{ $category->name }}</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 @foreach($posts as $post)
                     <div class="group cursor-pointer border border-gray-300 rounded-2xl p-5 transition-all duration-300 hover:border-indigo-600">

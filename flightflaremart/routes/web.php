@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\PublicBlogController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/subscribe', [SubscriptionController::class, 'store'])->name('subscribe');
 
 Route::view('/upload', 'upload')->name('upload');
 
@@ -96,5 +99,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/test-cloudinary', function () {
             return view('admin.test-cloudinary');
         })->name('test-cloudinary');
+        Route::get('/subscriptions', [AdminController::class, 'subscriptions'])->name('subscriptions.index');
     });
 });

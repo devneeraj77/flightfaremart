@@ -88,7 +88,7 @@
                 <div class="  rounded-md p-4">
                     <label for="image_upload" class="block py-2 text-sm font-medium text-gray-700">Featured Image File</label>
                     <input type="file" name="image_upload" id="image_upload"
-                        class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                        class="mt-1 block w-full text-sm text-accent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-base-300 file:text-accent hover:file:bg-base-200">
                     @error('image_upload') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
                     <p class="text-xs text-gray-500 mt-1">Make sure the parent form has `enctype="multipart/form-data"`.</p>
                 </div>

@@ -14,7 +14,7 @@
 @endsection
 
 @section('main-content')
-    <div class="max-w-4xl mx-auto py-10">
+    <div id="blog" class="max-w-4xl mx-auto py-10">
         
         {{-- Breadcrumbs (Optional, but good for navigation) --}}
         <div class="text-sm breadcrumbs mb-6">
@@ -38,7 +38,7 @@
             
             <header class="mb-6">
                 {{-- Title and Badges --}}
-                <h1 class="text-5xl font-extrabold mb-2">{{ $post->title }}</h1>
+                <h1 class="text-5xl mb-2">{{ $post->title }}</h1>
                 <div class="flex items-center space-x-3 mb-4">
                     <div class="badge badge-lg badge-secondary">{{ $post->category->name }}</div>
                     <span class="text-sm text-base-content/70">Published on {{ $post->published_at->format('F d, Y') }}</span>
@@ -55,7 +55,7 @@
                     </div>
                     <div>
                         <h4 class="font-bold">Written by {{ $post->author->name }}</h4>
-                        <span class="text-sm text-base-content/70">{{ $post->author->bio ?? 'Blogger & Developer.' }}</span>
+                        <span class="text-sm text-base-content/70">{{ $post->author->bio ?? 'Lorem, ipsum dolor.' }}</span>
                     </div>
                 </div>
             </div>

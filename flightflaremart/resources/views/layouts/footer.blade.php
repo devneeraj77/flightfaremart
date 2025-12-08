@@ -98,19 +98,28 @@
 
       <!-- Subscribe -->
       <div>
-        <form>
-          <h5 class="text-lg font-semibold text-black dark:text-primary mb-4">Subscribe now</h5>
-          <fieldset class="">
-            <label class="text-sm opacity-90 mb-3 pb-2">Sign up if you want to get notifications</label>
-            <div class="join">
-              <input
-                type="text"
-                placeholder="username@site.com"
-                class="input input-bordered join-item" />
-              <button class="btn btn-primary join-item">Subscribe</button>
-            </div>
-          </fieldset>
-        </form>
+        <form method="POST" action="{{ route('subscribe') }}">
+    @csrf
+    <h5 class="text-lg font-semibold text-black dark:text-primary mb-4">Subscribe now</h5>
+    <fieldset class="">
+        <label class="text-sm opacity-90 mb-3 pb-2">Sign up if you want to get notifications</label>
+        <div class="join">
+            <input type="email" name="email" placeholder="username@site.com"
+                class="input input-bordered join-item" required />
+            <button class="btn btn-primary join-item">Subscribe</button>
+        </div>
+    </fieldset>
+    @if (session('success'))
+        <div class="text-green-500 text-sm mt-2">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="text-red-500 text-sm mt-2">
+            {{ $errors->first('email') }}
+        </div>
+    @endif
+</form>
 
       </div>
     </div>
