@@ -94,7 +94,7 @@
             @endif
         </div>
 
-        <button type="button" id="add-faq" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button type="button" id="add-faq" class="mt-4 bg-accent hover:bg-accent/80 text-white font-bold py-2 px-4 rounded">
             Add FAQ
         </button>
     </div>
@@ -238,7 +238,7 @@
     <!-- Submit Button (Part of the form) -->
     <div class="text-right pt-4">
         <button type="submit" id="submit-button"
-            class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 flex items-center justify-center">
+            class="bg-accent hover:bg-accent/80 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 flex items-center justify-center">
             <span class="button-text">{{ $post->exists ? 'Update Post' : 'Create Post' }}</span>
             <svg class="animate-spin h-5 w-5 text-white ml-2 hidden" id="spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
