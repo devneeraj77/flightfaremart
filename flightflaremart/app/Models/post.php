@@ -29,6 +29,11 @@ class Post extends Model
         return $this->hasOne(ImageAsset::class);
     }
 
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+    }
+
     // --- Relationships ---
 
     /**

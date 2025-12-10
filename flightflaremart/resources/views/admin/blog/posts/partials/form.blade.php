@@ -70,6 +70,92 @@
         <textarea name="content" id="content" class="w-full h-96">{{ old('content', $post->content) }}</textarea>
         @error('content') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
     </div>
+    <div class="bg-white shadow-lg rounded-lg p-6 mt-6">
+        <h3 class="text-xl font-bold mb-4">Frequently Asked Questions</h3>
+
+        <div id="faqs-container">
+            @if(isset($post) && $post->faqs)
+            @foreach($post->faqs as $index => $faq)
+            <div class="faq-item border-b pb-4 mb-4">
+                <input type="hidden" name="faqs[{{ $index }}][id]" value="{{ $faq->id }}">
+                <div class="mb-4">
+                    <label for="faqs_{{ $index }}_question" class="block text-gray-700">Question</label>
+                    <input type="text" name="faqs[{{ $index }}][question]" id="faqs_{{ $index }}_question" value="{{ old('faqs.'.$index.'.question', $faq->question) }}" class="w-full border-gray-300 rounded-md shadow-sm">
+                    @error('faqs.'.$index.'.question') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+                </div>
+                <div class="mb-2">
+                    <label for="faqs_{{ $index }}_answer" class="block text-gray-700">Answer</label>
+                    <textarea name="faqs[{{ $index }}][answer]" id="faqs_{{ $index }}_answer" rows="3" class="w-full border-gray-300 rounded-md shadow-sm">{{ old('faqs.'.$index.'.answer', $faq->answer) }}</textarea>
+                    @error('faqs.'.$index.'.answer') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+                </div>
+                <button type="button" class="text-red-500 remove-faq">Remove</button>
+            </div>
+            @endforeach
+            @endif
+        </div>
+
+        <button type="button" id="add-faq" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add FAQ
+        </button>
+    </div>
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Initialize FAQ index based on existing FAQs (if editing a post)
+            let faqIndex = `{{ isset($post) && $post->faqs ? $post->faqs->count() : 0 }}`
+            ;
+
+            // Add FAQ button
+            const addBtn = document.getElementById('add-faq');
+            const container = document.getElementById('faqs-container');
+
+            addBtn.addEventListener('click', function() {
+
+                const template = `
+                <div class="faq-item border-b pb-4 mb-4">
+
+                    <input type="hidden" name="faqs[${faqIndex}][id]" value="">
+
+                    <div class="mb-4">
+                        <label for="faqs_${faqIndex}_question" class="block text-gray-700">Question</label>
+                        <input 
+                            type="text"
+                            name="faqs[${faqIndex}][question]"
+                            id="faqs_${faqIndex}_question"
+                            class="w-full border-gray-300 rounded-md shadow-sm"
+                        >
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="faqs_${faqIndex}_answer" class="block text-gray-700">Answer</label>
+                        <textarea
+                            name="faqs[${faqIndex}][answer]"
+                            id="faqs_${faqIndex}_answer"
+                            rows="3"
+                            class="w-full border-gray-300 rounded-md shadow-sm"
+                        ></textarea>
+                    </div>
+
+                    <button type="button" class="text-red-500 remove-faq">Remove</button>
+                </div>
+            `;
+
+                container.insertAdjacentHTML('beforeend', template);
+                faqIndex++;
+            });
+
+            // Remove FAQ item
+            container.addEventListener('click', function(e) {
+                if (e.target.classList.contains('remove-faq')) {
+                    e.target.closest('.faq-item').remove();
+                }
+            });
+        });
+    </script>
+    @endpush
+
+
 
     <!-- Excerpt and Image -->
     <div x-data="{ imageSource: '{{ old('image_source', $post->imageAsset && !$post->imageAsset->is_url ? 'upload' : 'url') }}' }" class="bg-white shadow-lg rounded-lg p-6">
@@ -89,8 +175,9 @@
                     <label for="image_upload" class="block py-2 text-sm font-medium text-gray-700">Featured Image File</label>
                     <input type="file" name="image_upload" id="image_upload"
                         class="mt-1 block w-full text-sm text-accent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-base-300 file:text-accent hover:file:bg-base-200">
-                    @error('image_upload') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
-                    <p class="text-xs text-gray-500 mt-1">Make sure the parent form has `enctype="multipart/form-data"`.</p>
+                    @error('image_upload') <p class="text-sm text-red-500 mt-1 ">{{ $message }}</p> @enderror
+                    <p class="text-xs mt-2 text-gray-500 mt-1">Ensure the image size is exactly 1200 x 630 pixels (recommended) and does not exceed 2MB.</p>
+                    <!-- <p class="text-xs text-gray-500 mt-1">Make sure the parent form has `enctype="multipart/form-data"`.</p> -->
                 </div>
 
                 <!-- Image Preview -->
@@ -201,8 +288,8 @@
                     submitButton.disabled = true;
                     const buttonText = submitButton.querySelector('.button-text');
                     const spinner = document.getElementById('spinner');
-                    if(buttonText) buttonText.textContent = 'Saving...';
-                    if(spinner) spinner.classList.remove('hidden');
+                    if (buttonText) buttonText.textContent = 'Saving...';
+                    if (spinner) spinner.classList.remove('hidden');
                 }, false);
             }
         }

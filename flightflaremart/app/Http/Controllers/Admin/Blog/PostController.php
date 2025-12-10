@@ -7,6 +7,7 @@ use App\Models\User; // Assuming User model is needed for author assignment
 use App\Models\Category; // Assuming Category model is needed for relationships
 use App\Http\Requests\Admin\Blog\PostRequest;
 use App\Models\Admin;
+use App\Models\Faq;
 use App\Models\ImageAsset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -85,8 +86,9 @@ class PostController extends Controller
     {
         $data = $request->validated();
         
-        // Create the post first
         $post = Post::create($data);
+
+        $this->syncFaqs($post, $data['faqs'] ?? []);
 
         if ($request->hasFile('image_upload')) {
             Log::info('Image upload detected for new post.');
@@ -109,16 +111,12 @@ class PostController extends Controller
                 $encoded = $image->toWebp(25);
                 Log::info('Image encoded to WebP format.');
 
-                // Ensure the directory exists
                 Storage::disk('public')->makeDirectory(dirname($webpPath));
-
                 Storage::disk('public')->put($webpPath, (string) $encoded);
 
                 Log::info('Image saved successfully to disk.');
 
-                $post->imageAsset()->create([
-                    'path' => $webpPath,
-                ]);
+                $post->imageAsset()->create(['path' => $webpPath]);
                 Log::info('ImageAsset record created for uploaded file.');
 
             } catch (\Throwable $e) {
@@ -127,9 +125,7 @@ class PostController extends Controller
             }
         } elseif ($request->filled('image_url')) {
             Log::info('Image URL detected for new post: ' . $request->input('image_url'));
-            $post->imageAsset()->create([
-                'path' => $request->input('image_url'),
-            ]);
+            $post->imageAsset()->create(['path' => $request->input('image_url')]);
             Log::info('ImageAsset record created for image URL.');
         } else {
             Log::info('No image upload or URL provided for new post.');
@@ -145,6 +141,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $post->load('faqs');
         $categories = Category::all(['id', 'name']);
         $authors = Admin::select('id', 'name')->get();
 
@@ -161,8 +158,9 @@ class PostController extends Controller
     {
         $data = $request->validated();
         
-        // Update the post
         $post->update($data);
+
+        $this->syncFaqs($post, $data['faqs'] ?? []);
 
         // Handle image update
         if ($request->hasFile('image_upload')) {
@@ -176,10 +174,9 @@ class PostController extends Controller
             }
 
             try {
-                // Delete old image from local storage if it exists
                 if ($post->imageAsset) {
                     Log::info('Existing imageAsset found for post ' . $post->id . '. Deleting old asset.');
-                    $post->imageAsset->delete(); // The model event will handle file deletion
+                    $post->imageAsset->delete();
                     Log::info('Old ImageAsset record deleted.');
                 }
 
@@ -193,16 +190,12 @@ class PostController extends Controller
                 $encoded = $image->toWebp(25);
                 Log::info('Image encoded to WebP format for post update.');
 
-                // Ensure the directory exists
                 Storage::disk('public')->makeDirectory(dirname($webpPath));
-
                 Storage::disk('public')->put($webpPath, (string) $encoded);
 
                 Log::info('Updated image saved successfully to disk.');
 
-                $post->imageAsset()->create([
-                    'path' => $webpPath,
-                ]);
+                $post->imageAsset()->create(['path' => $webpPath]);
                 Log::info('New ImageAsset record created for updated file.');
             } catch (\Throwable $e) {
                 Log::error('Image Upload Error in update method: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
@@ -211,16 +204,13 @@ class PostController extends Controller
         } elseif ($request->filled('image_url')) {
             Log::info('Image URL detected for post update (Post ID: ' . $post->id . '): ' . $request->input('image_url'));
             try {
-                // If a new URL is provided, and there was an old image, delete it
                 if ($post->imageAsset) {
                     Log::info('Existing imageAsset found for post ' . $post->id . '. Deleting old asset.');
-                    $post->imageAsset->delete(); // The model event will handle file deletion
+                    $post->imageAsset->delete();
                     Log::info('Old ImageAsset record deleted.');
                 }
 
-                $post->imageAsset()->create([
-                    'path' => $request->input('image_url'),
-                ]);
+                $post->imageAsset()->create(['path' => $request->input('image_url')]);
                 Log::info('New ImageAsset record created for image URL.');
             } catch (\Exception $e) {
                 Log::error('Image Process Error in update method with new URL: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
@@ -229,7 +219,6 @@ class PostController extends Controller
         } elseif ($request->boolean('clear_image') && $post->imageAsset) {
             Log::info('Clear image option detected for post update (Post ID: ' . $post->id . ').');
             try {
-                // Option to clear existing image without uploading new one
                 $post->imageAsset->delete();
                 Log::info('ImageAsset record deleted during clear.');
             } catch (\Exception $e) {
@@ -253,7 +242,6 @@ class PostController extends Controller
         Log::info('Destroy method called for Post ID: ' . $post->id);
         if ($post->imageAsset) {
             Log::info('ImageAsset found for Post ID: ' . $post->id . '. Triggering delete on ImageAsset.');
-            // The ImageAsset model's deleting event will handle local file deletion.
             $post->imageAsset->delete(); 
         } else {
             Log::info('No ImageAsset found for Post ID: ' . $post->id . '.');
@@ -280,5 +268,39 @@ class PostController extends Controller
 
         $status = $post->is_published ? 'published' : 'draft';
         return back()->with('success', "Post marked as {$status} successfully!");
+    }
+
+    private function syncFaqs(Post $post, array $faqsData): void
+    {
+        $existingFaqIds = $post->faqs->pluck('id')->all();
+        $incomingFaqIds = [];
+
+        foreach ($faqsData as $faqData) {
+            if (empty($faqData['question']) && empty($faqData['answer'])) {
+                continue;
+            }
+
+            $faqId = $faqData['id'] ?? null;
+            if ($faqId) {
+                $incomingFaqIds[] = (int)$faqId;
+                $faq = Faq::find($faqId);
+                if ($faq) {
+                    $faq->update([
+                        'question' => $faqData['question'],
+                        'answer' => $faqData['answer'],
+                    ]);
+                }
+            } else {
+                $post->faqs()->create([
+                    'question' => $faqData['question'],
+                    'answer' => $faqData['answer'],
+                ]);
+            }
+        }
+
+        $idsToDelete = array_diff($existingFaqIds, $incomingFaqIds);
+        if (!empty($idsToDelete)) {
+            Faq::destroy($idsToDelete);
+        }
     }
 }

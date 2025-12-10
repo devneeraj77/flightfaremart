@@ -19,14 +19,14 @@
 
 <body class="md:w-full text-left text-sm hover:bg-base-300">
 
-  <div x-data="{ sidebarOpen: false, sidebarMinimized: false }" class="flex h-screen overflow-hidden">
+  <div x-data="{ sidebarOpen: false, sidebarMinimized: false }" x-cloak class="flex h-screen overflow-hidden">
 
     @include('admin.layouts.sidebar')
 
     <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-20 bg-black/50 sm:hidden" @click="sidebarOpen = false"></div>
 
     <div class="flex flex-1 flex-col overflow-hidden"
-      :class="{'md:ml-0': !sidebarMinimized, 'md:ml-16': sidebarMinimized}">
+      :class="{'lg:ml-auto': !sidebarMinimized, 'md:ml-auto': sidebarMinimized}">
       @include('admin.layouts.adminHeader')
 
 

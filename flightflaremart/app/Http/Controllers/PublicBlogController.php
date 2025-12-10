@@ -17,7 +17,7 @@ class PublicBlogController extends Controller
 
     public function show($category, $slug)
     {
-        $post = Post::where('slug', $slug)->whereHas('category', function ($query) use ($category) {
+        $post = Post::with('faqs')->where('slug', $slug)->whereHas('category', function ($query) use ($category) {
             $query->where('slug', $category);
         })->firstOrFail();
         $categories = Category::all();

@@ -28,7 +28,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $post = new Post();
+        return view('admin.posts.create', compact('categories', 'post'));
     }
 
     /**
@@ -43,6 +44,10 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
             'is_published' => 'boolean',
             'image_upload' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // 2MB Max
+            'faqs' => 'array',
+            'faqs.*.id' => 'sometimes|nullable|integer|exists:faqs,id',
+            'faqs.*.question' => 'required_with:faqs.*.answer|string|max:500',
+            'faqs.*.answer' => 'required_with:faqs.*.question|string',
         ]);
 
         $post = new Post();
@@ -78,8 +83,25 @@ class PostController extends Controller
             Log::info('No image upload provided for new post.');
         }
 
+        // Save FAQs
+        Log::info('Attempting to save FAQs for new post. Request has faqs: ' . ($request->has('faqs') ? 'true' : 'false'));
+        if ($request->has('faqs')) {
+            foreach ($request->input('faqs') as $faqData) {
+                if (!empty($faqData['question']) && !empty($faqData['answer'])) {
+                    Log::info('Creating FAQ for post ' . $post->id . ': ' . json_encode($faqData));
+                    $post->faqs()->create([
+                        'question' => $faqData['question'],
+                        'answer' => $faqData['answer'],
+                    ]);
+                }
+            }
+            Log::info('Finished saving FAQs for new post.');
+        }
+
         return redirect()->route('admin.posts.index')->with('success', 'Post created successfully!');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -95,7 +117,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        $post->load('imageAsset'); // Eager load image asset for the form
+        $post->load('imageAsset', 'faqs'); // Eager load image asset and faqs for the form
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
@@ -111,6 +133,10 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
             'is_published' => 'boolean',
             'image_upload' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // 2MB Max
+            'faqs' => 'array',
+            'faqs.*.id' => 'sometimes|nullable|integer|exists:faqs,id',
+            'faqs.*.question' => 'required_with:faqs.*.answer|string|max:500',
+            'faqs.*.answer' => 'required_with:faqs.*.question|string',
         ]);
 
         $post->title = $validated['title'];
@@ -150,6 +176,45 @@ class PostController extends Controller
             Log::info('No new image upload or clear option provided for post update (Post ID: ' . $post->id . ').');
         }
 
+        // Sync FAQs
+        Log::info('Attempting to sync FAQs for post ' . $post->id . '. Request has faqs: ' . ($request->has('faqs') ? 'true' : 'false'));
+        $incomingFaqs = $request->input('faqs', []);
+        $existingFaqIds = $post->faqs->pluck('id')->toArray();
+        $incomingFaqIds = [];
+
+        foreach ($incomingFaqs as $faqData) {
+            if (!empty($faqData['question']) && !empty($faqData['answer'])) {
+                if (isset($faqData['id']) && in_array($faqData['id'], $existingFaqIds)) {
+                    // Update existing FAQ
+                    $faq = $post->faqs()->where('id', $faqData['id'])->first();
+                    if ($faq) {
+                        Log::info('Updating FAQ ID ' . $faqData['id'] . ' for post ' . $post->id . ': ' . json_encode($faqData));
+                        $faq->update([
+                            'question' => $faqData['question'],
+                            'answer' => $faqData['answer'],
+                        ]);
+                    }
+                    $incomingFaqIds[] = $faqData['id'];
+                } else {
+                    // Create new FAQ
+                    Log::info('Creating new FAQ for post ' . $post->id . ': ' . json_encode($faqData));
+                    $newFaq = $post->faqs()->create([
+                        'question' => $faqData['question'],
+                        'answer' => $faqData['answer'],
+                    ]);
+                    $incomingFaqIds[] = $newFaq->id;
+                }
+            }
+        }
+        Log::info('Finished processing incoming FAQs for post ' . $post->id . '. Incoming FAQ IDs: ' . json_encode($incomingFaqIds));
+
+        // Delete FAQs that were removed from the form
+        $faqsToDelete = array_diff($existingFaqIds, $incomingFaqIds);
+        if (!empty($faqsToDelete)) {
+            Log::info('Deleting FAQs for post ' . $post->id . '. IDs to delete: ' . json_encode($faqsToDelete));
+            $post->faqs()->whereIn('id', $faqsToDelete)->delete();
+        }
+        Log::info('Finished syncing FAQs for post ' . $post->id . '.');
 
         return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully!');
     }

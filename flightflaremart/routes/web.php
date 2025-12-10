@@ -38,7 +38,7 @@ Route::get('scripts.db-check', function () {
 });
 
 // Route to handle the search (POST request)
-Route::post('/flights/search', [FlightController::class, 'search'])->name('flights.search');
+// Route::post('/flights/search', [FlightController::class, 'search'])->name('flights.search');
 
 
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy');

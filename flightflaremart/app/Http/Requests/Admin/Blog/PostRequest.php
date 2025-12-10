@@ -84,6 +84,12 @@ class PostRequest extends FormRequest
             'image_source' => ['nullable', 'in:url,upload'],
             'image_url' => ['nullable', 'required_if:image_source,url', 'url', 'max:2048'],
             'image_upload' => ['nullable', 'required_if:image_source,upload', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:10240'],
+
+            // FAQs validation
+            'faqs' => ['nullable', 'array'],
+            'faqs.*.question' => ['required_with:faqs.*.answer', 'nullable', 'string'],
+            'faqs.*.answer' => ['required_with:faqs.*.question', 'nullable', 'string'],
+            'faqs.*.id' => ['nullable', 'integer', 'exists:faqs,id'],
         ];
     }
 }
