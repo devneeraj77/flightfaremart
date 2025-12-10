@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @include('layouts.head')
+    
     <title>@yield('title', 'Blog')</title>
+    @yield('head')
 </head>
 <body class="min-h-screen">
     @include('layouts.navmanu')

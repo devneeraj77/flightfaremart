@@ -54,6 +54,7 @@
 
     /* Typography */
     --font-display: "Playfair Display", serif;
+    --font-body: "Inter", sans-serif;
 
     /* Radius */
     --radius-selector: 1rem;
@@ -146,7 +147,12 @@ body {
     /* background: #24301036; */
     margin: 0;
     padding: 0;
-    /* font-family: "Playfair Display", serif; */
+    font-family: var(--font-body);
+    
+}
+
+section , #blog h1, #blog h2, #blog h3, #blog h4, #blog h5, #blog h6 {
+    font-family: var(--font-display);
 }
 
 /* From Uiverse.io by Bodyhc */

@@ -1,6 +1,30 @@
 @extends('layouts.blog')
 
 @section('title', $post->title)
+@section('head')
+<meta name="description" content="{{ $post->excerpt }}">
+
+{{-- Open Graph / Facebook --}}
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ url('/blog/' . $post->category->slug . '/' . $post->slug) }}">
+<meta property="og:title" content="{{ $post->title }}">
+<meta property="og:description" content="{{ $post->excerpt }}">
+@if($post->imageAsset)
+<meta property="og:image" content="{{ $post->imageAsset->image_url }}">
+@endif
+
+{{-- Twitter --}}
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ url('/blog/' . $post->category->slug . '/' . $post->slug) }}">
+<meta property="twitter:title" content="{{ $post->title }}">
+<meta property="twitter:description" content="{{ $post->excerpt }}">
+@if($post->imageAsset)
+<meta property="twitter:image" content="{{ $post->imageAsset->image_url }}">
+@endif
+
+{{-- Canonical URL --}}
+<link rel="canonical" href="{{ url('/blog/' . $post->category->slug . '/' . $post->slug) }}">
+@endsection
 
 @section('sidebar')
 <aside class=" rounded-t-2xl p-10  w-60">
@@ -38,38 +62,35 @@
 
         <header class="mb-6">
             {{-- Title and Badges --}}
-            <h1 class="text-5xl mb-2">{{ $post->title }}</h1>
-            <div class="flex items-center space-x-3 mb-4">
+            <div class="flex">
+                <h1 class="text-5xl mb-2">{{ $post->title }}<span class="text-base text-accent/80 ">  ~
+                        Written by {{ $post->author->name }}
+                    </span></h1>
+            </div>
+            <!-- <small class=" text-accent/50">{{$post->excerpt}}</small> -->
+            <div class="flex items-center space-x-3 mb-2">
                 <div class="badge badge-lg badge-secondary text-accent">{{ $post->category->name }}</div>
                 <span class="text-sm text-base-content/70">Published on {{ $post->published_at->format('F d, Y') }}</span>
             </div>
         </header>
 
         {{-- Author Info (Avatar) --}}
-        <div role="alert" class="alert flex-col md:flex-row flex border items-start justify-between shadow-lg mb-8 bg-base-200  border border-primary">
-            <div class="flex gap-6 p-2">
-                <!-- Avatar -->
-                <div class="avatar">
-                    <div class="w-12 rounded-full">
-                        <img src="{{ $post->author->avatar_url ?? 'https://placehold.co/50x50/cad593/cad593?text=profile' }}" alt="Author Avatar" />
-                    </div>
-                </div>
+        <div
+            role="alert"
+            class=" flex flex-col md:flex-row items-start justify-between bg-primary p-4">
 
-                <!-- Author Info + Social Share -->
-                <div class="flex items-center gap-6">
-                    <div>
-                        <h4 class="font-bold ">Written by {{ $post->author->name }}</h4>
-                        <!-- <span class="text-sm text-base-content/70">
-                            {{ $post->author->bio ?? 'Lorem, ipsum dolor.' }}
-                        </span> -->
-                    </div>
-                </div>
 
-            </div>
-            <div class="flex">
+            <!-- Social Share -->
+            <div class="flex-shrink-0 mb-4 md:mb-0">
                 <x-social-share :post="$post" />
             </div>
+            <!-- Author Section -->
+            <div class="flex items-start text-accent/60 gap-4">
+                <!-- Description Info -->
+               {{ $post->excerpt }}
+            </div>
         </div>
+
 
 
         {{-- Post Content --}}
