@@ -1,17 +1,23 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "outputDirectory": "public",
   "version": 2,
-   "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.7.1"
-    }
-  },
-  "rewrites": [
+  "installCommand": "composer install --no-dev --optimize-autoloader && npm install",
+  "buildCommand": "npm run build",
+  "builds": [
     {
-      "source": "/(.*)", "destination": "/api/index.php"
+      "src": "public/index.php",
+      "use": "@vercel/php"
     }
-  ]
-  
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.php"
+    }
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_DEBUG": "false",
+    "LOG_CHANNEL": "stderr",
+    "SESSION_DRIVER": "cookie"
+  }
 }
