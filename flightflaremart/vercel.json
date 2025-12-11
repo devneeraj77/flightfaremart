@@ -3,12 +3,25 @@
   "builds": [
     {
       "src": "public/index.php",
-      "use": "@vercel/php"
+      "use": "@vercel/php",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "php-8.2"
+      }
     },
     {
-      "src": "vite.config.*",
+      "src": "resources/css/**/*.css",
       "use": "@vercel/static-build",
-      "config": { "distDir": "public/build" }
+      "config": {
+        "distDir": "public"
+      }
+    },
+    {
+      "src": "resources/js/**/*.js",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
     }
   ],
   "routes": [
@@ -21,9 +34,10 @@
       "dest": "/public/index.php"
     }
   ],
+  "installCommand": "composer install --no-dev --optimize-autoloader && npm install",
+  "buildCommand": "npm run build",
   "env": {
     "APP_ENV": "production",
-    "APP_DEBUG": "false",
-    "APP_URL": "https://your-vercel-app-url.vercel.app"
+    "APP_DEBUG": "false"
   }
 }
