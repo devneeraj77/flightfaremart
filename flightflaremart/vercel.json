@@ -2,42 +2,32 @@
   "version": 2,
   "builds": [
     {
-      "src": "public/index.php",
-      "use": "@vercel/php",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "php-8.2"
-      }
-    },
-    {
-      "src": "resources/css/**/*.css",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "public"
-      }
-    },
-    {
-      "src": "resources/js/**/*.js",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "public"
-      }
+      "src": "api/index.php",
+      "use": "@vercel/php"
     }
   ],
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+        "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.php"
+      "dest": "/api/index.php"
     }
   ],
-  "installCommand": "composer install --no-dev --optimize-autoloader && npm install",
-  "buildCommand": "npm run build",
   "env": {
     "APP_ENV": "production",
-    "APP_DEBUG": "false"
-  }
+    "APP_DEBUG": "false",
+    "APP_URL": "http://localhost:8000/",
+    "APP_CONFIG_CACHE": "/tmp/config.php",
+    "APP_EVENTS_CACHE": "/tmp/events.php",
+    "APP_PACKAGES_CACHE": "/tmp/packages.php",
+    "APP_ROUTES_CACHE": "/tmp/routes.php",
+    "APP_SERVICES_CACHE": "/tmp/services.php",
+    "VIEW_COMPILED_PATH": "/tmp/views",
+    "CACHE_DRIVER": "array",
+    "LOG_CHANNEL": "stderr",
+    "SESSION_DRIVER": "cookie"
+  },
+  "outputDirectory": "public"
 }
