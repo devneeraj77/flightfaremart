@@ -8,12 +8,15 @@
         "maxLambdaSize": "15mb",
         "runtime": "php-8.2"
       }
+    },
+    {
+        "src": "public",
+        "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+        "handle": "filesystem"
     },
     {
       "src": "/(.*)",
