@@ -1,36 +1,23 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/index.php",
-      "use": "vercel-php@0.7.1",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "php-8.2"
-      }
-    },
-    {
-      "src": "public/build/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
-    }
-  ],
-  "installCommand": "composer install --no-dev --optimize-autoloader && npm install",
-  "buildCommand": "npm run build",
-  "env": {
-    "APP_ENV": "production",
-    "APP_DEBUG": "false"
-  }
+    "version": 2,
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "vercel-sapper"
+        },
+        {
+            "src": "index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "index.js",
+            "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }
+    ]
 }
