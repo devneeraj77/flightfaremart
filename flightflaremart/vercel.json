@@ -2,21 +2,25 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.php", 
-      "use": "vercel-php@0.7.1", 
+      "src": "api/index.php",
+      "use": "vercel-php@0.7.1",
       "config": {
         "maxLambdaSize": "15mb",
         "runtime": "php-8.2"
       }
     },
     {
-        "src": "public",
-        "use": "@vercel/static"
+      "src": "public/build/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "public/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-        "handle": "filesystem"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
