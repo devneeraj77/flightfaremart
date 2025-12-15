@@ -43,28 +43,46 @@
         <div class="form-control sm:col-span-2">
           <label class="label"><span class="label-text">Origin / Destination</span></label>
           <div class="flex gap-2">
-            <select x-model="form.from" class="select select-bordered w-full text-accent ">
-              <option value="">From...</option>
-              <option value="YUL">Montreal (YUL)</option>
-              <option value="YYZ">Toronto (YYZ)</option>
-              <option value="YVR">Vancouver (YVR)</option>
-              <option value="JFK">New York (JFK)</option>
-              <option value="LAX">Los Angeles (LAX)</option>
-              <option value="LHR">London (LHR)</option>
-            </select>
+            <div class="relative w-full">
+                <input type="text"
+                       x-model="fromSearch"
+                       @input.debounce.300ms="filterFromAirports"
+                       @focus="fromActive = true"
+                       @click.away="fromActive = false"
+                       placeholder="From..."
+                       class="input input-bordered w-full text-accent">
+                <div x-show="fromActive && fromResults.length > 0" class="absolute z-10 w-full bg-white rounded-md shadow-lg mt-1 max-h-60 overflow-y-auto">
+                    <ul>
+                        <template x-for="airport in fromResults" :key="airport.code">
+                            <li @click="selectFrom(airport)" class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-900">
+                                <span x-text="`${airport.name} (${airport.code})`"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
             <button type="button" @click="swapLocations" 
                     class="btn btn-circle btn-primary shrink-0 self-center">
               ⇄
             </button>
-            <select x-model="form.to" class="select select-bordered w-full text-accent ">
-              <option value="">To...</option>
-              <option value="YUL">Montreal (YUL)</option>
-              <option value="YYZ">Toronto (YYZ)</option>
-              <option value="YVR">Vancouver (YVR)</option>
-              <option value="JFK">New York (JFK)</option>
-              <option value="LAX">Los Angeles (LAX)</option>
-              <option value="LHR">London (LHR)</option>
-            </select>
+            <div class="relative w-full">
+                <input type="text"
+                       x-model="toSearch"
+                       @input.debounce.300ms="filterToAirports"
+                       @focus="toActive = true"
+                       @click.away="toActive = false"
+                       placeholder="To..."
+                       class="input input-bordered w-full text-accent">
+                <div x-show="toActive && toResults.length > 0" class="absolute z-10 w-full bg-white rounded-md shadow-lg mt-1 max-h-60 overflow-y-auto">
+                    <ul>
+                        <template x-for="airport in toResults" :key="airport.code">
+                            <li @click="selectTo(airport)" class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-900">
+                                <span x-text="`${airport.name} (${airport.code})`"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
           </div>
         </div>
 
@@ -103,11 +121,77 @@
           departureDate: '',
           returnDate: '',
         },
+        airports: [
+            { code: 'YUL', name: 'Montréal-Trudeau International Airport', city: 'Montreal', country: 'Canada' },
+            { code: 'YYZ', name: 'Toronto Pearson International Airport', city: 'Toronto', country: 'Canada' },
+            { code: 'YVR', name: 'Vancouver International Airport', city: 'Vancouver', country: 'Canada' },
+            { code: 'JFK', name: 'John F. Kennedy International Airport', city: 'New York', country: 'USA' },
+            { code: 'LAX', name: 'Los Angeles International Airport', city: 'Los Angeles', country: 'USA' },
+            { code: 'LHR', name: 'London Heathrow Airport', city: 'London', country: 'United Kingdom' },
+            { code: 'CDG', name: 'Charles de Gaulle Airport', city: 'Paris', country: 'France' },
+            { code: 'HND', name: 'Tokyo Haneda Airport', city: 'Tokyo', country: 'Japan' },
+            { code: 'DXB', name: 'Dubai International Airport', city: 'Dubai', country: 'UAE' },
+            { code: 'AMS', name: 'Amsterdam Airport Schiphol', city: 'Amsterdam', country: 'Netherlands' },
+            { code: 'FRA', name: 'Frankfurt Airport', city: 'Frankfurt', country: 'Germany' },
+            { code: 'SFO', name: 'San Francisco International Airport', city: 'San Francisco', country: 'USA' },
+            { code: 'MIA', name: 'Miami International Airport', city: 'Miami', country: 'USA' },
+            { code: 'DEL', name: 'Indra Gandhi International Airport', city: 'Miami', country: 'USA' },
+        ],
+        fromSearch: '',
+        toSearch: '',
+        fromResults: [],
+        toResults: [],
+        fromActive: false,
+        toActive: false,
+
+        filterFromAirports() {
+            if (this.fromSearch === '') {
+                this.fromResults = [];
+                return;
+            }
+            this.fromResults = this.airports.filter(airport => {
+                const search = this.fromSearch.toLowerCase();
+                return airport.name.toLowerCase().includes(search) ||
+                       airport.city.toLowerCase().includes(search) ||
+                       airport.code.toLowerCase().includes(search);
+            });
+            this.fromActive = true;
+        },
+
+        selectFrom(airport) {
+            this.form.from = airport.code;
+            this.fromSearch = `${airport.name} (${airport.code})`;
+            this.fromActive = false;
+        },
+
+        filterToAirports() {
+            if (this.toSearch === '') {
+                this.toResults = [];
+                return;
+            }
+            this.toResults = this.airports.filter(airport => {
+                const search = this.toSearch.toLowerCase();
+                return airport.name.toLowerCase().includes(search) ||
+                       airport.city.toLowerCase().includes(search) ||
+                       airport.code.toLowerCase().includes(search);
+            });
+            this.toActive = true;
+        },
+
+        selectTo(airport) {
+            this.form.to = airport.code;
+            this.toSearch = `${airport.name} (${airport.code})`;
+            this.toActive = false;
+        },
 
         swapLocations() {
-          const temp = this.form.from;
+          const tempForm = this.form.from;
           this.form.from = this.form.to;
-          this.form.to = temp;
+          this.form.to = tempForm;
+
+          const tempSearch = this.fromSearch;
+          this.fromSearch = this.toSearch;
+          this.toSearch = tempSearch;
         },
 
         handleSubmit() {
