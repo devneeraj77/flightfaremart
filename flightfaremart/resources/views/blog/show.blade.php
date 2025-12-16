@@ -24,11 +24,11 @@
 @endsection
 
 @section('sidebar')
-<aside class=" rounded-t-2xl p-10  w-60">
-    <h1 class="text-lg">Categories</h1>
-    <ul class="px-2 dark:text-base-200/40 text-accent/70">
+<aside class=" rounded-t-2xl p-10  w-70 sticky top-0">
+    <h1 class="text-lg pb-2">Categories</h1>
+    <ul class="px-2 dark:text-base-200/40 text-accent/70 ">
         @foreach($categories as $category)
-        <li class="{{ $category->slug == $post->category->slug ? 'font-bold' : '' }}"><a href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a></li>
+        <li class="{{ $category->slug == $post->category->slug ? 'font-bold' : '' }} border-t pb-2 w-fit"><a href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a></li>
         @endforeach
     </ul>
 </aside>

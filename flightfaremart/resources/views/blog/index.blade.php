@@ -3,8 +3,8 @@
 @section('title', 'Blog')
 
 @section('sidebar')
-    <aside class=" rounded-t-2xl p-10  w-70">
-        <h1 class="text-lg">Categories</h1>
+    <aside class=" rounded-t-2xl p-10  w-70 sticky top-0">
+        <h1 class="text-lg pb-2">Categories</h1>
         <ul class="px-2 dark:text-base-200/40 pb-4  text-accent/70  ">
             @foreach($categories as $category)
                 <li class="border-t pb-2 w-fit"><a href="{{ route('blog.category', $category->slug) }}">{{ $category->name }}</a></li>
@@ -30,7 +30,7 @@
             <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @include('blog._posts', ['posts' => $posts])
             </div>
-            <div id="pagination-links" class="mt-14">
+            <div id="pagination-links" class="mt-14 ">
                 {{ $posts->links() }}
             </div>
         </div>

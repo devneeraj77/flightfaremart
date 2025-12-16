@@ -27,10 +27,10 @@
                                 </a>
                             </p>
                             <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}" class="block mt-2">
-                                <p id="post-title" class=" md:text-2xl font-semibold text-gray-900">
+                                <p id="post-title" class="text-xl md:text-2xl font-semibold text-gray-900">
                                     {{ Str::limit($post->title, 50) }}
                                 </p>
-                                <p class="mt-3 text-base text-gray-500">
+                                <p class="mt-3 text-xs md:text-base text-gray-500">
                                      {{ Str::limit($post->excerpt, 90) }}
                                 </p>
                             </a>

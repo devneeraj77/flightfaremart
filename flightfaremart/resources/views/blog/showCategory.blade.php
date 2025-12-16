@@ -3,11 +3,11 @@
 @section('title', 'Posts in ' . $category->name)
 
 @section('sidebar')
-    <aside class=" rounded-t-2xl p-10  w-60">
-        <h1 class="text-lg">Categories</h1>
-    <ul class="px-2 dark:text-base-200/40 text-accent/70 list-image-[url(/img/chevron-right.svg)]">
+    <aside class=" rounded-t-2xl p-10  w-70 sticky top-0">
+        <h1 class="text-lg pb-2">Categories</h1>
+    <ul class="px-2 dark:text-base-200/40 text-accent/70">
             @foreach($categories as $cat)
-                <li class="{{ $cat->slug == $category->slug ? 'font-bold' : '' }}"><a href="{{ route('blog.category', $cat->slug) }}">{{ $cat->name }}</a></li>
+                <li class="{{ $cat->slug == $category->slug ? 'font-bold' : '' }} border-t pb-2 w-fit"><a href="{{ route('blog.category', $cat->slug) }}">{{ $cat->name }}</a></li>
             @endforeach
         </ul>
     </aside>
@@ -39,7 +39,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="mt-14">
+            <div class="mt-14 dark:bg-secondary">
                 {{ $posts->links() }}
             </div>
         </div>

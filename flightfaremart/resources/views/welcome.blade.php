@@ -44,7 +44,7 @@
             Find Your Perfect Flight, Guaranteed Lowest Fare.
           </h1>
           <p class="text-center text-accent md:text-left text-base dark:text-base-300 max-w-lg mt-2">
-            Quickly discover the best deals from hundreds of <strong>1,200+ airlines and travel providers.</strong> Your exciting journey begins right here!
+            Quickly discover the best deals from hundreds of <strong>600+ airlines and travel providers.</strong> Your exciting journey begins right here!
           </p>
           <!-- <div class="flex items-center gap-4 mt-8 text-sm">
           <button class="bg-accent hover:bg-base-200 text-primary active:scale-95 hover:text-accent duration-300 ease-in rounded-md px-7 h-11">
@@ -169,12 +169,15 @@
           </div>
         </div>
         <div class="basis-2/3 h-min-60 p-3 w-full mt-3 md:mt-6 ">
-          <h3 class="text-2xl text-accent dark:text-secondary sm:text-3xl px-3  font-semibold">Lorem ipsum dolor sit.</h3>
-          <p class="py-2 px-3 dark:text-base-300">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam aliquid consequatur eum. Laudantium, quaerat quibusdam suscipit voluptatem consequuntur esse consequatur?</p>
-          <p class="py-2 px-3 dark:text-base-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia perspiciatis eaque, harum ex doloremque sed.</p>
+          <h3 class="text-2xl text-accent dark:text-secondary sm:text-3xl px-3  font-semibold">You are planning the next trip!</h3>
+          <p class="py-2 px-3 dark:text-base-300">Plan your next trip to fulfill your desires. Visit our top trending page, which helps you find outstanding deals in great destinations. Our website brings all those things which make your journey.  </p>
+          <p class="py-2 px-3 dark:text-base-300">Discover those destinations that make you relax and create unforgettable memories. Whether you're planning any big international journey or a normal weekend getaway.  </p>
           <a href="#" class="text-base underline p-3 my-2 pt-5">Find more</a>
-          <div class="flex justify-start p-8 items-end h-64 mx-3 my-4 dark:bg-secondary rounded-3xl mt-6 md:mt-10 bg-base-300">
-            <a href="#" class="flex gap-2 content-center items-center text-dark dark:text-accent">Grab Now
+          <div class="flex justify-between items-start flex-col p-8 items-end h-64 mx-3 my-4 dark:bg-secondary rounded-3xl mt-6 md:mt-10 bg-base-300">
+          <div class="text-3xl dark:text-secondary">
+            <span>Flightfaremart brings you the best flight deals and travel offers in real time.</span>
+          </div>
+          <a href="#" class="flex gap-2 content-center items-center text-dark dark:text-accent">Grab Now
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-8">
                 <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z" clip-rule="evenodd" />
               </svg>
@@ -185,14 +188,14 @@
     </section>
     <section class="bg-base-200 dark:bg-black  py-12 md:py-20 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl md:text-6xl  mx-auto max-w-6xl px-5 md:px-3 ">Where Will You Explore Next?</h2>
-        <p class="mx-auto px-5 md:px-4 max-w-6xl text-accent dark:text-base-300 md:text-base my-2 ">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
+        <h2 class="text-4xl md:text-6xl text-accent dark:text-secondary  mx-auto max-w-6xl text-center px-5 md:px-3 ">Where Will You Explore Next?</h2>
+        <p class="mx-auto px-5 md:px-4 text-base md:text-md text-center mx-auto  max-w-6xl text-accent dark:text-base-300 my-2 ">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
         <div class="max-w-6xl mx-auto">
           <div class=" md:flex  py-8 mb-12 md:mb-16">
-            <p class="mt-4 text-xl  text-gray-500 dark:text-gray-500 max-w-3xl mx-auto">
+            <p class="mt-4 p-4 md:p-8 text-xl  text-accent/80 dark:text-base-200 max-w-3xl mx-auto">
               Discover destinations that inspire adventure, relaxation, and unforgettable memories. Whether you're planning a spontaneous weekend getaway or mapping out your next big international journey, <strong class="text-accent dark:text-secondary font-normal">FlightFareMart</strong> brings you the best flight deals and travel offers in real time.
             </p>
-            <p class="mt-2 p-2  bg-base-300 dark:bg-accent/20 rounded-lg text-gray-500 max-w-4xl mx-auto">
+            <p class="mt-2 p-4 md:p-8 bg-base-300 dark:bg-accent/20 rounded-lg text-back/70 max-w-4xl mx-auto">
               From sun-soaked beaches to buzzing city skylines, our curated destinations help you find the perfect trip at the perfect price.
             </p>
           </div>
@@ -311,7 +314,7 @@
               Your Next Adventure Is Just a Click Away
             </h3>
             <p class="text-xl text-accent dark:text-base-200 max-w-4xl mx-auto mb-8">
-              With powerful search tools, transparent pricing, and real-time access to 1,200+ airlines and travel providers, <span class="badge text-accent">FlightFareMart</span> makes discovering your next destination easier than ever.
+              With powerful search tools, transparent pricing, and real-time access to 600+ airlines and travel providers, <span class="badge text-accent">FlightFareMart</span> makes discovering your next destination easier than ever.
             </p>
             <p class="text-2xl font-bold text-accent dark:text-base-300 mb-6">
               Where will you go next?
@@ -370,7 +373,7 @@
       <x-latest-blog-posts />
     </section>
 
-    <section class="py-16 min-h-screen flex flex-col justify-center items-center dark:bg-black h-90  bg-base-300 text-accent w-full text-center px-2 ">
+    <section class="py-16 min-h-[80vh] flex flex-col justify-center items-center dark:bg-black h-90  bg-base-300 text-accent w-full text-center px-2 ">
       <div class="max-w-7xl mx-auto">
         <p class="text-xl font-medium text- dark:text-base-200 ">Let’s start your trip!</p>
         <h2 class="font-medium  md:text-7xl dark:text-base-300/80 text-4xl max-w-5xl mx-auto my-4">For work inquires feel free to get in touch with team.</h2>

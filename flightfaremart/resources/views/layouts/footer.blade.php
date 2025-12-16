@@ -136,7 +136,7 @@
 
   </div>
   <div class="bg-base-200 dark:bg-secondary">
-    <p class=" text-xs text-center p-4   mx-auto max-w-5xl  bg-sacondary ">DISCLEAMER: We are not legally responsible for any issues, losses, or decisions that result from using the information on our site. We recommend verifying details with airlines or official sources before making any travel plans. </p>
+    <p class="text-center p-4   mx-auto max-w-5xl  bg-sacondary "><small> DISCLAIMER: Please be aware that we cannot be held legally accountable for any problems, losses, or decisions that may arise from the use of the information provided on our website. We strongly advise that you confirm any travel-related details with airlines or official sources prior to finalizing your travel plans to ensure accuracy and reliability. Your careful verification will help mitigate any potential issues. </small></p>
   </div>
   
 </footer>

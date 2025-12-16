@@ -15,9 +15,9 @@
 @include('layouts.navmanu')
 
     <div class="container mx-auto py-8">
-        <div class="flex flex-col lg:flex-row border ">
+        <div class="flex flex-col lg:flex-row ">
 
-            <main class="w-full lg:w-3/4 border px-4">
+            <main class="w-full lg:w-3/4  px-4">
                 @yield('main-content')
             </main>
 
