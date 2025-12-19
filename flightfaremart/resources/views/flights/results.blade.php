@@ -2,43 +2,44 @@
 @include('layouts.htmlcore')
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flight Search Results - {{ config('app.name', 'Laravel') }}</title>
- 
-  @include('layouts.head')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flight Search Results - {{ config('app.name', 'Laravel') }}</title>
+
+    @include('layouts.head')
 </head>
 
 <body class="antialiased bg-primary dark:bg-black dark:text-secondary px-2">
-  <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-primary dark:bg-black">
-    <div class="text-center">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-accent dark:border-secondary mx-auto"></div>
-        <p class="mt-4 text-xl font-semibold text-accent dark:text-secondary">Getting your search...</p>
+    
+    <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-primary dark:bg-black">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-accent dark:border-secondary mx-auto"></div>
+            <p class="mt-4 text-xl font-semibold text-accent dark:text-secondary">Getting your search...</p>
+        </div>
     </div>
-  </div>
-  @include('layouts.navmanu')
+    @include('layouts.navmanu')
 
-  <main id="main-content" class="max-w-7xl mx-auto py-8 p-2" style="visibility: hidden;">
-    <h1 class="text-3xl font-bold text-accent  dark:text-secondary/70  px-2">Flight Search Results</h1>
-    <p class="px-2 mb-6 dark:text-base-300/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae.</p>
-    @if (isset($error))
-      <div class="bg-red-500 text-white p-4 rounded-lg">
-        <p>{{ $error }}</p>
-      </div>
-    @elseif (isset($results) && (isset($results['best_flights']) || isset($results['other_flights'])))
-      <div class="space-y-10">
+    <main id="main-content" class="max-w-7xl mx-auto py-8 p-2" style="visibility: hidden;">
+        <h1 class="text-3xl font-bold text-accent  dark:text-secondary/70  px-2">Flight Search Results</h1>
+        <p class="px-2 mb-6 dark:text-base-300/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae.</p>
+        @if (isset($error))
+        <div class="bg-red-500 text-white p-4 rounded-lg">
+            <p>{{ $error }}</p>
+        </div>
+        @elseif (isset($results) && (isset($results['best_flights']) || isset($results['other_flights'])))
+        <div class="space-y-10">
 
-    {{-- BEST FLIGHTS --}}
-    @if (isset($results['best_flights']))
-        <h2 class="text-2xl font-semibold text-accent dark:text-gray-600 px-2">
-            Best Flights
-        </h2>
+            {{-- BEST FLIGHTS --}}
+            @if (isset($results['best_flights']))
+            <h2 class="text-2xl font-semibold text-accent dark:text-base-200 px-2">
+                Best Flights
+            </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($results['best_flights'] as $flight)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach ($results['best_flights'] as $flight)
 
                 @php
-                    $firstSegment = $flight['flights'][0];
+                $firstSegment = $flight['flights'][0];
                 @endphp
 
                 <div class="relative rounded-[28px] overflow-hidden
@@ -51,8 +52,7 @@
                         <img
                             src="https://plus.unsplash.com/premium_photo-1661963552124-2569fbf9359d?q=80&w=687&auto=format&fit=crop"
                             class="h-full w-full object-cover"
-                            alt="Flight view"
-                        >
+                            alt="Flight view">
 
                         {{-- PRICE --}}
                         <div class="absolute bottom-3 left-3 text-white text-2xl font-bold">
@@ -89,19 +89,19 @@
                             <div class="text-center">
                                 <p class="text-xs  dark:text-base-300/70">
                                     @php
-                                        $durationInMinutes = $firstSegment['duration'];
-                                        $hours = floor($durationInMinutes / 60);
-                                        $minutes = $durationInMinutes % 60;
-                                        $durationString = '';
-                                        if ($hours > 0) {
-                                            $durationString .= $hours . ' hrs ';
-                                        }
-                                        if ($minutes > 0) {
-                                            $durationString .= $minutes . ' mins';
-                                        }
-                                        if(empty(trim($durationString))) {
-                                            $durationString = '0 mins';
-                                        }
+                                    $durationInMinutes = $firstSegment['duration'];
+                                    $hours = floor($durationInMinutes / 60);
+                                    $minutes = $durationInMinutes % 60;
+                                    $durationString = '';
+                                    if ($hours > 0) {
+                                    $durationString .= $hours . ' hrs ';
+                                    }
+                                    if ($minutes > 0) {
+                                    $durationString .= $minutes . ' mins';
+                                    }
+                                    if(empty(trim($durationString))) {
+                                    $durationString = '0 mins';
+                                    }
                                     @endphp
                                     {{ trim($durationString) }}
                                 </p>
@@ -155,22 +155,22 @@
                     </div>
                 </div>
 
-            @endforeach
-        </div>
-    @endif
+                @endforeach
+            </div>
+            @endif
 
 
-    {{-- OTHER FLIGHTS --}}
-    @if (isset($results['other_flights']))
-        <h2 class="text-2xl font-semibold text-accent dark:text-gray-600 mt-12">
-            Other Flights
-        </h2>
+            {{-- OTHER FLIGHTS --}}
+            @if (isset($results['other_flights']))
+            <h2 class="text-2xl font-semibold text-accent dark:text-base-200 px-2">
+                Other Flights
+            </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($results['other_flights'] as $flight)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach ($results['other_flights'] as $flight)
 
                 @php
-                    $firstSegment = $flight['flights'][0];
+                $firstSegment = $flight['flights'][0];
                 @endphp
 
                 {{-- SAME CARD STRUCTURE --}}
@@ -182,8 +182,7 @@
                     <div class="relative h-44 m-3 rounded-[22px] overflow-hidden">
                         <img
                             src="https://plus.unsplash.com/premium_photo-1661963552124-2569fbf9359d?q=80&w=687&auto=format&fit=crop"
-                            class="h-full w-full object-cover"
-                        >
+                            class="h-full w-full object-cover">
 
                         <div class="absolute bottom-3 left-3 text-white text-2xl font-bold">
                             {{ $flight['price'] }}
@@ -200,7 +199,11 @@
                     <div class="px-6 pb-6 space-y-4">
                         <p class="text-sm font-semibold flex gap-3">
                             {{ $firstSegment['departure_airport']['id'] }}
-                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent/70 icon icon-tabler icons-tabler-outline icon-tabler-plane-inflight"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 11.085h5a2 2 0 1 1 0 4h-15l-3 -6h3l2 2h3l-2 -7h3l4 7z" /><path d="M3 21h18" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent/70 dark:text-secondary icon icon-tabler icons-tabler-outline icon-tabler-plane-inflight">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M15 11.085h5a2 2 0 1 1 0 4h-15l-3 -6h3l2 2h3l-2 -7h3l4 7z" />
+                                <path d="M3 21h18" />
+                            </svg>
                             {{ $firstSegment['arrival_airport']['id'] }}
                         </p>
                         <p class="text-xs  dark:text-base-300/70">
@@ -209,41 +212,41 @@
                     </div>
                 </div>
 
-            @endforeach
+                @endforeach
+            </div>
+            @endif
+
         </div>
-    @endif
 
-</div>
+        @else
+        <div class="border-l-4 border-accent-500 text-accent dark:text-secondary dark:border-secondary bg-base-300/20 p-4" role="alert">
+            <p class="font-bold">No results</p>
+            <p>No flights found for your search criteria. Please try again.</p>
+        </div>
+        @endif
+    </main>
 
-    @else
-      <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
-        <p class="font-bold">No results</p>
-        <p>No flights found for your search criteria. Please try again.</p>
-      </div>
-    @endif
-  </main>
+    @include('layouts.footer')
 
-  @include('layouts.footer')
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            const mainContent = document.getElementById('main-content');
 
-  <script>
-    window.addEventListener('load', function() {
-        const preloader = document.getElementById('preloader');
-        const mainContent = document.getElementById('main-content');
-        
-        setTimeout(function() {
-            if (preloader) {
-                preloader.style.transition = 'opacity 0.5s ease-out';
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500); // match transition duration
-            }
-            if (mainContent) {
-                mainContent.style.visibility = 'visible';
-            }
-        }, 500); // Minimum time to show preloader
-    });
-</script>
+            setTimeout(function() {
+                if (preloader) {
+                    preloader.style.transition = 'opacity 0.5s ease-out';
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 500); // match transition duration
+                }
+                if (mainContent) {
+                    mainContent.style.visibility = 'visible';
+                }
+            }, 500); // Minimum time to show preloader
+        });
+    </script>
 </body>
 
 </html>

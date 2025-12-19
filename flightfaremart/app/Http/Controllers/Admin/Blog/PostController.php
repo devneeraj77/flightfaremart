@@ -136,7 +136,7 @@ class PostController extends Controller
             Log::info('No image upload or URL provided for new post.');
         }
 
-        return redirect()->route('admin.blog.posts.index')->with('success', 'Post created successfully!');
+        return redirect()->route('admin.blog.posts.index')->with('success', "Post '{$post->title}' created successfully!");
     }
 
     /**
@@ -234,7 +234,7 @@ class PostController extends Controller
             Log::info('No image upload, URL, or clear option provided for post update (Post ID: ' . $post->id . ').');
         }
 
-        return redirect()->route('admin.blog.posts.index')->with('success', 'Post updated successfully!');
+        return redirect()->route('admin.blog.posts.index')->with('success', "Post '{$post->title}' updated successfully!");
     }
 
     /**
@@ -253,7 +253,7 @@ class PostController extends Controller
         }
         $post->delete();
 
-        return redirect()->route('admin.blog.posts.index')->with('success', 'Post deleted successfully!');
+        return redirect()->route('admin.blog.posts.index')->with('success', "Post '{$post->title}' deleted successfully!");
     }
 
     /**

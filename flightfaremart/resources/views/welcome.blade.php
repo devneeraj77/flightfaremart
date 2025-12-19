@@ -71,7 +71,7 @@
     <!-- section 2 -->
     <section class="py-24 mx-auto max-w-7xl">
       <p class="mx-auto px-5 md:px-4 max-w-6xl md:text-xl text-base text-center ">Trip on</p>
-      <h2 class="text-4xl  md:text-6xl mx-auto text-accent dark:secondary max-w-6xl px-5 md:px-3 text-center">Popular Flight Deals Right Now</h2>
+      <h2 class="text-4xl  md:text-6xl mx-auto text-accent dark:text-secondary max-w-6xl px-5 md:px-3 text-center">Popular Flight Deals Right Now</h2>
       <div class="flex-1 md:flex my-6 bg-trans items-center">
         <div class="basis-4/3">
           <div class="container mx-auto px-4 md:py-8">
@@ -174,7 +174,7 @@
           <p class="py-2 px-3 dark:text-base-300">Discover those destinations that make you relax and create unforgettable memories. Whether you're planning any big international journey or a normal weekend getaway.  </p>
           <a href="#" class="text-base underline p-3 my-2 pt-5">Find more</a>
           <div class="flex justify-between items-start flex-col p-8 items-end h-64 mx-3 my-4 dark:bg-secondary rounded-3xl mt-6 md:mt-10 bg-base-300">
-          <div class="text-3xl dark:text-secondary">
+          <div class="text-3xl dark:text-accent">
             <span>Flightfaremart brings you the best flight deals and travel offers in real time.</span>
           </div>
           <a href="#" class="flex gap-2 content-center items-center text-dark dark:text-accent">Grab Now
@@ -189,7 +189,7 @@
     <section class="bg-base-200 dark:bg-black  py-12 md:py-20 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-4xl md:text-6xl text-accent dark:text-secondary  mx-auto max-w-6xl text-center px-5 md:px-3 ">Where Will You Explore Next?</h2>
-        <p class="mx-auto px-5 md:px-4 text-base md:text-md text-center mx-auto  max-w-6xl text-accent dark:text-base-300 my-2 ">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
+        <p class="mt-4 mx-auto px-5 md:px-4 max-w-6xl text-lg dark:text-secondary/50 text-accent/80 my-2 pb-3">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
         <div class="max-w-6xl mx-auto">
           <div class=" md:flex  py-8 mb-12 md:mb-16">
             <p class="mt-4 p-4 md:p-8 text-xl  text-accent/80 dark:text-base-200 max-w-3xl mx-auto">
@@ -328,8 +328,8 @@
     </section>
     <section class="min-h-screen  dark:bg-black py-5 py-24 ">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl md:text-6xl mx-auto max-w-6xl dark:text-secondary text-accent px-5 md:px-3">The FlightFareMart Difference</h2>
-        <p class="mx-auto px-5 md:px-4 max-w-6xl text-base dark:text-secondary/50 my-2 pb-3">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
+        <h2 class="text-4xl md:text-6xl mx-auto max-w-6xl dark:text-secondary text-accent px-5 md:px-3">The FlightFareMart Difference</h2>
+        <p class="mt-4 mx-auto px-5 md:px-4 max-w-6xl text-lg dark:text-secondary/50 text-accent/80 my-2 pb-3">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
         <div class="lg:flex  mx-auto gap-6 max-w-6xl p-4">
           <!-- Left side with image and overlay text -->
           <div class="basis-3/2 relative h-[500px] overflow-hidden shadow-md shadow-accent/50 rounded-xl">
@@ -353,14 +353,14 @@
             <div class="lg:h-[200px] sm:h-[300px] relative rounded-lg w-full overflow-hidden bg-accent text-secondary hover:-translate-y-0.5 transition duration-300 rounded-xl">
               <div class="absolute p-2 text-accent -right-1 sm:right -bottom-12 sm:-bottom-16 rounded-xl lg:h-[200px] sm:h-[300px] overflow-hidden w-120 sm:w-140 lg:w-60 md:w-160 bg-base-300 ">
                 <p class="text-2xl">Monthly 150 trips</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, distinctio!</p>
+                <p><small>While other sites rely on cached data that might be hours old, FlightFareMart pulls live data directly from over 700+ airlines and global booking systems.</small></p>
               </div>
             </div>
-            <h3 class="text-[24px]/7.5  text-accent dark:text-base-300 font-medium mt-6">Better design with highest revenue and profits </h3>
-            <p class="text-accent/70 dark:text-base-200  mt-2">empowers you to build beautifully and scale effortlessly.</p>
-            <a href="/" class="group  flex items-center gap-2 mt-4 text-accent hover:text-accent/20 transition">
-              Learn more about the product
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right size-5 group-hover:translate-x-0.5 transition duration-300" aria-hidden="true">
+            <h3 class="text-[24px]/7.5  text-accent dark:text-base-300 font-medium mt-6">The "Smart-Route" Algorithm</h3>
+            <p class="text-accent/70 dark:text-base-200  mt-2">Our proprietary search engine doesn't just look for direct routes. It analyzes "virtual interlining"—combining flights from different carriers that don't usually partner—to find unique connection paths that can save you up to 40% compared to standard bookings.</p>
+            <a href="/" class="group  flex items-center gap-2 mt-4 text-accent hover:text-accent/80 transition">
+            Real-Time Price Aggregation
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right size-5  group-hover:translate-x-0.5 transition duration-300" aria-hidden="true">
                 <path d="M7 7h10v10"></path>
                 <path d="M7 17 17 7"></path>
               </svg>

@@ -98,31 +98,74 @@
 
       <!-- Subscribe -->
       <div>
-        <form method="POST" action="{{ route('subscribe') }}">
+        <h3 class="text-lg   font-semibold text-black dark:text-primary mb-4">Subscribe now</h3>
+        <form id="subscribe-form" method="POST" action="{{ route('subscribe') }}">
           @csrf
-          <h5 class="text-lg font-semibold text-black dark:text-primary mb-4">Subscribe now</h5>
-          <fieldset class="">
-            <label class="text-sm opacity-90 mb-3 pb-2">Sign up if you want to get notifications</label>
+          <fieldset class="fieldset   rounded-box w-xs ">
+            <label class="text-sm opacity-90 pb-2">Sign up if you want to get notifications</label>
             <div class="join">
               <input type="email" name="subscribeEmail" placeholder="username@site.com"
-                class="input input-bordered join-item" required />
+                class="input input-bordered bg-base-300 text-accent join-item" required />
               <button class="btn btn-primary join-item">Subscribe</button>
             </div>
           </fieldset>
-          @if (session('success'))
-          <div class="text-green-500 text-sm mt-2">
-            {{ session('success') }}
-          </div>
-          @endif
-          <!-- @if (session('subscription_error'))
-          <div class="text-red-500 text-sm mt-2">
-            {{ session('subscription_error') }}
-          </div>
-          @endif -->
-          @error('email', 'subscription')
-          <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
-          @enderror
+          <div id="subscription-message" class="text-sm mt-2"></div>
         </form>
+
+        <script>
+          document.getElementById('subscribe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const email = form.querySelector('input[name="subscribeEmail"]').value;
+            const button = form.querySelector('button');
+            const messageDiv = document.getElementById('subscription-message');
+            const token = form.querySelector('input[name="_token"]').value;
+
+            messageDiv.textContent = '';
+            messageDiv.classList.remove('text-green-500', 'text-red-500');
+
+            // Set loading state
+            button.disabled = true;
+            button.classList.add('loading');
+            button.textContent = 'Subscribing...';
+
+
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRF-TOKEN': token,
+                  'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                  subscribeEmail: email
+                })
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.errors) {
+                  messageDiv.textContent = Object.values(data.errors).flat().join(' ');
+                  messageDiv.classList.add('text-red-500');
+                } else if (data.success) {
+                  messageDiv.textContent = data.success;
+                  messageDiv.classList.add('text-green-500');
+                  form.reset();
+                }
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                messageDiv.textContent = 'An unexpected error occurred.';
+                messageDiv.classList.add('text-red-500');
+              })
+              .finally(() => {
+                // Unset loading state
+                button.disabled = false;
+                button.classList.remove('loading');
+                button.textContent = 'Subscribe';
+              });
+          });
+        </script>
 
       </div>
     </div>
@@ -138,5 +181,5 @@
   <div class=" dark:bg-secondary">
     <p class="text-center p-4   mx-auto max-w-5xl  "><small> DISCLAIMER: We are not legally responsible for any issues or losses arising from the information on our website. Please confirm travel details with airlines or official sources before finalizing your plans to ensure accuracy. Your verification will help avoid potential problems. </small></p>
   </div>
-  
+
 </footer>

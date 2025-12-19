@@ -2,10 +2,10 @@
 <div class="py-12 ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-            <h2 class="text-2xl md:text-6xl mx-auto max-w-6xl dark:text-secondary text-accent px-5 md:px-3">
+            <h2 class="text-4xl md:text-6xl mx-auto max-w-6xl dark:text-secondary text-accent px-5 md:px-3">
                 From the Blog
             </h2>
-            <p class="mt-4 mx-auto px-5 md:px-4 max-w-6xl text-lg dark:text-secondary/50 text-accent/80 my-2 pb-3">
+            <p class="mt-2 mx-auto px-5 md:px-4 max-w-6xl text-lg dark:text-secondary/50 text-accent/80 my-2 pb-3">
                 Latest articles and news from our team.
             </p>
         </div>

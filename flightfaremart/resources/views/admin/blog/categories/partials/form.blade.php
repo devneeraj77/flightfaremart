@@ -31,7 +31,7 @@
     <!-- Submit Button -->
     <div class="text-right pt-4">
         <button type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition duration-300 transform hover:scale-105">
+                class="bg-accent hover:bg-accent/70 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition duration-300 transform hover:scale-105">
             {{ $category->exists ? 'Update Category' : 'Create Category' }}
         </button>
     </div>

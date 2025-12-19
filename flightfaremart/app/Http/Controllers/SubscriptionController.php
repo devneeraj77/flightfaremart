@@ -17,14 +17,21 @@ class SubscriptionController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:subscriptions,email',
         ], [
-            'email.unique' => 'you are already subcribed our newsletter'
+            'email.unique' => 'You are already subscribed to our newsletter.'
         ]);
 
         if ($validator->fails()) {
+            if ($request->wantsJson()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
             return back()->withErrors($validator, 'subscription')->withInput()->with('subscription_error', 'Subscription failed. Please check your email.');
         }
 
         Subscription::create($request->only('email'));
+
+        if ($request->wantsJson()) {
+            return response()->json(['success' => 'Thank you for subscribing!']);
+        }
 
         return back()->with('success', 'Thank you for subscribing!');
     }

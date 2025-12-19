@@ -56,12 +56,17 @@ class ContactController extends Controller
                                         ->orderByDesc('created_at')
                                         ->first();
 
-        if ($lastSubmission) {
-            $oneMonthAgo = Carbon::now()->subMonth(); // Using Carbon's subMonth() for clarity
+                if ($lastSubmission) {
+            $nextSubmissionTime = $lastSubmission->created_at->addMonth();
 
-            if ($lastSubmission->created_at->greaterThan($oneMonthAgo)) {
-                $daysRemaining = $lastSubmission->created_at->diffInDays(Carbon::now()->addMonth()); // Calculate days until one month is complete
-                return redirect()->route('contact.create')->with('contact_error', "You can only submit a contact message once every month. Please try again after " . ($daysRemaining + 1) . " days."); // Assuming 30 days as a month
+            if (Carbon::now()->lessThan($nextSubmissionTime)) {
+                $timeRemaining = Carbon::now()->diff($nextSubmissionTime);
+                $days = $timeRemaining->d;
+                $hours = $timeRemaining->h;
+
+                $message = "Thank you for submitting your contact message this month. We eagerly await your response within the next {$days} " . str('day')->plural($days) . " and {$hours} " . str('hour')->plural($hours) . ".";
+                
+                return redirect()->route('contact.create')->with('contact_error', $message);
             }
         }
         // --- END NEW RATE LIMITING LOGIC ---

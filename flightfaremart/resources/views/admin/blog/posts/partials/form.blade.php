@@ -65,9 +65,9 @@
     </div>
 
     <!-- Content (TinyMCE) -->
-    <div class="bg-white shadow-lg rounded-lg p-6">
+    <div class="bg-white shadow-lg rounded-lg p-6 s">
         <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Content <span class="text-red-500">*</span></label>
-        <textarea name="content" id="content" class="w-full h-96">{{ old('content', $post->content) }}</textarea>
+        <textarea name="content" id="content" class="w-full h-96 sticky top-0">{{ old('content', $post->content) }}</textarea>
         @error('content') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
     </div>
     <div class="bg-white shadow-lg rounded-lg p-6 mt-6">
@@ -80,12 +80,12 @@
                 <input type="hidden" name="faqs[{{ $index }}][id]" value="{{ $faq->id }}">
                 <div class="mb-4">
                     <label for="faqs_{{ $index }}_question" class="block text-gray-700">Question</label>
-                    <input type="text" name="faqs[{{ $index }}][question]" id="faqs_{{ $index }}_question" value="{{ old('faqs.'.$index.'.question', $faq->question) }}" class="w-full border-gray-300 rounded-md shadow-sm">
+                    <input type="text" name="faqs[{{ $index }}][question]" id="faqs_{{ $index }}_question" value="{{ old('faqs.'.$index.'.question', $faq->question) }}" class="input w-full border-gray-300 rounded-md shadow-sm">
                     @error('faqs.'.$index.'.question') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div class="mb-2">
                     <label for="faqs_{{ $index }}_answer" class="block text-gray-700">Answer</label>
-                    <textarea name="faqs[{{ $index }}][answer]" id="faqs_{{ $index }}_answer" rows="3" class="w-full border-gray-300 rounded-md shadow-sm">{{ old('faqs.'.$index.'.answer', $faq->answer) }}</textarea>
+                    <textarea name="faqs[{{ $index }}][answer]" id="faqs_{{ $index }}_answer" rows="3" class="w-full border-gray-300 textarea rounded-md shadow-sm">{{ old('faqs.'.$index.'.answer', $faq->answer) }}</textarea>
                     @error('faqs.'.$index.'.answer') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
                 <button type="button" class="text-red-500 remove-faq">Remove</button>
@@ -103,8 +103,7 @@
         document.addEventListener('DOMContentLoaded', function() {
 
             // Initialize FAQ index based on existing FAQs (if editing a post)
-            let faqIndex = `{{ isset($post) && $post->faqs ? $post->faqs->count() : 0 }}`
-            ;
+            let faqIndex = `{{ isset($post) && $post->faqs ? $post->faqs->count() : 0 }}`;
 
             // Add FAQ button
             const addBtn = document.getElementById('add-faq');
@@ -123,7 +122,7 @@
                             type="text"
                             name="faqs[${faqIndex}][question]"
                             id="faqs_${faqIndex}_question"
-                            class="w-full border-gray-300 rounded-md shadow-sm"
+                            class="w-full border-gray-300 input rounded-md shadow-sm"
                         >
                     </div>
 
@@ -133,7 +132,7 @@
                             name="faqs[${faqIndex}][answer]"
                             id="faqs_${faqIndex}_answer"
                             rows="3"
-                            class="w-full border-gray-300 rounded-md shadow-sm"
+                            class="w-full border-gray-300 textarea rounded-md shadow-sm"
                         ></textarea>
                     </div>
 
@@ -164,22 +163,50 @@
             <div>
                 <label for="excerpt" class="block text-sm font-medium text-gray-700">Excerpt (Max 500 characters)</label>
                 <textarea name="excerpt" id="excerpt" rows="3"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">{{ old('excerpt', $post->excerpt) }}</textarea>
+                    class="mt-1 textarea block w-full border border-gray-300 rounded-md shadow-sm p-3 ">{{ old('excerpt', $post->excerpt) }}</textarea>
                 @error('excerpt') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             <!-- Image Asset Chooser -->
             <div>
                 <!-- Image Upload Input -->
-                <div class="  rounded-md p-4">
+                <div class="rounded-md p-4">
                     <label for="image_upload" class="block py-2 text-sm font-medium text-gray-700">Featured Image File</label>
                     <input type="file" name="image_upload" id="image_upload"
-                        class="mt-1 block w-full text-sm text-accent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-base-300 file:text-accent hover:file:bg-base-200">
-                    @error('image_upload') <p class="text-sm text-red-500 mt-1 ">{{ $message }}</p> @enderror
-                    <p class="text-xs mt-2 text-gray-500 mt-1">Ensure the image size is exactly 1200 x 630 pixels (recommended) and does not exceed 2MB.</p>
-                    <!-- <p class="text-xs text-gray-500 mt-1">Make sure the parent form has `enctype="multipart/form-data"`.</p> -->
+                        class="mt-1 block w-full text-sm text-accent file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-base-300 file:text-accent hover:file:bg-base-200"
+                        accept="image/*">
+
+                    <div id="image-upload-feedback" class="text-sm text-red-500 mt-1">
+                        @error('image_upload')
+                        <span>{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <p class="text-xs mt-2 text-gray-500">Ensure the image size is exactly 1200 x 630 pixels (recommended) and does not exceed 2MB.</p>
                 </div>
 
+                @push('scripts')
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const fileInput = document.getElementById('image_upload');
+                        const feedbackDiv = document.getElementById('image-upload-feedback');
+                        const maxFileSize = 2 * 1024 * 1024; // 2MB in bytes
+
+                        fileInput.addEventListener('change', function(event) {
+                            // Clear previous messages
+                            feedbackDiv.innerHTML = '';
+
+                            const file = event.target.files[0];
+                            if (file && file.size > maxFileSize) {
+                                feedbackDiv.innerHTML = '<span>The image may not be greater than 2MB.</span>';
+                                // Clear the file input's value to prevent submitting the large file
+                                event.target.value = '';
+                            }
+                        });
+                    });
+                </script>
+                @endpush
+            
                 <!-- Image Preview -->
                 @if ($post->imageAsset)
                 <div class="mt-4">
@@ -270,9 +297,9 @@
             if (tinymce.get('content') === null) {
                 tinymce.init({
                     selector: '#content',
-                    plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak table code wordcount media autoresize',
+                    plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak table code wordcount media autoresize fullscreen',
                     toolbar_mode: 'floating',
-                    toolbar: 'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code',
+                    toolbar: 'undo redo | blocks | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code fullscreen',
                     min_height: 400,
                 });
             }
