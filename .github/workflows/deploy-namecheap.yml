@@ -11,20 +11,20 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2' # Make sure this matches your project's requirement
+        php-version: '8.2'
 
     - name: Install Composer dependencies
       run: composer install --no-dev --optimize-autoloader
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '18' # Or your project's node version
+        node-version: '18'
 
     - name: Install NPM dependencies
       run: npm install
@@ -47,29 +47,26 @@ jobs:
         echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
         # Add other environment variables as needed
 
-    - name: Deploy to Namecheap via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    - name: Deploy to Namecheap via rsync over SSH
+      uses: easingthemes/ssh-deploy@v5.0.0
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: public_html/ # Or your desired deployment directory on the server
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          .env
-          .env.example
-          .gitignore
-          .editorconfig
-          composer.json
-          composer.lock
-          package.json
-          package-lock.json
-          phpunit.xml
-          README.md
-          vite.config.js
-          **/storage/logs/*
-          **/storage/framework/sessions/*
-          **/storage/framework/cache/*
-          **/storage/framework/views/*
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+        SOURCE: "./"
+        TARGET: public_html/
+        EXCLUDE: "/.git/, /node_modules/, /.env, /.env.example, /.gitignore, /.editorconfig, /composer.json, /composer.lock, /package.json, /package-lock.json, /phpunit.xml, /README.md, /vite.config.js, /storage/logs/, /storage/framework/sessions/, /storage/framework/cache/, /storage/framework/views/"
+
+    - name: Run post-deployment commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.REMOTE_PORT }}
+        script: |
+          cd public_html
+          php artisan optimize:clear
+          php artisan migrate --force
+          # Add any other commands you need to run post-deployment

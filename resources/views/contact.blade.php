@@ -9,7 +9,6 @@
     <meta name="description" content="Need help with a booking or have a question? Contact FlightFareMart's customer support team via phone, email, or live chat for assistance with your airfare needs.">
     <meta name="keywords" content="FlightFareMart contact, customer support, contact us, phone number, email support, live chat, airfare assistance, travel help">
     @include('layouts.head')
-
     <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
