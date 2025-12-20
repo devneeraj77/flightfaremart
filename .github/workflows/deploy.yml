@@ -80,9 +80,9 @@ jobs:
         host: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
+        port: ${{ secrets.REMOTE_PORT }}
         command_timeout: 10m
-        debug: false
+        debug: true
         script: |
           cd public_html
           php artisan optimize:clear
