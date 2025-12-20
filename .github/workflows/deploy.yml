@@ -82,7 +82,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.REMOTE_PORT }}
         command_timeout: 10m
-        debug: true
+        debug: false
         script: |
           cd public_html
           php artisan optimize:clear
