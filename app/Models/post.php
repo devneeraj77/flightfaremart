@@ -39,6 +39,7 @@ class Post extends Model
     /**
      * Get the author (Admin) of the Post.
      */
+    
     public function author()
     {
         // Assuming your admins table handles the 'author' role
