@@ -79,9 +79,10 @@ jobs:
       with:
         host: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.REMOTE_PORT }}
         command_timeout: 10m
+        debug: true
         script: |
           cd public_html
           php artisan optimize:clear
