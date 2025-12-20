@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Get source code
+      # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # PHP setup
+      # Setup PHP
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -25,7 +25,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader --no-interaction
 
-      # Node setup
+      # Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -38,7 +38,22 @@ jobs:
       - name: Build frontend assets
         run: npm run build
 
-      # Deploy via FTP (NO SSH)
+      # Create required Laravel directories BEFORE deploy
+      - name: Prepare Laravel directories
+        run: |
+          mkdir -p storage/logs
+          mkdir -p storage/framework/cache
+          mkdir -p storage/framework/sessions
+          mkdir -p storage/framework/views
+          mkdir -p bootstrap/cache
+
+          touch storage/logs/.gitkeep
+          touch storage/framework/cache/.gitkeep
+          touch storage/framework/sessions/.gitkeep
+          touch storage/framework/views/.gitkeep
+          touch bootstrap/cache/.gitkeep
+
+      # Deploy via FTP
       - name: Deploy to Namecheap via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
@@ -63,7 +78,3 @@ jobs:
             phpunit.xml
             README.md
             vite.config.js
-            storage/logs/**
-            storage/framework/sessions/**
-            storage/framework/cache/**
-            storage/framework/views/**
