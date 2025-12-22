@@ -14,7 +14,7 @@
 @endsection
 
 @section('main-content')
-    <section class="py-4 ">
+    <section class="py-4 min-h-screen">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl text-accent/90  dark:text-base-200 mb-8 border-b pb-4">Posts in: {{ $category->name }}</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">

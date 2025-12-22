@@ -19,7 +19,7 @@
 
     <div class="min-h-screen flex flex-col items-center justify-center p-4">
         <div class="w-full max-w-7xl mx-auto py-12">
-            <h1 class="text-4xl  text-gray-900 text-center mb-10">Get in Touch</h1>
+            <h1 class="text-4xl  dark:text-secondary text-accent text-center mb-10">Get in Touch</h1>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 

@@ -22,7 +22,7 @@
       <div>
         <h3 class="font-semibold mb-3">For Customer</h3>
         <ul class="space-y-2 text-sm opacity-90">
-          <li><a href="FAQs" class="hover:text-accent">FAQ</a></li>
+          <li><a href="{{ route('faqs') }}" class="hover:text-accent">FAQ</a></li>
           <li><a href="#" class="hover:text-accent">Delivery</a></li>
           <li><a href="#" class="hover:text-accent">Payment</a></li>
         </ul>
@@ -103,10 +103,26 @@
           @csrf
           <fieldset class="fieldset   rounded-box w-xs ">
             <label class="text-sm opacity-90 pb-2">Sign up if you want to get notifications</label>
+            
             <div class="join">
-              <input type="email" name="subscribeEmail" placeholder="username@site.com"
-                class="input input-bordered bg-base-300 text-accent join-item" required />
-              <button class="btn btn-primary join-item">Subscribe</button>
+              <div>
+                <label class="input bg-base-300 validator  join-item">
+                  <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g
+                      stroke-linejoin="round"
+                      stroke-linecap="round"
+                      stroke-width="2.5"
+                      fill="none"
+                      stroke="currentColor">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </g>
+                  </svg>
+                  <input type="email" type="email" name="subscribeEmail" placeholder="mail@site.com" class="input w-38                                                                                              text-accent join-item" required />
+                </label>
+                <div class="validator-hint hidden">Enter valid email address</div>
+              </div>
+              <button class="btn btn-accent join-item">Join</button>
             </div>
           </fieldset>
           <div id="subscription-message" class="text-sm mt-2"></div>
@@ -127,7 +143,7 @@
 
             // Set loading state
             button.disabled = true;
-            button.classList.add('loading');
+            // button.classList.add('loading');
             button.textContent = 'Subscribing...';
 
 
@@ -162,7 +178,7 @@
                 // Unset loading state
                 button.disabled = false;
                 button.classList.remove('loading');
-                button.textContent = 'Subscribe';
+                button.textContent = 'Subscribed';
               });
           });
         </script>

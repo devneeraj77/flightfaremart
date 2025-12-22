@@ -11,51 +11,70 @@
         </div>
         <div class="mt-12 grid gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
             @foreach($posts as $post)
-                @if($post->category && $post->author)
-                <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-                    <div class="flex-shrink-0">
-                        <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}">
-                            <img class="h-48 w-full object-cover" src="{{ $post->imageAsset->image_url ?? 'https://via.placeholder.com/400x200' }}" alt="{{ $post->title }}">
+            @if($post->category && $post->author)
+            <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                <div class="flex-shrink-0">
+                    <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}">
+                        <img
+                            class="h-48 w-full object-cover"
+                            src="{{ $post->imageAsset->image_url ?? 'https://via.placeholder.com/800x400' }}"
+                            {{-- Generate srcset if your backend supports image resizing --}}
+                            srcset="{{ $post->imageAsset->image_url ?? '' }}"
+                            sizes="(max-width: 768px) 100vw, 400px"
+                            alt="{{ $post->title }}"
+                            width="800"
+                            height="400"
+                            loading="eager"
+                            fetchpriority="high"
+                            decoding="sync">
+                    </a>
+                </div>
+                <div class="flex-1 bg-base-300 p-6 flex flex-col justify-between">
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-accent/80">
+                            <a href="{{ route('blog.category', $post->category->slug) }}" class="hover:underline">
+                                {{ $post->category->name }}
+                            </a>
+                        </p>
+                        <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}" class="block mt-2">
+                            <p class="text-xl md:text-2xl font-semibold text-gray-900">
+                                {{ Str::limit($post->title, 50) }}
+                            </p>
+                            <p class="mt-3 text-xs md:text-base text-gray-500">
+                                {{ Str::limit($post->excerpt, 90) }}
+                            </p>
                         </a>
                     </div>
-                    <div class="flex-1 bg-base-300 p-6 flex flex-col justify-between">
-                        <div class="flex-1">
-                            <p class="text-sm font-medium text-accent/80">
-                                <a href="{{ route('blog.category', $post->category->slug) }}" class="hover:underline">
-                                    {{ $post->category->name }}
-                                </a>
-                            </p>
-                            <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}" class="block mt-2">
-                                <p id="post-title" class="text-xl md:text-2xl font-semibold text-gray-900">
-                                    {{ Str::limit($post->title, 50) }}
-                                </p>
-                                <p class="mt-3 text-xs md:text-base text-gray-500">
-                                     {{ Str::limit($post->excerpt, 90) }}
-                                </p>
-                            </a>
+                    <div class="mt-6 flex items-center">
+                        <div class="flex-shrink-0">
+                            <!-- Assuming author has a profile photo, otherwise a placeholder -->
+                            <span class="sr-only">{{ $post->author->name }}</span>
+                            <img
+                                class="h-10 w-10 rounded-full"
+                                src="{{ $post->author->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode($post->author->name) . '&color=CAD593&background=EBF4FF' }}"
+                                alt="{{ $post->author->name }}'s profile photo"
+                                width="40"
+                                height="40"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low">
                         </div>
-                        <div class="mt-6 flex items-center">
-                            <div class="flex-shrink-0">
-                                <!-- Assuming author has a profile photo, otherwise a placeholder -->
-                                <span class="sr-only">{{ $post->author->name }}</span>
-                                <img class="h-10 w-10 rounded-full" src="{{ $post->author->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode($post->author->name) . '&color=CAD593&background=EBF4FF' }}" alt="">
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">
-                                    {{ $post->author->name }}
-                                </p>
-                                <div class="flex space-x-1 text-sm text-gray-500">
-                                    <time datetime="{{ $post->published_at->toDateString() }}">
-                                        {{ $post->published_at->diffForHumans() }}
-                                    </time>
-                                    <span aria-hidden="true">&middot;</span>
-                                    <span>{{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read</span>
-                                </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">
+                                {{ $post->author->name }}
+                            </p>
+                            <div class="flex space-x-1 text-sm text-gray-500">
+                                <time datetime="{{ $post->published_at->toDateString() }}">
+                                    {{ $post->published_at->diffForHumans() }}
+                                </time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>{{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endif
+            </div>
+            @endif
             @endforeach
         </div>
     </div>

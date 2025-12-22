@@ -42,7 +42,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
         <div class="form-control sm:col-span-2">
           <label class="label"><span class="label-text">Origin / Destination</span></label>
-          <div class="flex gap-2">
+          <div class="sm:flex-row gap-2 flex flex-col">
             <div class="relative w-full">
                 <input type="text"
                        x-model="fromSearch"
