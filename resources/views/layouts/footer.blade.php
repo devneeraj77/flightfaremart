@@ -95,7 +95,7 @@
 
       <!-- Subscribe -->
       <div class="md:w-md lg:space-x-8 mb-10">
-        <h3 class="text-lg font-semibold text-black dark:text-primary mb-4">Subscribe now</h3>
+        <h3 class="text-lg font-semibold text-black dark:text-primary mb-2">Subscribe now</h3>
         <form id="subscribe-form" method="POST" action="{{ route('subscribe') }}">
           @csrf
           <fieldset class="fieldset   rounded-box w-xs ">
@@ -103,7 +103,7 @@
 
             <div class="join ">
               <div class="">
-                <label class="input bg-base-300 validator join-item focus-within:border-none focus-within:outline-none focus-within:ring-0">
+                <label class="input text-accent  bg-base-300 validator join-item focus-within:border-none focus-within:outline-none focus-within:ring-0">
                   <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g
                       stroke-linejoin="round"
@@ -175,7 +175,7 @@
                 // Unset loading state
                 button.disabled = false;
                 button.classList.remove('loading');
-                button.textContent = 'Subscribed';
+                button.textContent = 'Subscribe';
               });
           });
         </script>
