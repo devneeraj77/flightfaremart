@@ -30,7 +30,6 @@
           class="absolute -right-15 top-2 sm:left-20 sm:-top-10 md:left-50 md:-top-30 lg:left-50 lg:-top-25 z-30 -rotate-25 md:-rotate-15 lg:-rotate-3"
           width="950"
           height="200"
-          loading="lazy"
           fetchpriority="high"
           srcset="img/aircraft_usu4.svg 950w, img/aircraft_usu4.svg 480w"
           sizes="(max-width: 640px) 480px, 950px" />
