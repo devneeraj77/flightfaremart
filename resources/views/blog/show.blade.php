@@ -51,12 +51,12 @@
         @if($post->imageAsset)
         <img
             src="{{ $post->imageAsset->image_url }}"
-            srcset="{{ $post->imageAsset->image_url }} 800w, {{ $post->imageAsset->image_url_small }} 400w"
+            srcset="{{ $post->imageAsset->image_url }} 800w, {{ $post->imageAsset->image_url }} 400w"
             sizes="(max-width: 600px) 400px, 800px"
             alt="Featured image for {{ $post->title }}"
             fetchpriority="high"
-            width="1280"
-            height="549"
+            width="800"
+            height="400"
             class="w-full h-96 object-cover" />
 
         @else
