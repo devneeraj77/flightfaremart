@@ -49,7 +49,16 @@
     {{-- Featured Image --}}
     <figure class="rounded-box overflow-hidden mb-8 shadow-xl">
         @if($post->imageAsset)
-        <img src="{{ $post->imageAsset->image_url }}" alt="{{ $post->title }}" class="w-full h-96 object-cover">
+        <img
+            src="{{ $post->imageAsset->image_url }}"
+            srcset="{{ $post->imageAsset->image_url }} 800w, {{ $post->imageAsset->image_url_small }} 400w"
+            sizes="(max-width: 600px) 400px, 800px"
+            alt="Featured image for {{ $post->title }}"
+            fetchpriority="high"
+            width="800"
+            height="400"
+            class="w-full h-96 object-cover" />
+
         @else
         <img src="https://placehold.co/800x400/cad593/FFFFFF?text=Demo Post" alt="Placeholder Image" class="w-full h-96 object-cover">
         @endif
