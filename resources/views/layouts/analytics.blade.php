@@ -1,6 +1,6 @@
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B09KB964LQ"></script>
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-B09KB964LQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
