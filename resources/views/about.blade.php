@@ -38,7 +38,11 @@
                     <img
                         class="w-full h-full object-cover"
                         src="https://images.unsplash.com/photo-1562805612-9c340007e0b9?q=80&w=870&auto=format&fit=crop"
-                        alt="Sample Image">
+                        alt="Sample Image"
+                        width="870"
+                        height="653"
+                        fetchpriority="high"
+                        decoding="async">
                     <!-- Overlay text -->
                     <div class="absolute inset-0 flex items-center justify-center bg-black/20 ">
                         <div class="text-white absolute w-96 grid grid-row text-start top-8 md:-left-10 sm:-left-20 -left-10 bg-secondary/20 px-6 p-5 backdrop-blur rounded-xl text-md font-semibold text-center px-4">

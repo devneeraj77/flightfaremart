@@ -7,7 +7,7 @@
   <title>Admin Dashboard - @yield('title', 'Welcome')</title>
   @include('admin.layouts.adminHead')
   {{-- Alpine.js for small interactivity (sidebar toggle, dropdowns) --}}
-  @cloudinaryJS
+  <!-- @cloudinaryJS -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
     /* CSS to hide Alpine.js elements until they are initialized */
