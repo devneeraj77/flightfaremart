@@ -99,7 +99,7 @@
 
       <!-- Submit -->
       <div class="text-right">
-        <button class="btn btn-accent dark:btn-secondary text-secondary dark:text-accent px-7 h-11">
+        <button class="btn btn-accent dark:btn-secondary text-secondary  px-7 h-11">
           Search flights
         </button>
       </div>
