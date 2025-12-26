@@ -12,15 +12,20 @@
 ])
 
 @php
-// Generate canonical URL
-$canonicalUrl = $canonical
-?? url()->current();
+    $canonicalUrl = $canonical ?? url()->current();
+
+    // Remove /public from canonical URL
+    $canonicalUrl = preg_replace('#/public(/|$)#', '/', $canonicalUrl);
+
+    // Normalize trailing slash
+    $canonicalUrl = rtrim($canonicalUrl, '/');
 @endphp
-{{-- Canonical URL --}}
+
 <link rel="canonical" href="{{ $canonicalUrl }}">
+
 
 {{-- Meta --}}
 <meta name="robots" content="noindex, follow">
 
 {{-- Google Analytics --}}
- @include('layouts.analytics')
+@include('layouts.analytics')
