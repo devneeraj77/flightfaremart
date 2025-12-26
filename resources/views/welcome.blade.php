@@ -84,7 +84,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
               <!-- Large item -->
               <div class="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Nature" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=80&w=650&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Nature" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -97,7 +97,7 @@
 
               <!-- Two small items -->
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1618259278412-2819cbdea4dc?q=80&w=821&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Food" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105 object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1618259278412-2819cbdea4dc?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Food" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105 object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -106,7 +106,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1547448415-e9f5b28e570d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Technology" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1547448415-e9f5b28e570d?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Technology" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -117,7 +117,7 @@
 
               <!-- Three medium items -->
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=820&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travel" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travel" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -126,7 +126,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1488747279002-c8523379faaa?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Art" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1488747279002-c8523379faaa?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Art" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -137,7 +137,7 @@
 
               <!-- bottom cards -->
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://plus.unsplash.com/premium_photo-1697730336238-5d1d342127e8?q=80&w=945&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://plus.unsplash.com/premium_photo-1697730336238-5d1d342127e8?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -146,7 +146,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?q=80&w=1467&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -155,7 +155,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://plus.unsplash.com/premium_photo-1661962958462-9e52fda9954d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://plus.unsplash.com/premium_photo-1661962958462-9e52fda9954d?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -164,7 +164,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?q=80&w=1033&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
                 <div
                   class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                   <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -248,7 +248,10 @@
                   class="max-w-56 h-80 object-cover rounded-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
                   src="{{ $d['image'] }}"
                   alt="{{ $d['city'] }}"
-                  loading="lazy">
+                  loading="lazy"
+                  width="224"
+                  height="320"
+                  decoding="async">
 
                 <p class="absolute  bottom-2 left-2 text-white bg-black/30 backdrop-blur px-3 py-1 rounded text-sm font-medium">
                   {{ $d['city'] }}

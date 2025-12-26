@@ -14,7 +14,8 @@
       <div class="flex items-center space-x-4">
         <button
           onclick="toggleTheme()"
-          class="bg-accent">
+          class="bg-accent"
+          aria-label="Toggle theme">
         </button>
         <div class="checkbox-wrapper-35 flex justify-center">
           <input value="private" name="switch" id="switch" type="checkbox" class="switch">
@@ -80,7 +81,7 @@
       </div>
 
       <!-- Mobile Menu Button -->
-      <button id="menu-btn" class="md:hidden focus:outline-none dark:text-secondary">
+      <button id="menu-btn" class="md:hidden focus:outline-none dark:text-secondary" aria-label="Open menu">
         <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-light dark:text-dark-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
