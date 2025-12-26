@@ -5,8 +5,9 @@
   <nav class="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
     <!-- Logo -->
-    <a href="/" class="text-2xl p-2 text-accent font-semibold italic">
-      flight<span class="text-secondary">faremart</span>
+    <a href="/" class="flex justify-center items-center p-2 text-2xl p-2 text-accent font-semibold italic">
+      <!-- <img src="/logo.png" class="p-4 md:p-2 md:py-6" width="100" height="100" alt=""> -->
+      <em class="">flight<span class="text-secondary font-normal">faremart</span></em>
     </a>
 
     <div class="flex">

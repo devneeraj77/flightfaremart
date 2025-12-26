@@ -1,7 +1,7 @@
 <footer class="w-full text-accent">
-  <hr class="text-secondary">
+  <hr class="text-base-200 dark:text-accent">
   <!-- Bottom light section -->
-  <div class="bg-secondary dark:bg-trans z-10 text-accent dark:text-light py-10">
+  <div class="dark:bg-black bg-base-200 z-10   py-10">
     <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-8  px-6">
 
       <!-- Logo + Social -->
@@ -10,8 +10,8 @@
         <p class="text-sm">Stop searching and start flying. FlightFareMart combines cutting-edge tech with radical transparency to bring the horizon closer to your wallet.</p>
       </div>
       <div>
-        <h3 class="font-semibold mb-3">About Us</h3>
-        <ul class="space-y-2 text-sm opacity-90">
+        <h3 class="font-semibold text-black  dark:text-primary">About Us</h3>
+        <ul class="space-y-2 text-sm  ">
           <li><a href="#" class="hover:text-accent">Contact</a></li>
           <li><a href="#" class="hover:text-accent">Our Store</a></li>
           <li><a href="#" class="hover:text-accent">Careers</a></li>
@@ -19,8 +19,8 @@
       </div>
 
       <div>
-        <h3 class="font-semibold mb-3">For Customer</h3>
-        <ul class="space-y-2 text-sm opacity-90">
+        <h3 class="font-semibold text-black  dark:text-primary">For Customer</h3>
+        <ul class="space-y-2 text-sm  ">
           <li><a href="{{ route('faqs') }}" class="hover:text-accent">FAQ</a></li>
           <li><a href="#" class="hover:text-accent">Delivery</a></li>
           <li><a href="#" class="hover:text-accent">Payment</a></li>
@@ -28,8 +28,8 @@
       </div>
 
       <div>
-        <h3 class="font-semibold mb-3">More</h3>
-        <ul class="space-y-2 text-sm opacity-90">
+        <h3 class="font-semibold text-black  dark:text-primary">More</h3>
+        <ul class="space-y-2 text-sm  ">
           <li><a href="#" class="hover:text-accent">Blog</a></li>
           <li><a href="#" class="hover:text-accent">Upcoming Releases</a></li>
           <li><a href="#" class="hover:text-accent">Weekly Mixtapes</a></li>
@@ -82,14 +82,14 @@
       <!-- Contact -->
       <div class="md:w-sm space-x-8 mb-10">
         <h3 class="text-lg   font-semibold text-black dark:text-primary mb-4">Contact Us</h3>
-        <p class="text-sm opacity-90 text-start flex content-center items-center gap-2 py-1">hello@flightfaremart.com<a href="mailto:hello@flightfaremart.com"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-external-link">
+        <p class="text-sm   text-start flex content-center items-center gap-2 py-1">hello@flightfaremart.com<a href="mailto:hello@flightfaremart.com"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-external-link">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
               <path d="M11 13l9 -9" />
               <path d="M15 4h5v5" />
             </svg></a> </p>
-        <p class="text-sm  opacity-90 flex content-center items-center gap-2 py-1">703 Waterford Way, Suite 600, <br> Miami, FL 33126.</p>
-        <p class="text-sm opacity-90 flex content-center items-center gap-2 py-1">+34 393 323 32 22</p>
+        <p class="text-sm    flex content-center items-center gap-2 py-1">703 Waterford Way, Suite 600, <br> Miami, FL 33126.</p>
+        <p class="text-sm   flex content-center items-center gap-2 py-1">+34 393 323 32 22</p>
       </div>
 
       <!-- Subscribe -->
@@ -98,7 +98,7 @@
         <form id="subscribe-form" method="POST" action="{{ route('subscribe') }}">
           @csrf
           <fieldset class="fieldset   rounded-box w-xs ">
-            <label class="text-sm opacity-90 pb-2">Sign up if you want to get notifications</label>
+            <label class="text-sm   pb-2">Sign up if you want to get notifications</label>
 
             <div class="join ">
               <div class="">
@@ -190,8 +190,8 @@
     </div>
 
   </div>
-  <div class=" dark:bg-secondary">
-    <p class="text-center p-4   mx-auto max-w-5xl  "><small> DISCLAIMER: We are not legally responsible for any issues or losses arising from the information on our website. Please confirm travel details with airlines or official sources before finalizing your plans to ensure accuracy. Your verification will help avoid potential problems. </small></p>
+  <div class="dark:bg-black bg-base-200 opacity-70 dark:secondary text-accent">
+    <p class="text-center p-4  mx-auto max-w-5xl  "><small> DISCLAIMER: We are not legally responsible for any issues or losses arising from the information on our website. Please confirm travel details with airlines or official sources before finalizing your plans to ensure accuracy. Your verification will help avoid potential problems. </small></p>
   </div>
 
 </footer>
