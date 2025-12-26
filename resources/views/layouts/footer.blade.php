@@ -1,4 +1,4 @@
-<footer class="w-full text-accent">
+<footer class="w-full text-accent dark:text-secondary">
   <hr class="text-base-200 dark:text-accent">
   <!-- Bottom light section -->
   <div class="dark:bg-black bg-base-200 z-10   py-10">
@@ -190,7 +190,7 @@
     </div>
 
   </div>
-  <div class="dark:bg-black bg-base-200 opacity-70 dark:secondary text-accent">
+  <div class="dark:bg-black bg-base-200  dark:text-secondary text-accent">
     <p class="text-center p-4  mx-auto max-w-5xl  "><small> DISCLAIMER: We are not legally responsible for any issues or losses arising from the information on our website. Please confirm travel details with airlines or official sources before finalizing your plans to ensure accuracy. Your verification will help avoid potential problems. </small></p>
   </div>
 
