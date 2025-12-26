@@ -37,11 +37,11 @@
           <div class="flex flex-wrap p-3 backdrop-blur-sm items-center justify-center p-1.5 rounded-full border border-secondary text-white text-xs">
             <div class="flex items-center ">
               <img class="size-7 rounded-full border-3 border-white"
-                src="/img/mbr/small/m-5.webp" alt="userImage1">
+                src="/img/mbr/m-5.webp" alt="userImage1">
               <img class="size-7 rounded-full border-3 border-white -translate-x-2"
-                src="/img/mbr/small/m-2.webp" alt="userImage2">
+                src="/img/mbr/m-2.webp" alt="userImage2">
               <img class="size-7 rounded-full border-3 border-white -translate-x-4"
-                src="/img/mbr/small/m-1.webp"
+                src="/img/mbr/m-1.webp"
                 alt="userImage3">
             </div>
             <p class="-translate-x-2 text-slate-500 ">Grab of 100+ countries deals </p>
@@ -91,7 +91,7 @@
                     <span class="text-2xl font-bold text-white">New York</span>
                     <p class="text-white">Discover the beauty of the natural world</p>
                   </div>
-
+                  
                 </div>
               </div>
 
