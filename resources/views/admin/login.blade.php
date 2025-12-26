@@ -2,17 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - FlightFlareMart</title>
     @include('admin.layouts.adminHead')
+    <title>Admin Login - FlightFlareMart</title>
 </head>
 
 <body class="bg-base-100 dark:bg-black">
-
     <div class="flex flex-col items-center justify-center min-h-screen px-4">
         <div class="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white rounded-xl shadow-lg dark:bg-accent/60">
-
             <!-- Logo and-text -->
             <div class="flex flex-col items-center space-y-2">
                 <a href="/" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-secondary">

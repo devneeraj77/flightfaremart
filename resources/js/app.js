@@ -7,10 +7,14 @@ const checkbox = document.getElementById("switch");
 function applyTheme(mode) {
     if (mode === "dark") {
         html.classList.add("dark");
-        checkbox.checked = true;
+        if (checkbox) {
+            checkbox.checked = true;
+        }
     } else {
         html.classList.remove("dark");
-        checkbox.checked = false;
+        if (checkbox) {
+            checkbox.checked = false;
+        }
     }
 }
 
@@ -38,11 +42,13 @@ window
     });
 
 // Bind switch to same logic
-checkbox.addEventListener("change", () => {
-    const mode = checkbox.checked ? "dark" : "light";
-    localStorage.setItem("theme", mode);
-    applyTheme(mode);
-});
+if (checkbox) {
+    checkbox.addEventListener("change", () => {
+        const mode = checkbox.checked ? "dark" : "light";
+        localStorage.setItem("theme", mode);
+        applyTheme(mode);
+    });
+}
 
 // Navbar mobile toggle
 

@@ -278,8 +278,7 @@
 {{--
     SCRIPT BLOCK for TinyMCE and Slugify
 --}}
-<script src="https://cdn.tiny.cloud/1/k80y7ux7q9d6ub876oxi72wqjazksl012x9kpej3ytuyuhp3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
+<script src="https://cdn.tiny.cloud/1/k80y7ux7q9d6ub876oxi72wqjazksl012x9kpej3ytuyuhp3/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 <script>
     // Simple JavaScript function to convert a string to a URL-friendly slug
     function slugify(text) {
@@ -297,7 +296,7 @@
             if (tinymce.get('content') === null) {
                 tinymce.init({
                     selector: '#content',
-                    plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak table code wordcount media autoresize fullscreen',
+                    plugins: 'advlist autolink lists link image charmap preview anchor pagebreak table code wordcount media autoresize fullscreen',
                     toolbar_mode: 'floating',
                     toolbar: 'undo redo | blocks | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code fullscreen',
                     min_height: 400,
