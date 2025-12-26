@@ -325,7 +325,7 @@
               Your Next Adventure Is Just a Click Away
             </h3>
             <p class="text-xl text-accent dark:text-base-200 max-w-4xl mx-auto mb-8">
-              With powerful search tools, transparent pricing, and real-time access to 600+ airlines and travel providers, <span class="badge text-accent">FlightFareMart</span> makes discovering your next destination easier than ever.
+              With powerful search tools, transparent pricing, and real-time access to 600+ airlines and travel providers, FlightFareMart makes discovering your next destination easier than ever.
             </p>
             <p class="text-2xl font-bold text-accent dark:text-base-300 mb-6">
               Where will you go next?
