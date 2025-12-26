@@ -15,11 +15,6 @@ class BlockPublicPath
      */
     public function handle(Request $request, Closure $next): Response
     {
-         // Block URLs starting with /public
-        if ($request->is('public') || $request->is('public/*')) {
-            abort(404);
-        }
-
         return $next($request);
     }
 }
