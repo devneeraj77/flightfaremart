@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @include('layouts.head')
-    <title>@yield('title', 'Blog - FlightFareMart Expert Travel Tips & Flight Booking Hacks')</title>
+    <title>@yield('title', 'Blog')</title>
     <meta name="description" content="">
     <meta name="description" content="Master the art of budget travel with the FlightFareMart blog. Discover expert flight booking hacks, destination guides, and insider tips to save on every trip.">
     <meta name="keywords" content="FlightFareMart blog, travel tips, flight booking hacks, budget travel guides, cheap flight secrets, travel industry news, how to save on flights">

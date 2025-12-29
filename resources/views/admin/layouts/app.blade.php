@@ -24,10 +24,10 @@
 
     @include('admin.layouts.sidebar')
 
-    <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-20 bg-black/50 sm:hidden" @click="sidebarOpen = false"></div>
+    <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-20 bg-black/50 lg:hidden" @click="sidebarOpen = false"></div>
 
     <div class="flex flex-1 flex-col overflow-hidden"
-      :class="{'lg:ml-auto': !sidebarMinimized, 'md:ml-auto': sidebarMinimized}">
+      :class="{'md:ml-auto': !sidebarMinimized, 'lg:ml-auto': sidebarMinimized}">
       @include('admin.layouts.adminHeader')
 
 

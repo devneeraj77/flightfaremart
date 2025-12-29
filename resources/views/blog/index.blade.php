@@ -1,6 +1,6 @@
 @extends('layouts.blog')
 
-@section('title', 'Blog')
+@section('title', 'Blog - FlightFareMart Expert Travel Tips & Flight Booking Hacks')
 
 @section('sidebar')
     <aside class=" rounded-t-2xl p-10  w-70 sticky top-0">

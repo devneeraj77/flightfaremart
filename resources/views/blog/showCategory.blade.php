@@ -21,13 +21,18 @@
         <h1 class="text-4xl text-accent/90  dark:text-base-200 mb-8 border-b pb-4">Posts in: {{ $category->name }}</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             @foreach($posts as $post)
-            <div class="group cursor-pointer border border-base-200 bg-base-300 dark:bg-accent/50 rounded-2xl p-5 transition-all duration-300 hover:border-secondary">
-                <div class="flex items-center mb-6">
+            <div class="group p-3 border border-base-300 rounded-2xl 
+         transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg max-w-sm group cursor-pointer border border-base-200 bg-base-300 dark:bg-accent/50 rounded-2xl hover:border-secondary">
+                <div class="flex items-center rounded-lg  overflow-hidden  mb-6">
                     <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}" class="h-48 w-full overflow-hidden">
                         @if($post->imageAsset)
-                        <img src="{{ $post->imageAsset->image_url }}" alt="{{ $post->title }}" class="rounded-lg w-full h-full object-cover object-center " width="800" height="400" fetchpriority="high" loading="lazy" decoding="async">
+                        <img src="{{ $post->imageAsset->image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover object-center
+                           transition-transform duration-500 ease-out
+                           group-hover:scale-105" width="800" height="400" fetchpriority="high" loading="lazy" decoding="async">
                         @else
-                        <img src="https://placehold.co/800x400/cad593/FFFFFF?text=Demo Post" alt="Placeholder Image" class="rounded-lg w-full h-full object-cover object-center ">
+                        <img src="https://placehold.co/800x400/cad593/FFFFFF?text=Demo Post" alt="Placeholder Image" class="w-full h-full object-cover object-center
+                           transition-transform duration-500 ease-out
+                           group-hover:scale-105">
                         @endif
                     </a>
                 </div>

@@ -15,7 +15,7 @@ class ResetAdminSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Admin::where('email', 'dev.neerajrekwar2@gmail.com')->first();
+        $admin = Admin::where('email', 'xxxxx@xxx.xxx')->first();
 
         if ($admin) {
             $admin->name = 'admin';
