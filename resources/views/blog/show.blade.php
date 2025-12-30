@@ -35,74 +35,110 @@
 @endsection
 
 @section('main-content')
-<div id="blog" class="max-w-4xl mx-auto py-10">
+<main id="blog" class="max-w-4xl mx-auto py-10" itemscope itemtype="https://schema.org/BlogPosting">
 
-    {{-- Breadcrumbs (Optional, but good for navigation) --}}
-    <div class="text-sm breadcrumbs mb-6">
-        <ul>
-            <li><a href="{{ route('blog.index') }}">Blog</a></li>
-            <li><a href="{{ route('blog.category', $post->category->slug) }}">{{ $post->category->name }}</a></li>
-            <li>{{ $post->title }}</li>
-        </ul>
+    {{-- Schema Hidden Metadata --}}
+    <meta itemprop="mainEntityOfPage" content="{{ url()->current() }}">
+    <meta itemprop="datePublished" content="{{ $post->published_at ? $post->published_at->toIso8601String() : $post->created_at->toIso8601String() }}">
+    <meta itemprop="dateModified" content="{{ $post->updated_at->toIso8601String() }}">
+
+    {{-- Fix 1: Publisher & Logo --}}
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" class="hidden">
+        <meta itemprop="name" content="FlightFareMart">
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            {{-- Ensure this URL is absolute (not relative) --}}
+            <meta itemprop="url" content="{{ url('images/logo.png') }}">
+        </div>
     </div>
 
-    {{-- Featured Image --}}
-    <figure class="rounded-box overflow-hidden mb-8 shadow-xl">
-        @if($post->imageAsset)
-        <img
-            src="{{ $post->imageAsset->image_url }}"
-            srcset="{{ $post->imageAsset->image_url }} 800w, {{ $post->imageAsset->image_url }} 400w"
-            sizes="(max-width: 600px) 400px, 800px"
-            alt="Featured image for {{ $post->title }}"
-            fetchpriority="high"
-            width="800"
-            height="400"
-            class="w-full h-96 object-cover" />
+    {{-- Breadcrumbs (Semantic & SEO Validated) --}}
+    <nav class="text-sm breadcrumbs mb-6" aria-label="Breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            {{-- Item 1: Blog Index --}}
+            <li itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="{{ route('blog.index') }}">
+                    <span itemprop="name">Books</span></a>
+                <meta itemprop="position" content="1" />
+            </li>
+            {{-- Item 2: Category --}}
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemscope itemtype="https://schema.org/WebPage"
+                    itemprop="item"
+                    itemid="{{ route('blog.category', $post->category->slug) }}"
+                    href="{{ route('blog.category', $post->category->slug) }}">
+                    <span itemprop="name">{{ $post->category->name }}</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
 
-        @else
-        <img src="https://placehold.co/800x400/cad593/FFFFFF?text=Demo Post" alt="Placeholder Image" class="w-full h-96 object-cover">
-        @endif
+            {{-- Item 3: Current Post (Fixed for Validator) --}}
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                {{-- Adding the 'item' link here satisfies the 'Missing field item' error --}}
+                <a itemscope itemtype="https://schema.org/WebPage"
+                    itemprop="item"
+                    itemid="{{ url()->current() }}"
+                    href="{{ url()->current() }}"
+                    class="pointer-events-none cursor-default">
+                    <span itemprop="name">{{ $post->title }}</span>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        </ol>
+    </nav>
+
+    {{-- Fix 2: Featured Image (Addressing the 'Missing Image' warning) --}}
+    <figure class="rounded-box overflow-hidden mb-8 shadow-xl">
+        @php
+        $imageUrl = ($post->imageAsset && $post->imageAsset->image_url) ? $post->imageAsset->image_url : url('images/default-placeholder.jpg');
+        @endphp
+        <img
+            itemprop="image"
+            src="{{ $imageUrl }}"
+            alt="{{ $post->title }}"
+            fetchpriority="high"
+            class="w-full h-96 object-cover" />
     </figure>
 
     <article class="prose lg:prose-xl max-w-none">
+        <header class="mb-2">
+            <div class="flex flex-col py-4">
+                <h1 itemprop="headline" class="text-5xl text-accent dark:text-secondary mb-2">
+                    {{ $post->title }}
+                </h1>
 
-        <header class="mb-6">
-            {{-- Title and Badges --}}
-            <div class="flex flex-col   py-4">
-                <h1 class="text-5xl text-accent dark:text-secondary mb-2">{{ $post->title }}</h1>
-                <span class="text-base italic text-accent/70 dark:text-base-300/70"> ~ Written by {{ $post->author->name }}</span>
+                {{-- Fix 3: Author URL (Addressing the 'Missing URL' warning) --}}
+                <span class="text-base italic text-accent/70 dark:text-base-300/70" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    ~ Written by
+                    <a itemprop="url" href="{{ url('/about') }}" class="no-underline">
+                        <span itemprop="name">{{ $post->author->name ?? 'Admin' }}</span>
+                    </a>
+                </span>
             </div>
-            <!-- <small class=" text-accent/50">{{$post->excerpt}}</small> -->
-            <div class="flex  items-start justify-between space-x-3 mb-2">
-                <div class="badge badge-lg badge-secondary dark:bg-secondary dark:text-accent  text-accent">{{ $post->category->name }}</div>
-                <span class="text-sm dark:text-base-200 text-accent/80">Published on {{ $post->published_at->format('F d, Y') }}</span>
+
+            <div class="flex items-start justify-between space-x-3 mb-2">
+                <div class="badge badge-lg badge-secondary text-accent">
+                    {{ $post->category->name }}
+                </div>
+                <time datetime="{{ $post->published_at->toIso8601String() }}" class="text-sm dark:text-base-200 text-accent/80">
+                    Published on {{ $post->published_at->format('F d, Y') }}
+                </time>
             </div>
-            <hr class="text-gray-200">
+            <hr class="dark:text-gray-200/20 text-accent/20  mt-8">
         </header>
-        {{-- Author Info (Avatar) --}}
-        <div role="alert"
-            class=" flex flex-col-reverse gap-4 md:flex-row items-start justify-between text-accent  dark:text-secondary py-4 mb-6">
 
-            <!-- Author Section -->
-            <div class="flex items-start text-accent/60 dark:text-base-300/50 gap-4">
-                <!-- Description Info -->
+        <section role="region" aria-label="Summary" class="flex flex-col-reverse gap-4 md:flex-row items-start justify-between text-accent dark:text-secondary py-4 mb-6">
+            <div class="flex items-start text-accent/60 dark:text-base-300/50 gap-4" itemprop="description">
                 {{ $post->excerpt }}
             </div>
-            <!-- Social Share -->
-            <div class="flex-shrink-0 mb-4 md:mb-0">
+            <aside class="flex-shrink-0 mb-4 md:mb-0">
                 <x-social-share :post="$post" />
-            </div>
-        </div>
+            </aside>
+        </section>
 
-
-
-        {{-- Post Content --}}
-        <div class="article-content text-accent dark:text-base-300/80">
-            {{-- Note: Use {!! $post->content !!} if the content is stored as sanitized HTML --}}
+        <div class="article-content text-accent dark:text-base-300/80" itemprop="articleBody">
             {!! nl2br($post->content) !!}
-
         </div>
-
     </article>
 
     @if($post->faqs->count() > 0)
@@ -149,5 +185,5 @@
 
     {{-- Back Button --}}
     <a href="{{ route('blog.index') }}" class="btn btn-outline btn-sm mt-8">← Back to Blog Posts</a>
-</div>
+</main>
 @endsection

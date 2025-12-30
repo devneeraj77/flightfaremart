@@ -7,20 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @include('layouts.head')
     <title>@yield('title', 'Blog')</title>
-    <meta name="description" content="">
-    <meta name="description" content="Master the art of budget travel with the FlightFareMart blog. Discover expert flight booking hacks, destination guides, and insider tips to save on every trip.">
-    <meta name="keywords" content="FlightFareMart blog, travel tips, flight booking hacks, budget travel guides, cheap flight secrets, travel industry news, how to save on flights">
-
-    <meta property="og:title" content="FlightFareMart Blog: Your Guide to Smarter Travel">
-    <meta property="og:description" content="Expert advice, destination inspiration, and the latest secrets on how to find the cheapest flights worldwide.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fightfaremart.com/blog">
-    <meta property="og:image" content="/img/about-3.png">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FlightFareMart Blog | Travel Tips & Hacks">
-    <meta name="twitter:description" content="Learn how to travel the world for less with FlightFareMart's latest blog posts and expert guides.">
-    <meta name="twitter:image" content="/img/about-3.png">
     @yield('head')
 </head>
 

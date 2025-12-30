@@ -5,8 +5,18 @@
   <nav class="max-w-7xl font-sembold  mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
 
     <!-- Logo -->
-    <a href="/" class="flex justify-center items-center p-2 text-2xl p-2 text-accent font-semibold italic">
-      <!-- <img src="/logo.png" class="p-4 md:p-2 md:py-6" width="100" height="100" alt=""> -->
+    <a href="{{ url('/') }}"
+      itemscope
+      itemtype="https://schema.org/WebSite"
+      class="flex justify-center items-center p-2 text-2xl text-accent font-semibold italic">
+
+      {{-- Search engines need the URL to match the current site --}}
+      <link itemprop="url" href="https://flightfaremart.com/" />
+
+      {{-- This tells Google the official name of your site --}}
+      <meta itemprop="name" content="FlightFareMart" />
+
+      {{-- Visual Text --}}
       <em class="">flight<span class="text-secondary font-normal">faremart</span></em>
     </a>
 
