@@ -1,76 +1,67 @@
 @if($posts->isNotEmpty())
-<div class="py-12 ">
+<section class="py-16 md:py-24 bg-[#F0F2FF] font-sans">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h2 class="text-4xl md:text-6xl mx-auto max-w-6xl dark:text-secondary text-accent px-5 md:px-3">
-                From the Blog
-            </h2>
-            <p class="mt-2 mx-auto px-5 md:px-4 max-w-6xl text-lg dark:text-secondary/50 text-accent/80 my-2 pb-3">
-                Latest articles and news from our team.
-            </p>
+        
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-gray-200 pb-8 gap-6">
+            <div class="max-w-xl">
+                <h2 class="text-4xl md:text-5xl font-black text-black mb-4">
+                    Travel Tips, Insights<br>& Inspiration
+                </h2>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Stay updated with the latest travel trends, destinations guides, and flight booking tips, from hidden gems to money-saving hacks. Our blog is here to make your journey smarter and more exciting.
+                </p>
+            </div>
+            <a href="{{ route('blog.index') }}" class="bg-[#1D35D1] text-white px-8 py-3 rounded-full font-bold text-xs tracking-widest hover:bg-blue-800 transition shadow-lg">
+                READ ALL ARTICLES
+            </a>
         </div>
-        <div class="mt-12 grid gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             @foreach($posts as $post)
             @if($post->category && $post->author)
-            <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-                <div class="flex-shrink-0">
+            <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm flex flex-col sm:flex-row h-full transition-transform hover:scale-[1.01]">
+                
+                <div class="sm:w-2/5 relative min-h-[200px]">
                     <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}">
-                        <img
-                            class="h-48 w-full object-cover"
-                            src="{{ $post->imageAsset->image_url ?? 'https://via.placeholder.com/800x400' }}"
-                            {{-- Generate srcset if your backend supports image resizing --}}
-                            srcset="{{ $post->imageAsset->image_url ?? '' }}"
-                            sizes="(max-width: 768px) 100vw, 400px"
-                            alt="{{ $post->title }}"
-                            width="800"
-                            height="400"
-                            loading="eager"
-                            fetchpriority="high"
-                            decoding="sync">
+                        <img 
+                            class="absolute inset-0 w-full h-full object-cover p-3 rounded-[2rem]" 
+                            src="{{ $post->imageAsset->image_url ?? 'https://via.placeholder.com/400x400' }}" 
+                            alt="{{ $post->title }}">
                     </a>
                 </div>
-                <div class="flex-1 bg-base-300 p-6 flex flex-col justify-between">
-                    <div class="flex-1">
-                        <p class="text-sm font-medium text-accent/80">
-                            <a href="{{ route('blog.category', $post->category->slug) }}" class="hover:underline">
+
+                <div class="sm:w-3/5 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="flex items-center gap-2 text-[#1D35D1] font-bold text-[10px] uppercase tracking-wider">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
                                 {{ $post->category->name }}
-                            </a>
-                        </p>
-                        <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}" class="block mt-2">
-                            <p class="text-xl md:text-2xl font-semibold text-gray-900">
-                                {{ Str::limit($post->title, 50) }}
-                            </p>
-                            <p class="mt-3 text-xs md:text-base text-gray-500">
-                                {{ Str::limit($post->excerpt, 90) }}
-                            </p>
+                            </span>
+                            <span class="text-gray-400 text-[10px] font-bold uppercase">
+                                {{ $post->published_at->format('M d, Y') }}
+                            </span>
+                        </div>
+
+                        <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}">
+                            <h3 class="text-xl font-black text-black leading-tight mb-3 hover:text-blue-700 transition">
+                                {{ Str::limit($post->title, 45) }}
+                            </h3>
                         </a>
+
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                            {{ Str::limit($post->excerpt, 85) }}
+                        </p>
                     </div>
-                    <div class="mt-6 flex items-center">
-                        <div class="flex-shrink-0">
-                            <!-- Assuming author has a profile photo, otherwise a placeholder -->
-                            <span class="sr-only">{{ $post->author->name }}</span>
-                            <img
-                                class="h-10 w-10 rounded-full"
-                                src="{{ $post->author->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode($post->author->name) . '&color=CAD593&background=EBF4FF' }}"
-                                alt="{{ $post->author->name }}'s profile photo"
-                                width="40"
-                                height="40"
-                                loading="lazy"
-                                decoding="async"
-                                fetchpriority="low">
+
+                    <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
+                        <div class="text-[10px] font-bold">
+                            <span class="text-gray-400">AUTHOR:</span> 
+                            <span class="text-black uppercase ml-1">{{ $post->author->name }}</span>
                         </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">
-                                {{ $post->author->name }}
-                            </p>
-                            <div class="flex space-x-1 text-sm text-gray-500">
-                                <time datetime="{{ $post->published_at->toDateString() }}">
-                                    {{ $post->published_at->diffForHumans() }}
-                                </time>
-                                <span aria-hidden="true">&middot;</span>
-                                <span>{{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read</span>
-                            </div>
-                        </div>
+                        <a href="{{ route('blog.show', ['category' => $post->category->slug, 'slug' => $post->slug]) }}" 
+                           class="text-[#1D35D1] font-black text-[10px] uppercase border border-gray-200 px-4 py-2 rounded-full hover:bg-gray-50 transition">
+                            Learn More
+                        </a>
                     </div>
                 </div>
             </div>
@@ -78,5 +69,5 @@
             @endforeach
         </div>
     </div>
-</div>
+</section>
 @endif

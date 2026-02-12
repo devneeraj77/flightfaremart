@@ -1,198 +1,118 @@
-<footer class="w-full text-accent dark:text-secondary">
-  <hr class="text-accent/20 dark:text-accent">
-  <!-- Bottom light section -->
-  <div class="dark:bg-black bg-base-200 z-10   py-10">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-8  px-6">
+<div class="relative z-20 max-w-5xl mx-auto px-4 -mb-32">
+    <div class="bg-white rounded-[3rem] p-10 md:p-16 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+        <div class="relative w-48 h-48 hidden lg:block">
+             <img src="{{ asset('img/hero-banner-circle.png') }}" class="rounded-full object-cover w-full h-full shadow-lg" alt="Fly Smarter">
+        </div>
+        
+        <div class="flex-1">
+            <h2 class="text-4xl md:text-5xl font-black text-black leading-tight mb-6">
+                Fly Smarter, Pay Smarter,<br>Travel With Crypto
+            </h2>
+            <button class="bg-[#1D35D1] text-white px-10 py-4 rounded-full font-bold text-sm tracking-widest hover:bg-blue-800 transition transform hover:scale-105">
+                COMPARE
+            </button>
+        </div>
 
-      <!-- Logo + Social -->
-      <div class="col-span-2">
-        <h2 class="text-2xl font-semibold mb-4">flightfaremart</h2>
-        <p class="text-sm">Stop searching and start flying. FlightFareMart combines cutting-edge tech with radical transparency to bring the horizon closer to your wallet.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-black  dark:text-primary pb-2 font-blod text-xl pb-2 font-blod text-xl">About Us</h3>
-        <ul class="space-y-2 text-sm  ">
-          <li><a href="{{ route('contact.create') }}" class="hover:text-accent">Contact</a></li>
-          <li><a href="#" class="hover:text-accent">Our Store</a></li>
-          <li><a href="{{ route('about') }}" class="hover:text-accent">About</a></li>
-          <li><a href="#" class="hover:text-accent">Careers</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-semibold text-black  dark:text-primary pb-2 font-blod text-xl pb-2 font-blod text-xl">For Customer</h3>
-        <ul class="space-y-2 text-sm  ">
-          <li><a href="{{ route('faqs') }}" class="hover:text-accent">FAQ</a></li>
-          <li><a href="#" class="hover:text-accent">Delivery</a></li>
-          <li><a href="#" class="hover:text-accent">Payment</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-semibold text-black  dark:text-primary pb-2 font-blod text-xl pb-2 font-blod text-xl">More</h3>
-        <ul class="space-y-2 text-sm  ">
-          <li><a href="/" class="hover:text-accent">Blog</a></li>
-          <li><a href="#latest" class="hover:text-accent">Upcoming Releases</a></li>
-          <li><a href="#" class="hover:text-accent">Weekly Mixtapes</a></li>
-        </ul>
-      </div>
+        <div class="hidden md:flex flex-col gap-4">
+             <div class="w-24 h-24 rounded-full border-4 border-white shadow-lg overflow-hidden translate-x-10">
+                 <img src="https://i.pravatar.cc/150?u=1" class="w-full h-full object-cover">
+             </div>
+             <div class="w-16 h-16 rounded-full border-4 border-white shadow-lg overflow-hidden -translate-x-4">
+                 <img src="https://i.pravatar.cc/150?u=2" class="w-full h-full object-cover">
+             </div>
+        </div>
     </div>
-  </div>
-  <!-- Top dark section -->
-  <div class="bg-primary dark:bg-black text-dark dark:text-secondary pb-4 pt-10">
-    <div class="max-w-7xl mx-auto md:flex justify-between  md:flex-row-reverse gap-2 px-6">
-      <div class=" flex-1 space-x-4 mb-10">
-        <h4 class="font-semibold text-black  dark:text-primary pb-2 font-blod text-xl">Social Links</h4>
-        <ul class="flex mt-3 space-x-4">
-          <li>
-            <a href="#" class=" hover:text-secondary transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-accent dark:text-secondary icon icon-tabler icons-tabler-filled icon-tabler-brand-facebook">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M18 2a1 1 0 0 1 .993 .883l.007 .117v4a1 1 0 0 1 -.883 .993l-.117 .007h-3v1h3a1 1 0 0 1 .991 1.131l-.02 .112l-1 4a1 1 0 0 1 -.858 .75l-.113 .007h-2v6a1 1 0 0 1 -.883 .993l-.117 .007h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-6h-2a1 1 0 0 1 -.993 -.883l-.007 -.117v-4a1 1 0 0 1 .883 -.993l.117 -.007h2v-1a6 6 0 0 1 5.775 -5.996l.225 -.004h3z" />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="hover:text-secondary transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-x">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M8.267 3a1 1 0 0 1 .73 .317l.076 .092l4.274 5.828l5.946 -5.944a1 1 0 0 1 1.497 1.32l-.083 .094l-6.163 6.162l6.262 8.54a1 1 0 0 1 -.697 1.585l-.109 .006h-4.267a1 1 0 0 1 -.73 -.317l-.076 -.092l-4.276 -5.829l-5.944 5.945a1 1 0 0 1 -1.497 -1.32l.083 -.094l6.161 -6.163l-6.26 -8.539a1 1 0 0 1 .697 -1.585l.109 -.006h4.267z" />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="hover:text-secondaryrounded-full transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="hover:text-secondary transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-linkedin">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M17 2a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5zm-9 8a1 1 0 0 0 -1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0 -1 -1m6 0a3 3 0 0 0 -1.168 .236l-.125 .057a1 1 0 0 0 -1.707 .707v5a1 1 0 0 0 2 0v-3a1 1 0 0 1 2 0v3a1 1 0 0 0 2 0v-3a3 3 0 0 0 -3 -3m-6 -3a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1" />
-              </svg>
-            </a>
-          </li>
+</div>
 
-        </ul>
-      </div>
+<footer class="w-full bg-[#1D35D1] text-white font-sans relative overflow-hidden pt-48 pb-12">
+    
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="dotPattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <circle cx="40" cy="40" r="18" fill="white" fill-opacity="0.8" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dotPattern)" />
+        </svg>
+    </div>
 
-      <!-- Contact -->
-      <div class="md:w-sm space-x-8 mb-10">
-        <h3 class="font-semibold text-black  dark:text-primary pb-2 font-blod text-xl">Contact Us</h3>
-        <p class="text-sm   text-start flex content-center items-center gap-2 py-1">support@flightflaremart.com<a href="mailto:support@flightflaremart.com"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-external-link">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-              <path d="M11 13l9 -9" />
-              <path d="M15 4h5v5" />
-            </svg></a> </p>
-        <p class="text-sm    flex content-center items-center gap-2 py-1">703 Waterford Way, Suite 600, <br> Miami, FL 33126.</p>
-        <p class="text-sm   flex content-center items-center gap-2 py-1">+1 (855) 636-1901</p>
-      </div>
+    <div class="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center">
+        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center p-4 shadow-xl">
+             <img src="{{ asset('img/logo-blue.svg') }}" alt="Logo" class="w-full h-auto">
+        </div>
+        <div class="mt-4 text-[10px] font-bold tracking-[0.4em] uppercase text-white/60">
+            Est. 2026 | FlightFareMart
+        </div>
+    </div>
 
-      <!-- Subscribe -->
-      <div class="md:w-md lg:space-x-8 mb-10">
-        <h3 class="font-semibold text-black  dark:text-primary pb-2 font-blod text-xl">Subscribe now</h3>
-        <form id="subscribe-form" method="POST" action="{{ route('subscribe') }}">
-          @csrf
-          <fieldset class="fieldset   rounded-box w-xs ">
-            <label class="text-sm   pb-2">Sign up if you want to get notifications</label>
-
-            <div class="join ">
-              <div class="">
-                <label class="input text-accent  bg-base-300 validator join-item focus-within:border-none focus-within:outline-none focus-within:ring-0">
-                  <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g
-                      stroke-linejoin="round"
-                      stroke-linecap="round"
-                      stroke-width="2.5"
-                      fill="none"
-                      stroke="currentColor">
-                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </g>
-                  </svg>
-                  <input type="email" name="subscribeEmail" placeholder="mail@site.com" class="input  focus:outline-none border-none ring-0" />
-                </label>
-                <div class="validator-hint hidden">Enter valid email address</div>
-              </div>
-              <button class="btn btn-accent join-item">Join</button>
+    <div class="max-w-7xl mx-auto px-6 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+            
+            <div>
+                <h3 class="text-lg font-black mb-6 uppercase tracking-wider">Company</h3>
+                <ul class="space-y-3 text-sm text-blue-100">
+                    <li><a href="/" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#" class="hover:text-white transition">About</a></li>
+                    <li><a href="#" class="hover:text-white transition">Services</a></li>
+                    <li><a href="#" class="hover:text-white transition">Blogs</a></li>
+                    <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                </ul>
             </div>
-          </fieldset>
-          <div id="subscription-message" class="text-sm mt-2"></div>
-        </form>
 
-        <script>
-          document.getElementById('subscribe-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            <div>
+                <h3 class="text-lg font-black mb-6 uppercase tracking-wider">Travel Guides</h3>
+                <ul class="space-y-3 text-sm text-blue-100">
+                    <li><a href="#" class="hover:text-white transition">Cancellation & Refund</a></li>
+                    <li><a href="#" class="hover:text-white transition">Change Flight</a></li>
+                    <li><a href="#" class="hover:text-white transition">Compensation</a></li>
+                    <li><a href="#" class="hover:text-white transition">Seat Upgrade</a></li>
+                    <li><a href="#" class="hover:text-white transition">Voucher</a></li>
+                    <li><a href="#" class="hover:text-white transition">Lost & Found</a></li>
+                </ul>
+            </div>
 
-            const form = e.target;
-            const email = form.querySelector('input[name="subscribeEmail"]').value;
-            const button = form.querySelector('button');
-            const messageDiv = document.getElementById('subscription-message');
-            const token = form.querySelector('input[name="_token"]').value;
+            <div>
+                <h3 class="text-lg font-black mb-6 uppercase tracking-wider">Legal</h3>
+                <ul class="space-y-3 text-sm text-blue-100">
+                    <li><a href="#" class="hover:text-white transition">Terms and Conditions</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Site Map</a></li>
+                </ul>
+            </div>
 
-            messageDiv.textContent = '';
-            messageDiv.classList.remove('text-green-500', 'text-red-500');
+            <div>
+                <h3 class="text-lg font-black mb-6 uppercase tracking-wider">Subscribe</h3>
+                <p class="text-sm text-blue-100 mb-6">Join our community to receive updates</p>
+                <form class="flex items-center">
+                    <input type="email" placeholder="mail@site.com" class="w-full bg-blue-800/40 border border-blue-400/50 rounded-l-xl px-4 py-3 text-sm focus:outline-none">
+                    <button class="bg-white text-[#1D35D1] px-6 py-3 rounded-r-xl font-bold text-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
 
-            // Set loading state
-            button.disabled = true;
-            // button.classList.add('loading');
-            button.textContent = 'Subscribing...';
+        <hr class="border-blue-400/30 mb-10">
 
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-black italic mb-2 tracking-tighter uppercase">Fly Fare Mart</h2>
+                <p class="text-[10px] text-blue-300 max-w-md">Stop searching and start flying. FlightFareMart combines cutting-edge tech with radical transparency to bring the horizon closer to your wallet.</p>
+            </div>
 
-            fetch(form.action, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'X-CSRF-TOKEN': token,
-                  'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                  subscribeEmail: email
-                })
-              })
-              .then(response => response.json())
-              .then(data => {
-                if (data.errors) {
-                  messageDiv.textContent = Object.values(data.errors).flat().join(' ');
-                  messageDiv.classList.add('text-red-500');
-                } else if (data.success) {
-                  messageDiv.textContent = data.success;
-                  messageDiv.classList.add('text-green-500');
-                  form.reset();
-                }
-              })
-              .catch(error => {
-                console.error('Error:', error);
-                messageDiv.textContent = 'An unexpected error occurred.';
-                messageDiv.classList.add('text-red-500');
-              })
-              .finally(() => {
-                // Unset loading state
-                button.disabled = false;
-                button.classList.remove('loading');
-                button.textContent = 'Subscribe';
-              });
-          });
-        </script>
-
-      </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 border border-blue-400/50 rounded-full flex items-center justify-center hover:bg-white hover:text-blue-700 transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 border border-blue-400/50 rounded-full flex items-center justify-center hover:bg-white hover:text-blue-700 transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="mt-10 flex flex-col md:flex-row justify-between text-[9px] text-blue-300 opacity-60">
+            <p>Disclaimer: Blah Blah Blah...........</p>
+            <p>2026 FlightFareMart. All right reserved</p>
+        </div>
     </div>
-    <div class="text-center text-xs mt-10 opacity-70">
-      <div class="text-xs text-accent dark:text-primary ">
-        <a href="{{ route('privacy') }}" class="hover:text-seconary">Privacy Policy</a> |
-        <a href="{{ route('terms') }}" class="hover:text-seconary">Terms & Conditions</a>
-      </div>
-      <p>© 2025 FlightFareMart. All rights reserved.</p>
-    </div>
-
-  </div>
-  <div class="dark:bg-black bg-base-200  dark:text-secondary text-accent">
-    <p class="text-center p-4  mx-auto max-w-5xl  "><small> DISCLAIMER: We are not legally responsible for any issues or losses arising from the information on our website. Please confirm travel details with airlines or official sources before finalizing your plans to ensure accuracy. Your verification will help avoid potential problems. </small></p>
-  </div>
-
 </footer>

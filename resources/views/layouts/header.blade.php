@@ -14,7 +14,7 @@
 
     <!-- Logo -->
     <a href="/" class="text-xl font-semibold dark:text-[#EDEDEC] text-[#1b1b18]">
-      flightflaremart
+       flightflaremart
     </a>
 
     <!-- Desktop Nav -->

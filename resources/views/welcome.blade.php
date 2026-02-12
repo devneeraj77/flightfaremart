@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
   <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
   <title>FlightFareMart | Find the Cheapest Flights & Best Airfare Deals</title>
   <meta name="description" content="FlightFareMart is your trusted source for finding the cheapest flights worldwide. Compare airfare, discover deals, and book your next trip with guaranteed low prices.">
@@ -15,403 +16,398 @@
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 
-<body class=" antialiased bg-primary   overflow-x-hidden font-display dark:bg-black dark:text-secondary  px-2 ">
+<body class=" antialiased bg-base-100   overflow-x-hidden font-display dark: dark:text-secondary  px-2 ">
   <x-preloading />
   @include('layouts.navmanu')
   <main>
-    <section class="overflow-hidden max-w-7xl mx-auto md:mb-20 lg:mb-30 lg:mt-4">
-      <div class="relative py-8">
-        <img
-          src="img/aircraft_usu4.svg"
-          alt="Stylized aircraft illustration"
-          class="absolute -right-15 top-2 sm:left-20 sm:-top-10 md:left-50 md:-top-30 lg:left-50 lg:-top-25 z-30 -rotate-25 md:-rotate-15 lg:-rotate-3"
-          width="950"
-          height="200"
-          fetchpriority="high"
-          srcset="img/aircraft_usu4.svg 950w, img/aircraft_usu4.svg 480w"
-          sizes="(max-width: 640px) 480px, 950px" />
+    <section class="xl:max-w-7xl lg:mx-10 xl:mx-auto font-sans relative">
 
-      </div>
-      <div class="flex flex-col relative  max-md:gap-20 md:flex-row pb-8 items-center justify-between mt-20 px-4 ">
-        <div class=" flex flex-col z-40  items-center md:items-start">
-          <div class="flex flex-wrap p-3 backdrop-blur-sm items-center justify-center p-1.5 rounded-full border border-secondary text-white text-xs">
-            <div class="flex items-center">
-              <img
-                class="size-7 rounded-full border-3 border-white"
-                src="/img/mbr/m-4.webp"
-                srcset="/img/mbr/m-4.webp 64w, /img/mbr/m-4.webp 128w"
-                sizes="32px"
-                width="28" height="28"
-                loading="lazy"
-                alt="Profile image of user 1">
+      <div class="relative bg-cover bg-center  bg-no-repeat lg:rounded-[3rem] p-2 md:p-10 md:my-10 min-h-[600px]"
+        style="background-image: url('{{ asset('/img/hero-banner.png') }}')">
 
-              <img
-                class="size-7 rounded-full border-3 border-white -translate-x-2"
-                src="/img/mbr/m-2.webp"
-                srcset="/img/mbr/m-2.webp 64w, /img/mbr/m-2.webp 128w"
-                sizes="32px"
-                width="28" height="28"
-                loading="lazy"
-                alt="Profile image of user 2">
-
-              <img
-                class="size-7 rounded-full border-3 border-white -translate-x-4"
-                src="/img/mbr/m-1.webp"
-                srcset="/img/mbr/m-1.webp 64w, /img/mbr/m-1.webp 128w"
-                sizes="32px"
-                width="28" height="28"
-                loading="lazy"
-                alt="Profile image of user 3">
-            </div>
-
-            <p class="-translate-x-2 text-accent md:text-sm dark:text-base-200">Unlock deals from 100+ countries today! </p>
-          </div>
-          <h1 class="text-center mt-4 md:text-left text-4xl lg:text-6xl leading-[48px] md:text-5xl md:leading-[74px] font-medium max-w-xl text-accent dark:text-secondary">
-            Find Your Perfect Flight, Guaranteed Lowest Fare.
-          </h1>
-          <p class="text-center text-accent md:text-left text-base dark:text-base-300 max-w-lg mt-2">
-            Quickly discover the best deals from hundreds of <strong>600+ airlines and travel providers.</strong> Your exciting journey begins right here!
+        <div class="relative z-10">
+          <p class="uppercase  tracking-widest text-neutral font-bold mb-6 text-xs">
+            Elevate your travel journey
           </p>
-          <!-- <div class="flex items-center gap-4 mt-8 text-sm">
-          <button class="bg-accent hover:bg-base-200 text-primary active:scale-95 hover:text-accent duration-300 ease-in rounded-md px-7 h-11">
-            Book Now
-          </button>
-          <button class="flex items-center gap-2 border border-slate-600 active:scale-95 hover:bg-white/10 transition text-accent rounded-md px-6 h-11">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video-icon lucide-video">
-              <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
-              <rect x="2" y="6" width="14" height="12" rx="2" />
-            </svg>
-            <span>Watch demo</span>
-          </button>-->
+          <h1 class="text-5xl md:text-6xl font-[1000] leading-tight text-accent mb-16 max-w-2xl">
+            Experience<br>The Magic Of<br>Flights
+          </h1>
+
+          <div class="relative z-40 w-full lg:max-w-5xl">
+            <x-flight-search-form class="relative shadow-2xl" />
+          </div>
         </div>
-        <!-- <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/hero-section-showcase-3.png" alt="hero" class="max-w-xs sm:max-w-sm lg:max-w-md transition-all duration-300"> -->
-        <div class=" z-40 w-90 md:w-fit md:ml-18">
-          <x-flight-search-form class="relative" />
+
+        <div class="absolute hidden lg:flex bottom-20 right-0 z-50 flex items-center gap-4">
+
+          <div class="flex pt-4 -space-x-4">
+            <img class="w-14 h-14 rounded-full border-4 border-white shadow-md object-cover" src="https://i.pravatar.cc/100?u=1" alt="User">
+            <img class="w-14 h-14 rounded-full border-4 border-white shadow-md object-cover" src="https://i.pravatar.cc/100?u=2" alt="User">
+            <img class="w-14 h-14 rounded-full border-4 border-white shadow-md object-cover" src="https://i.pravatar.cc/100?u=3" alt="User">
+          </div>
+
+          <div class="bg-base-200 rounded-4xl p-6 flex items-center gap-6">
+            <div class="text-left">
+              <div class="flex items-center gap-2 group cursor-pointer">
+                <span class="text-2xl font-black text-accent mb-2">Know More</span>
+                <svg class="w-5 h-5 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </div>
+              <!-- <p class="text-sm uppercase font-bold text-gray-400 mt-1 tracking-tighter">Awesome Places</p> -->
+              <p class="text-xs text-neutral max-w-[130px] leading-tight">Visit those places at least one time in your life.</p>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- <div class=" flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-100 pb-10">
+      </div> -->
+      <div class="p-2 pt-8 md:p-0 flex flex-col md:flex-row justify-between items-center gap-12 border-b border-base-200 pb-12">
+        <div class="flex items-center gap-4">
+          <span class="text-sm font-bold uppercase tracking-widest text-neutral">Follow us on -</span>
+          <div class="flex gap-3">
+            <a href="#" class="bg-accent text-accent-content p-2 rounded-full"><img src="/img/yt.svg" class="w-4 h-4"></a>
+            <a href="#" class="bg-accent text-accent-content p-2 rounded-full"><img src="/img/tw.svg" class="w-4 h-4"></a>
+            <a href="#" class="bg-accent text-accent-content p-2 rounded-full"><img src="/img/ig.svg" class="w-4 h-4"></a>
+            <a href="#" class="bg-accent text-accent-content p-2 rounded-full"><img src="/img/fb.svg" class="w-4 h-4"></a>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-8 opacity-70 grayscale hover:grayscale-0 transition-all">
+          <div class="flex items-center font-bold text-xl gap-1"><span>airbnb</span></div>
+          <div class="flex items-center font-bold text-xl gap-1"><span>Booking.com</span></div>
+          <div class="flex items-center font-bold text-xl gap-1"><span>trivago</span></div>
+          <div class="flex items-center font-bold text-xl gap-1"><span>Expedia</span></div>
+        </div>
+      </div>
     </section>
-    <section>
-      <!-- add -->
+    <!-- add -->
     </section>
     <!-- section 2 -->
-    <section class="py-24 mx-auto max-w-7xl">
-      <p class="mx-auto px-5 md:px-4 max-w-6xl md:text-xl text-base text-center ">Trip on</p>
-      <h2 class="text-4xl  md:text-6xl mx-auto text-accent dark:text-secondary max-w-6xl px-5 md:px-3 text-center">Popular Flight Deals Right Now</h2>
-      <div class="flex-1 md:flex my-6 bg-trans items-center">
-        <div class="basis-4/3">
-          <div class="container mx-auto px-4 md:py-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <!-- Large item -->
-              <div class="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=60&w=650&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Nature" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-2xl font-bold text-white">New York</span>
-                    <p class="text-white">Discover the beauty of the natural world</p>
-                  </div>
+    <section class="py-24 mx-auto max-w-7xl font-sans">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-black text-accent mb-3">Popular Flight Deals Right Now</h2>
+        <p class="uppercase tracking-[0.3em] text-neutral text-base font-bold">Trip On</p>
+      </div>
 
-                </div>
-              </div>
+      <div class="flex flex-col lg:flex-row gap-12 px-6">
+        <div class="lg:w-3/5 w-full grid 
+            grid-cols-2 md:grid-cols-3 
+            gap-4 md:gap-5 
+            auto-rows-[180px] sm:auto-rows-[200px] md:auto-rows-[140px]">
 
-              <!-- Two small items -->
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1618259278412-2819cbdea4dc?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Food" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105 object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">Germany</span>
-                  </div>
-                </div>
-              </div>
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1547448415-e9f5b28e570d?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Technology" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">Moscow</span>
-                  </div>
-                </div>
-              </div>
+          <div class="col-span-1 row-span-2 md:row-span-3 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm">
+            <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=60&w=650&auto=format&fit=crop"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Historic building">
+          </div>
 
-              <!-- Three medium items -->
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travel" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">France</span>
-                  </div>
-                </div>
-              </div>
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1488747279002-c8523379faaa?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Art" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">London(UK)</span>
-                  </div>
-                </div>
-              </div>
+          <div class="col-span-1 md:col-span-2 row-span-1 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm">
+            <img src="https://images.unsplash.com/photo-1547448415-e9f5b28e570d?q=60&w=650&auto=format&fit=crop"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Mountain lake">
+          </div>
 
-              <!-- bottom cards -->
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://plus.unsplash.com/premium_photo-1697730336238-5d1d342127e8?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">Mexico</span>
-                  </div>
-                </div>
-              </div>
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">Italy</span>
-                  </div>
-                </div>
-              </div>
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://plus.unsplash.com/premium_photo-1661962958462-9e52fda9954d?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">Thailand</span>
-                  </div>
-                </div>
-              </div>
-              <div class="relative overflow-hidden rounded-2xl shadow-lg group">
-                <img src="https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?q=60&w=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sport" class="w-full h-48 object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
-                <div
-                  class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <span class="text-xl font-bold text-white">Australia</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="col-span-1 row-span-2 md:row-span-3 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm">
+            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=60&w=400&auto=format&fit=crop"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Hiking trail">
+          </div>
+
+          <div class="col-span-1 row-span-1 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm">
+            <img src="https://images.unsplash.com/photo-1618259278412-2819cbdea4dc?q=60&w=400&auto=format&fit=crop"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Red canyon road">
+          </div>
+
+          <div class="col-span-1 row-span-1  md:row-span-2 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm">
+            <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?q=60&w=400&auto=format&fit=crop"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Valley view">
+          </div>
+
+          <div class="col-span-1 row-span-1 relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-sm">
+            <img src="https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?q=60&w=400&auto=format&fit=crop"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Kayaking">
           </div>
         </div>
-        <div class="basis-2/3 h-min-60 p-3 w-full mt-3 md:mt-6 ">
-          <h3 class="text-2xl text-accent dark:text-secondary sm:text-3xl px-3  font-semibold">You are planning the next trip!</h3>
-          <p class="py-2 px-3 dark:text-base-300">Plan your next trip to fulfill your desires. Visit our top trending page, which helps you find outstanding deals in great destinations. Our website brings all those things which make your journey.  </p>
-          <p class="py-2 px-3 dark:text-base-300">Discover those destinations that make you relax and create unforgettable memories. Whether you're planning any big international journey or a normal weekend getaway.  </p>
-          <a href="#" class="text-base underline p-3 my-2 pt-5">Find more</a>
-          <div class="flex justify-between items-start flex-col p-8 items-end h-64 mx-3 my-4 dark:bg-secondary rounded-3xl mt-6 md:mt-10 bg-base-300">
-            <div class="text-3xl dark:text-accent">
-              <span>Flightfaremart brings you the best flight deals and travel offers in real time.</span>
-            </div>
-            <a href="#" class="flex gap-2 content-center items-center text-dark dark:text-accent">Grab Now
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-8">
-                <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z" clip-rule="evenodd" />
-              </svg>
+
+        <div class="lg:w-2/5 flex flex-col justify-center">
+          <h3 class="text-4xl md:text-5xl font-black text-accent leading-[1.15] mb-8">
+            You are planning the<br>next trip!
+          </h3>
+
+          <div class="space-y-6 text-neutral text-lg leading-relaxed mb-10">
+            <p>
+              Plan your next trip to fulfill your desires. Visit our trending page, which helps you find outstanding deals in great destinations. Our website brings all those things which make your journey.
+            </p>
+            <p>
+              Discover those destinations that make you relax & create unforgettable memories. Whether you're planning any big international journey or a normal weekend getaway.
+            </p>
+          </div>
+
+          <div>
+            <a href="#" class="inline-block bg-accent text-accent-content px-12 py-4 rounded-full font-bold text-sm tracking-widest shadow-xl hover:bg-accent/90 transition-all transform hover:scale-105 active:scale-95">
+              Find More
             </a>
           </div>
         </div>
       </div>
     </section>
-    <section class="bg-base-200 dark:bg-black  py-12 md:py-20 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl md:text-6xl text-accent dark:text-secondary  mx-auto max-w-6xl text-center px-5 md:px-3 ">Where Will You Explore Next?</h2>
-        <p class="mt-4 mx-auto px-5 md:px-4 max-w-6xl text-lg dark:text-secondary/50 text-accent/80 my-2 pb-3">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
-        <div class="max-w-6xl mx-auto">
-          <div class=" md:flex  py-8 mb-12 md:mb-16">
-            <p class="mt-4 p-4 md:p-8 text-xl  text-accent/80 dark:text-base-200 max-w-3xl mx-auto">
-              Discover destinations that inspire adventure, relaxation, and unforgettable memories. Whether you're planning a spontaneous weekend getaway or mapping out your next big international journey, <strong class="text-accent dark:text-secondary font-normal">FlightFareMart</strong> brings you the best flight deals and travel offers in real time.
-            </p>
-            <p class="mt-2 p-4 md:p-8 bg-base-300 dark:bg-accent/20 rounded-lg text-back/70 max-w-4xl mx-auto">
-              From sun-soaked beaches to buzzing city skylines, our curated destinations help you find the perfect trip at the perfect price.
+    <section class="bg-accent py-20 px-4 sm:px-6 lg:px-8 text-accent-content overflow-hidden font-sans">
+      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+
+        <div class="lg:w-1/2">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 text-accent-content">Why Travelers Choose Us?</h2>
+          <p class="text-accent-content/80 mb-12 max-w-lg">Our mission is to drive progress and enhance the lives of our customers by delivering superior products and services that exceed.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20">
+              <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-bold mb-2">Best Price Guarantee</h4>
+              <p class="text-sm text-accent-content/80">Get the lowest fares with no hidden changes.</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl  border-white/20">
+              <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-bold mb-2">24/7 Support</h4>
+              <p class="text-sm text-accent-content/80">We're always here to help you.</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20">
+              <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-bold mb-2">Secure & Trusted</h4>
+              <p class="text-sm text-accent-content/80">Book with conditions, your data is safe.</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20">
+              <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-bold mb-2">Flexible Options</h4>
+              <p class="text-sm text-accent-content/80">Easy cancellations and changes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:w-1/2 relative flex justify-center items-center h-[500px]">
+          <div class="w-80 h-80 rounded-full  overflow-hidden relative z-20 shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=800" class="w-full h-full object-cover" alt="Travelers">
+          </div>
+          <div class="absolute top-0 right-10 w-72 h-72 rounded-full overflow-hidden z-10 shadow-xl">
+            <img src="https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover" alt="Plane">
+          </div>
+          <div class="absolute bottom-10 right-0 w-52 h-52 rounded-full  overflow-hidden z-30 shadow-xl">
+            <img src="https://images.unsplash.com/photo-1502003148287-a82ef80a6abc?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover" alt="Destination">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 md:py-24 bg-base-200 font-sans overflow-hidden"
+      x-data="{ 
+            emblaApi: null,
+            selectedIndex: 0,
+            canScrollNext: false,
+            canScrollPrev: false,
+            scrollSnaps: [],
+            init() {
+                const options = { loop: false, align: 'start', containScroll: 'trimSnaps' };
+                this.emblaApi = EmblaCarousel(this.$refs.viewport, options);
+                
+                const updateState = () => {
+                    this.selectedIndex = this.emblaApi.selectedScrollSnap();
+                    this.canScrollPrev = this.emblaApi.canScrollPrev();
+                    this.canScrollNext = this.emblaApi.canScrollNext();
+                    this.scrollSnaps = this.emblaApi.scrollSnapList();
+                };
+
+                this.emblaApi.on('init', updateState);
+                this.emblaApi.on('select', updateState);
+                this.emblaApi.on('reInit', updateState);
+            },
+            scrollNext() {
+                this.emblaApi.scrollNext();
+            },
+            scrollTo(index) {
+                this.emblaApi.scrollTo(index);
+            }
+         }">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-8">
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <h2 class="text-4xl md:text-5xl font-black text-accent leading-tight">
+              Where Will You<br class="hidden md:block"> Explore Next?
+            </h2>
+            <div class="hidden md:block w-px h-16 bg-neutral/20 mx-4"></div>
+            <p class="max-w-sm text-neutral text-sm leading-relaxed">
+              Engage casual browsers to convert passive interest into active flight searches.
             </p>
           </div>
-          <div class="mb-12 md:mb-16">
-            <h3 class="text-3xl font-bold text-accent dark:text-secondary mb-6 border-b-2 border-secondary pb-2">
-              Top Trending Destinations
-            </h3>
+
+          <div class="flex items-center gap-4">
+            <a href="#" class="bg-accent text-accent-content px-8 py-3 rounded-full font-bold text-xs tracking-widest hover:bg-accent/90 transition shadow-lg shrink-0">
+              VIEW ALL DESTINATIONS
+            </a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="overflow-hidden" x-ref="viewport">
+            <div class="flex gap-6 touch-pan-y pb-8">
+
             @php
-            $destinations = [
-            [
-            'city' => 'Miami',
-            'caption' => 'Fly to the Magic City with fares starting as low as $150.',
-            'image' => 'https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?q=80&w=250&auto=format&fit=crop',
-            ],
-            [
-            'city' => 'London',
-            'caption' => 'Fly to the Magic City with fares starting as low as $150.',
-            'image' => 'https://plus.unsplash.com/premium_photo-1671734045770-4b9e1a5e53a0?q=80&w=250&auto=format&fit=crop',
-            ],
-            [
-            'city' => 'Paris',
-            'caption' => 'Fly to the Magic City with fares starting as low as $150.',
-            'image' => 'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=250&auto=format&fit=crop',
-            ],
-            [
-            'city' => 'Singapore',
-            'caption' => 'Fly to the Magic City with fares starting as low as $150.',
-            'image' => 'https://images.unsplash.com/photo-1720941001711-2d1a1d46cc83?q=80&w=250&auto=format&fit=crop',
-            ],
-            [
-            'city' => 'Dubai',
-            'caption' => 'Fly to the Magic City with fares starting as low as $150.',
-            'image' => 'https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=250&auto=format&fit=crop',
-            ],
+            $slides = [
+            ['city' => 'Japan', 'img' => 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=600'],
+            ['city' => 'London', 'img' => 'https://plus.unsplash.com/premium_photo-1671734045770-4b9e1a5e53a0?q=80&w=600'],
+            ['city' => 'Paris', 'img' => 'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=600'],
+            ['city' => 'Miami', 'img' => 'https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?q=80&w=600'],
+            ['city' => 'Singapore', 'img' => 'https://images.unsplash.com/photo-1720941001711-2d1a1d46cc83?q=80&w=600']
             ];
             @endphp
 
-            <div class="flex flex-wrap items-center justify-center mt-10 mx-auto gap-2 mb-3 md:mb-8 lg:mb-14">
+            @foreach($slides as $slide)
+            <div class="min-w-[85%] sm:min-w-[45%] lg:min-w-[30%] flex-[0_0_85%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] group/card">
+              <div class="relative h-[450px] overflow-hidden rounded-[2.5rem] shadow-sm">
+                <img src="{{ $slide['img'] }}"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+                  alt="{{ $slide['city'] }}">
 
-              @foreach ($destinations as $d)
-              <div class="relative">
-                <img
-                  class="max-w-56 h-80 object-cover rounded-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-                  src="{{ $d['image'] }}"
-                  alt="{{ $d['city'] }}"
-                  loading="lazy"
-                  width="224"
-                  height="320"
-                  decoding="async">
-
-                <p class="absolute  bottom-2 left-2 text-white bg-black/30 backdrop-blur px-3 py-1 rounded text-sm font-medium">
-                  {{ $d['city'] }}
-                </p>
-
-              </div>
-              @endforeach
-            </div>
-            <p class="dark:text-base-200 text-lg leading-relaxed max-w-4xl mx-auto text-center md:mb-10">
-              Explore some of the world’s most iconic destinations with unbeatable fares and exclusive seasonal offers.
-              Whether you're dreaming of Miami’s sun-soaked beaches, London’s historic charm, Dubai’s modern wonders,
-              or Singapore’s vibrant city life, FlightFareMart brings you closer to your next adventure with curated deals
-              <em>designed for every type of traveler.</em>
-            </p>
-
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12">
-
-            <div class="bg-base-200 dark:bg-base-300/20 p-5 rounded-3xl">
-              <h3 class="text-3xl font-bold text-accent dark:text-secondary  mb-6 border-b-2 border-secondary  pb-2">
-                Travel Your Way
-              </h3>
-              <p class="text-lg text-accent dark:text-base-200 mb-6">Not sure where to go? Let us inspire your next journey. Choose from travel styles designed for every type of explorer:</p>
-
-              <div class="space-y-4">
-                <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
-                  <p class="text-xl font-semibold ">#WeekendTrips</p>
-                  <p class="text-accent dark:text-base-200">Quick getaways at wallet-friendly prices.</p>
-                </div>
-                <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
-                  <p class="text-xl font-semibold text-muted">#FamilyVacation</p>
-                  <p class="text-accent dark:text-base-200">Comfort-filled journeys for the whole family.</p>
-                </div>
-                <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
-                  <p class="text-xl font-semibold text-muted">#AdventureTravel</p>
-                  <p class="text-accent dark:text-base-200">Explore mountains, beaches, and hidden gems worldwide.</p>
-                </div>
-                <div class="p-4 bg-muted rounded-lg border border-secondary bg-muted-100 transition duration-300">
-                  <p class="text-xl font-semibold text-muted">#DirectFlights</p>
-                  <p class="text-accent dark:text-base-200">Nonstop options for smooth, simple travel.</p>
+                <div class="absolute inset-x-6 bottom-6">
+                  <div class="bg-white/20 backdrop-blur-lg border border-white/30 rounded-3xl py-4 text-center shadow-xl">
+                    <span class="text-accent font-black text-sm uppercase tracking-[0.3em]">{{ $slide['city'] }}</span>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div class="bg-base-200 dark:bg-base-300/20 p-5 rounded-3xl">
-              <h3 class="text-3xl font-bold text-accent dark:text-secondary  mb-6 border-b-2 border-secondary  pb-2">
-                Limited-Time Deals
-              </h3>
-              <p class="text-lg text-accent dark:text-base-200 mb-6">Looking for the best time to book? It’s right now.</p>
-
-              <div class="space-y-4">
-                <div class="p-4 bg-muted-50 rounded-lg border border-secondary hover:bg-muted transition duration-300">
-                  <p class="text-xl font-semibold text-muted">Flash Sale</p>
-                  <p class="text-accent dark:text-base-200">Save up to <strong class="text-accent dark:text-secondary">40%</strong> on select international routes this week.</p>
-                </div>
-                <div class="p-4 bg-muted-50 rounded-lg border border-secondary hover:bg-muted transition duration-300">
-                  <p class="text-xl font-semibold text-muted">Last-Minute Deals</p>
-                  <p class="text-accent dark:text-base-200">Perfect for spontaneous travelers on a budget.</p>
-                </div>
-                <div class="p-4 bg-muted-50 rounded-lg border border-secondary hover:bg-muted transition duration-300">
-                  <p class="text-xl font-semibold text-muted">Seasonal Offers</p>
-                  <p class="text-accent dark:text-base-200">Summer, winter, and festival-season discounts updated daily.</p>
-                </div>
-              </div>
+            @endforeach
             </div>
           </div>
 
-          <div class="text-center mt-16 pt-8 border-t border-gray-200">
-            <h3 class="text-3xl font-bold text-accent dark:text-secondary mb-4">
-              Your Next Adventure Is Just a Click Away
-            </h3>
-            <p class="text-xl text-accent dark:text-base-200 max-w-4xl mx-auto mb-8">
-              With powerful search tools, transparent pricing, and real-time access to 600+ airlines and travel providers, FlightFareMart makes discovering your next destination easier than ever.
-            </p>
-            <p class="text-2xl font-bold text-accent dark:text-base-300 mb-6">
-              Where will you go next?
-            </p>
-            <a href="#" class="inline-block px-12 py-4 text-xl font-bold text-white bg-accent rounded-lg shadow-xl secondary transition duration-300 transform hover:scale-105">
-              Start exploring today.
-            </a>
-          </div>
+          <button
+            @click="scrollNext()"
+            x-show="canScrollNext"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-accent text-accent-content p-5 rounded-full shadow-2xl translate-x-1/2 hover:scale-110 transition active:scale-95">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+              <path d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="flex justify-center gap-3 mt-4">
+          <template x-for="(snap, index) in scrollSnaps" :key="index">
+            <button
+              @click="scrollTo(index)"
+              class="h-2 rounded-full transition-all duration-300"
+              :class="selectedIndex === index ? 'w-8 bg-accent' : 'w-2 bg-base-300'"></button>
+          </template>
         </div>
       </div>
     </section>
-    <section class="min-h-80 dark:bg-black py-24">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl md:text-6xl mx-auto max-w-6xl dark:text-secondary text-accent px-5 md:px-3">The FlightFareMart Difference</h2>
-        <p class="mt-4 mx-auto px-5 md:px-4 max-w-6xl text-lg dark:text-secondary/50 text-accent/80 my-2 pb-3">This section engages users who are browsing rather than searching for a specific flight, helping convert passive interest into active search.</p>
-        <div class="lg:flex  mx-auto gap-6 max-w-6xl p-4">
-          <!-- Left side with image and overlay text -->
-          <div class="basis-3/2 relative h-[500px] overflow-hidden shadow-md shadow-accent/50 rounded-xl">
-            <img
-              class="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=847&auto=format&fit=crop"
-              alt="Sample Image">
-            <!-- Overlay text -->
-            <div class="absolute inset-0 flex items-center justify-center bg-black/20 ">
-              <div class="text-white absolute w-96 grid grid-row text-start md:-right-16 sm:-right-20 -right-40 bg-secondary/20 px-6 p-5 backdrop-blur-md rounded-xl text-md font-semibold text-center px-4">
-                <p class="text-sm flex flex-col"> <strong class="text-2xl">$150</strong> <span class="uppercase font-normal">Unbeatable Deals, Always</span></p>
+    <section class="text-base-content py-24 px-4 sm:px-6 lg:px-8 border-t border-white/10 font-sans">
+      <div class="max-w-7xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-black text-accent mb-4">Loved by over thousand travelers -</h2>
+        <p class="text-neutral mb-16">Real stories from real people! See how our services have transformed their experiences.</p>
+
+        <style>
+          @keyframes scroll-left {
+            0% {
+              transform: translateX(0);
+            }
+
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+
+          @keyframes scroll-right {
+            0% {
+              transform: translateX(-50%);
+            }
+
+            100% {
+              transform: translateX(0);
+            }
+          }
+
+          .animate-scroll-left {
+            animation: scroll-left 40s linear infinite;
+          }
+
+          .animate-scroll-right {
+            animation: scroll-right 40s linear infinite;
+          }
+
+          .pause-hover:hover {
+            animation-play-state: paused;
+          }
+        </style>
+
+        <div class="space-y-8 overflow-hidden text-black [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <!-- Row 1: Scroll Left -->
+          <div class="flex gap-6 animate-scroll-left w-max pause-hover">
+            {{-- Duplicate the loop to create seamless infinite scroll --}}
+            @for ($k = 0; $k < 2; $k++)
+              @for ($i=0; $i < 8; $i++)
+              <div class="w-[300px] bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 text-left flex-shrink-0">
+              <div class="flex text-warning mb-4">
+                @for ($j = 0; $j < 5; $j++)
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  @endfor
               </div>
-              <div class="text-secondary  grid grid-row absolute  w-125 md:-right-4 sm:-right-10 -right-40 top-85 bg-accent  text-start backdrop-blur-sm rounded-xl text-lg font-semibold text-center p-7">
-                <p class="col-span-1 text-xl md:text-2xl">Smarter Search, Better Results</p>
-                <p class="text-sm">1,200+ airlines and travel providers</p>
+              <p class="text-neutral text-sm mb-6 leading-relaxed">Many users appreciate platforms that are easy to navigate, allowing both recruiters and candidates.</p>
+              <div class="flex items-center gap-3">
+                <img class="w-10 h-10 rounded-full object-cover" src="https://i.pravatar.cc/150?u={{$i}}" alt="User">
+                <div>
+                  <p class="text-accent font-bold text-xs uppercase tracking-wider">Donald Trump</p>
+                </div>
               </div>
-            </div>
           </div>
-          <!-- Right side content -->
-          <div class="basis-1/2  w-full lg:mt-0 mt-8 h-full flex flex-col items-center  pb-4 justify-center">
-            <div class="lg:h-[200px] sm:h-[300px] relative rounded-lg w-full overflow-hidden bg-accent text-secondary hover:-translate-y-0.5 transition duration-300 rounded-xl">
-              <div class="absolute p-2 text-accent -right-1 sm:right -bottom-12 sm:-bottom-16 rounded-xl lg:h-[200px] sm:h-[300px] overflow-hidden w-120 sm:w-140 lg:w-60 md:w-160 bg-base-300 ">
-                <p class="text-2xl">Monthly 150 trips</p>
-                <p><small>While other sites rely on cached data that might be hours old, FlightFareMart pulls live data directly from over 700+ airlines and global booking systems.</small></p>
-              </div>
-            </div>
-            <h3 class="text-[24px]/7.5  text-accent dark:text-base-300 font-medium mt-6">The "Smart-Route" Algorithm</h3>
-            <p class="text-accent/70 dark:text-base-200  mt-2">Our proprietary search engine doesn't just look for direct routes. It analyzes "virtual interlining"—combining flights from different carriers that don't usually partner—to find unique connection paths that can save you up to 40% compared to standard bookings.</p>
-            <a href="/" class="group  flex items-center gap-2 mt-4 text-accent hover:text-accent/80 transition">
-              Real-Time Price Aggregation
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right size-5  group-hover:translate-x-0.5 transition duration-300" aria-hidden="true">
-                <path d="M7 7h10v10"></path>
-                <path d="M7 17 17 7"></path>
-              </svg>
-            </a>
-          </div>
+          @endfor
+          @endfor
         </div>
+
+        <!-- Row 2: Scroll Right -->
+        <div class="flex gap-6 animate-scroll-right w-max pause-hover">
+          {{-- Duplicate the loop to create seamless infinite scroll --}}
+          @for ($k = 0; $k < 2; $k++)
+            @for ($i=8; $i < 16; $i++)
+            <div class="w-[300px] bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 text-left flex-shrink-0">
+            <div class="flex text-warning mb-4">
+              @for ($j = 0; $j < 5; $j++)
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                @endfor
+            </div>
+            <p class="text-neutral text-sm mb-6 leading-relaxed">Many users appreciate platforms that are easy to navigate, allowing both recruiters and candidates.</p>
+            <div class="flex items-center gap-3">
+              <img class="w-10 h-10 rounded-full object-cover" src="https://i.pravatar.cc/150?u={{$i}}" alt="User">
+              <div>
+                <p class="text-accent font-bold text-xs uppercase tracking-wider">Donald Trump</p>
+              </div>
+            </div>
+        </div>
+        @endfor
+        @endfor
+      </div>
+      </div>
       </div>
     </section>
     <section class="max-w-7xl mx-auto">
       <x-latest-blog-posts />
     </section>
-
-    <section class="py-16 min-h-screen flex flex-col justify-center items-center dark:bg-black bg-base-200 text-accent w-full text-center px-2">
-      <div class="max-w-7xl mx-auto">
-        <p class="text-xl font-medium text- dark:text-base-200 ">Let’s start your trip!</p>
-        <h2 class="font-medium  md:text-7xl dark:text-base-300/80 text-4xl max-w-5xl mx-auto my-4">For work inquires feel free to get in touch with team.</h2>
-        <a href="#" class="text-lg dark:text-secondary">support@flightflaremart.com</a>
-      </div>
-    </section>
-
   </main>
   @include('layouts.footer')
 </body>

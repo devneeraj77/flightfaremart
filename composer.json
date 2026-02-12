@@ -13,6 +13,7 @@
         "blade-ui-kit/blade-icons": "^1.8",
         "cloudinary-labs/cloudinary-laravel": "^2.3",
         "cloudinary/cloudinary_php": "^2.14",
+        "codeat3/blade-clarity-icons": "*",
         "faisal50x/blade-ionicons": "^1.1",
         "guzzlehttp/guzzle": "^7.10",
         "hasnayeen/blade-eva-icons": "^2.1",
