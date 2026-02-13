@@ -1,6 +1,6 @@
+@import "tailwindcss";
 @import 'owl.carousel/dist/assets/owl.carousel.min.css';
 @import 'owl.carousel/dist/assets/owl.theme.default.min.css';
-@import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -14,66 +14,59 @@
 
 @plugin "daisyui/theme" {
     name: "mytheme";
-    default: true; /* set as default */
-    prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
-    color-scheme: light; /* color of browser-provided UI */
+    default: true;
+    prefersdark: false;
+    color-scheme: light;
 
-    /* Base colors */
-    --color-base-100: #f9f9f9;
-    --color-base-200: oklab(91.696% -0.01535 0.02446);
-    --color-base-300: oklab(96.856% -0.0104 0.01601);
-    --color-base-content: oklch(20% 0.05 240);
+    /* Base colors - Clean White 60% rule */
+    --color-base-100: #ffffff;
+    --color-base-200: #f8fafc; /* Very light blue-gray tint */
+    --color-base-300: #f1f5f9;
+    --color-base-content: #0f172a; /* Slate dark text */
 
-    /* Primary palette */
-    --color-primary: #f9f9f9;
-    --color-primary-content: #353535;
+    /* Primary palette - The requested #1528bc (30% rule) */
+    --color-primary: #1528bc;
+    --color-primary-content: #ffffff;
 
-    --color-secondary: #cad593;
-    --color-secondary-content: oklab(31.779000000000003% -0.02207 0.02023)oklch(98% 0.01 200);
+    /* Monochromatic secondary/accent (The remaining 10% pop) */
+    --color-secondary: #4355e0; /* Lighter version of primary */
+    --color-secondary-content: #ffffff;
 
-    --color-accent: #2a3c24;
-    --color-accent-content: oklch(98% 0.01 160);
+    --color-accent: #1528bc; /* Kept consistent with brand blue */
+    --color-accent-content: #ffffff;
 
-    --color-neutral: oklch(50% 0.05 240);
-    --color-neutral-content: oklch(98% 0.01 240);
+    /* Neutral - Deep Navy */
+    --color-neutral: #0a114d;
+    --color-neutral-content: #ffffff;
 
-    /* Status colors */
-    --color-info: oklch(70% 0.2 220);
-    --color-info-content: oklch(98% 0.01 220);
-
-    --color-success: oklch(65% 0.25 140);
-    --color-success-content: oklch(98% 0.01 140);
-
-    --color-warning: oklch(80% 0.25 80);
-    --color-warning-content: oklch(20% 0.05 80);
-
-    --color-error: oklch(65% 0.3 30);
-    --color-error-content: oklch(98% 0.01 30);
+    /* Status colors - Kept standard for usability but tinted blue */
+    --color-info: #3b82f6;
+    --color-info-content: #ffffff;
+    --color-success: #22c55e;
+    --color-success-content: #ffffff;
+    --color-warning: #eab308;
+    --color-warning-content: #ffffff;
+    --color-error: #ef4444;
+    --color-error-content: #ffffff;
 
     /* Additional tokens */
-    --color-dark: #353535;
-    --color-trans: oklab(84.88% -0.03826 0.07836 / 0.39);
+    --color-dark: #0a114d;
+    --color-trans: rgba(21, 40, 188, 0.1);
 
     /* Typography */
-    --font-display: "Abril Fatface", serif;
+    --font-display: "Montserrat", sans-serif;
     --font-body: "Lato", sans-serif;
 
-    /* Radius */
+    /* Radius & Sizing */
     --radius-selector: 1rem;
     --radius-field: 0.25rem;
     --radius-box: 0.5rem;
-
-    /* Sizing */
     --size-selector: 0.25rem;
     --size-field: 0.25rem;
-
-    /* Border */
     --border: 1px;
-
-    /* Effects */
     --depth: 1;
     --noise: 0;
-}
+}                    
 
 /* @theme {
   --color-primary: #f9f9f9;
@@ -85,8 +78,10 @@
 } */
 
 :root {
+    
     --acme-canvas-color: oklab(91.696% -0.01535 0.02446);
     --blog-text-color: rgb(225, 228, 231);
+    --blog-text-color: #003af7;
 }
 [data-theme="dark"] {
     
@@ -111,7 +106,7 @@
 
 *, html{
     scroll-behavior: smooth;
-    font-weight: 400;
+    /* font-weight: 400; */
 }
 h1, h2, h3, h4, h5, h6, #post-title {
     font-family: var(--font-display);

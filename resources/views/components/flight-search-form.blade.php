@@ -1,6 +1,5 @@
 <div x-data="flightSearchForm()" class=" font-sans">
   <div class="max-w-3xl  bg-white rounded-[2rem] shadow-2xl p-6 sm:p-8 border border-gray-100">
-
     <div class="flex justify-between gap-2 mb-6">
       <div>
         <button
@@ -58,7 +57,7 @@
         </div>
 
         <div class="relative z-10 -mx-4">
-          <button @click="swapLocations" class="bg-accent text-accent-content p-2 rounded-full border-4 border-white shadow-md hover:bg-accent/90 transform transition active:scale-90">
+          <button @click="swapLocations" class="bg-accent text-accent-content p-2 rounded-full shadow-md hover:bg-accent/90 transform transition active:scale-90">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
             </svg>
